@@ -14,6 +14,8 @@
 		CEC6328F297EBB5F00D9011E /* talkbbokkiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6328E297EBB5F00D9011E /* talkbbokkiTests.swift */; };
 		CEC63299297EBB5F00D9011E /* talkbbokkiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC63298297EBB5F00D9011E /* talkbbokkiUITests.swift */; };
 		CEC6329B297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6329A297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift */; };
+		CEE72A912982B2820047403A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CEE72A902982B2820047403A /* Alamofire */; };
+		CEE72A942982B2C10047403A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CEE72A932982B2C10047403A /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEE72A942982B2C10047403A /* ComposableArchitecture in Frameworks */,
+				CEE72A912982B2820047403A /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +149,10 @@
 			dependencies = (
 			);
 			name = talkbbokki;
+			packageProductDependencies = (
+				CEE72A902982B2820047403A /* Alamofire */,
+				CEE72A932982B2C10047403A /* ComposableArchitecture */,
+			);
 			productName = talkbbokki;
 			productReference = CEC63279297EBB5E00D9011E /* talkbbokki.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +225,10 @@
 				Base,
 			);
 			mainGroup = CEC63270297EBB5E00D9011E;
+			packageReferences = (
+				CEE72A8F2982B2820047403A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				CEE72A922982B2C10047403A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = CEC6327A297EBB5E00D9011E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -604,6 +616,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEE72A8F2982B2820047403A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		CEE72A922982B2C10047403A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CEE72A902982B2820047403A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEE72A8F2982B2820047403A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		CEE72A932982B2C10047403A /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEE72A922982B2C10047403A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEC63271297EBB5E00D9011E /* Project object */;
 }
