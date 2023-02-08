@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE0F159D2993B9B000295B43 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F159C2993B9B000295B43 /* APIConfig.swift */; };
+		CE0F15A02993BB5B00295B43 /* APIConfig.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F159F2993BB5B00295B43 /* APIConfig.Error.swift */; };
+		CE0F15A22993BBF000295B43 /* APIConfig+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15A12993BBF000295B43 /* APIConfig+Error.swift */; };
+		CE0F15A42993F5DD00295B43 /* APIConfig.Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15A32993F5DD00295B43 /* APIConfig.Parameters.swift */; };
+		CE0F15A62993F5FE00295B43 /* APIConfig+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15A52993F5FE00295B43 /* APIConfig+Request.swift */; };
+		CE0F15A92993FC6C00295B43 /* Domain.Talkbbokki.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15A82993FC6C00295B43 /* Domain.Talkbbokki.swift */; };
+		CE0F15AB2993FD2800295B43 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15AA2993FD2800295B43 /* API.swift */; };
+		CE0F15AD2993FD8F00295B43 /* Talkbbokki.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15AC2993FD8F00295B43 /* Talkbbokki.Error.swift */; };
+		CE0F15AF2994007300295B43 /* Model.Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15AE2994007300295B43 /* Model.Category.swift */; };
 		CE39E1132986503900E3C93D /* Model.Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1122986503900E3C93D /* Model.Card.swift */; };
 		CE39E1152986504400E3C93D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1142986504400E3C93D /* Model.swift */; };
 		CE39E1172986507F00E3C93D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1162986507F00E3C93D /* CardView.swift */; };
@@ -40,6 +49,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE0F159C2993B9B000295B43 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
+		CE0F159F2993BB5B00295B43 /* APIConfig.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.Error.swift; sourceTree = "<group>"; };
+		CE0F15A12993BBF000295B43 /* APIConfig+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIConfig+Error.swift"; sourceTree = "<group>"; };
+		CE0F15A32993F5DD00295B43 /* APIConfig.Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.Parameters.swift; sourceTree = "<group>"; };
+		CE0F15A52993F5FE00295B43 /* APIConfig+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIConfig+Request.swift"; sourceTree = "<group>"; };
+		CE0F15A82993FC6C00295B43 /* Domain.Talkbbokki.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.Talkbbokki.swift; sourceTree = "<group>"; };
+		CE0F15AA2993FD2800295B43 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		CE0F15AC2993FD8F00295B43 /* Talkbbokki.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Talkbbokki.Error.swift; sourceTree = "<group>"; };
+		CE0F15AE2994007300295B43 /* Model.Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Category.swift; sourceTree = "<group>"; };
+		CE0F15B02994025F00295B43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CE39E1122986503900E3C93D /* Model.Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Card.swift; sourceTree = "<group>"; };
 		CE39E1142986504400E3C93D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CE39E1162986507F00E3C93D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -84,9 +103,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE0F159E2993B9BE00295B43 /* APIConfig */ = {
+			isa = PBXGroup;
+			children = (
+				CE0F159C2993B9B000295B43 /* APIConfig.swift */,
+				CE0F159F2993BB5B00295B43 /* APIConfig.Error.swift */,
+				CE0F15A32993F5DD00295B43 /* APIConfig.Parameters.swift */,
+				CE0F15A12993BBF000295B43 /* APIConfig+Error.swift */,
+				CE0F15A52993F5FE00295B43 /* APIConfig+Request.swift */,
+			);
+			path = APIConfig;
+			sourceTree = "<group>";
+		};
+		CE0F15A72993FC6000295B43 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CE0F15A82993FC6C00295B43 /* Domain.Talkbbokki.swift */,
+				CE0F15AA2993FD2800295B43 /* API.swift */,
+				CE0F15AC2993FD8F00295B43 /* Talkbbokki.Error.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		CE39E10D2984F69300E3C93D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CE0F15A72993FC6000295B43 /* API */,
+				CE0F159E2993B9BE00295B43 /* APIConfig */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -105,6 +148,7 @@
 			children = (
 				CE39E1142986504400E3C93D /* Model.swift */,
 				CE39E1122986503900E3C93D /* Model.Card.swift */,
+				CE0F15AE2994007300295B43 /* Model.Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -132,6 +176,7 @@
 		CEC6327B297EBB5E00D9011E /* talkbbokki */ = {
 			isa = PBXGroup;
 			children = (
+				CE0F15B02994025F00295B43 /* Info.plist */,
 				CE39E1112986502F00E3C93D /* Model */,
 				CE39E10D2984F69300E3C93D /* Networking */,
 				CE39E10E29864FF300E3C93D /* Main */,
@@ -311,8 +356,17 @@
 				CE39E1132986503900E3C93D /* Model.Card.swift in Sources */,
 				CEC6327F297EBB5E00D9011E /* ContentView.swift in Sources */,
 				CE39E1172986507F00E3C93D /* CardView.swift in Sources */,
+				CE0F15A62993F5FE00295B43 /* APIConfig+Request.swift in Sources */,
+				CE0F15A02993BB5B00295B43 /* APIConfig.Error.swift in Sources */,
+				CE0F15A42993F5DD00295B43 /* APIConfig.Parameters.swift in Sources */,
+				CE0F15A22993BBF000295B43 /* APIConfig+Error.swift in Sources */,
+				CE0F15AB2993FD2800295B43 /* API.swift in Sources */,
 				CE39E119298650BB00E3C93D /* CardListView.swift in Sources */,
 				CEC6327D297EBB5E00D9011E /* talkbbokkiApp.swift in Sources */,
+				CE0F159D2993B9B000295B43 /* APIConfig.swift in Sources */,
+				CE0F15A92993FC6C00295B43 /* Domain.Talkbbokki.swift in Sources */,
+				CE0F15AD2993FD8F00295B43 /* Talkbbokki.Error.swift in Sources */,
+				CE0F15AF2994007300295B43 /* Model.Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +526,7 @@
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = talkbbokki/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -511,6 +566,7 @@
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = talkbbokki/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

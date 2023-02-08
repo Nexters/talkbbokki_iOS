@@ -17,6 +17,13 @@ struct CardListView: View {
                 CardContainerView(width: width, cards: $cards)
                 Spacer()
             }.animation(.spring())
+        }.onAppear {
+            API.Category().request().sink { completion in
+                
+            } receiveValue: { isAble in
+                
+            }
+
         }
     }
 }
@@ -24,9 +31,9 @@ struct CardListView: View {
 struct CardContainerView: View {
     let width: Double
     private let spacing: CGFloat = 10
-    @State private var op: Double = 0
+    @State private var offsetX: Double = 0
     @State private var x: CGFloat = 0
-    @State private var currentIndex: Int = 0
+    @State private var currentIndex: Int = -1
     @Binding var cards: [Model.Card]
     
     var body: some View {
@@ -48,7 +55,7 @@ struct CardContainerView: View {
                         })
                             .onEnded({ (value) in
                                 if value.translation.width > 0{
-                                    if value.translation.width > ((self.width - 80) / 2) && Int(self.currentIndex) != 0{
+                                    if value.translation.width > ((self.width) / 2) && Int(self.currentIndex) != 0{
                                         self.currentIndex -= 1
                                         self.x = -((self.width + spacing) * Double(self.currentIndex))
                                     }
@@ -57,7 +64,7 @@ struct CardContainerView: View {
                                     }
                                 }
                                 else{
-                                    if -value.translation.width > ((self.width - 80) / 2) && Int(self.currentIndex) !=  (self.cards.count - 1){
+                                    if -value.translation.width > ((self.width) / 2) && Int(self.currentIndex) !=  (self.cards.count - 1){
                                         self.currentIndex += 1
                                         self.x = -((self.width + spacing) * Double(self.currentIndex))
                                     }
@@ -79,9 +86,10 @@ struct CardContainerView: View {
                     }
             }
         }
-        .offset(x: op)
+        .offset(x: offsetX)
         .onAppear {
-             op = ((self.width + spacing) * CGFloat(self.cards.count / 2)) - (self.cards.count % 2 == 0 ? ((self.width + spacing) / 2) : 0)
+            currentIndex = 0
+            offsetX = ((self.width + spacing) * CGFloat(self.cards.count / 2)) - (self.cards.count % 2 == 0 ? ((self.width + spacing) / 2) : 0)
         }
     }
 }
