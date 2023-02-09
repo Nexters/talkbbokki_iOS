@@ -23,6 +23,7 @@ protocol APIConfig {
     var encoding: ParameterEncoding { get }
     
     func parse(_: Data) throws -> Response
+//    func makeRequest() async -> Result<Response, APIError<ServiceError>>
     func makeRequest() -> Future<Response, APIError<ServiceError>>
 }
 

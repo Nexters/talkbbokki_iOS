@@ -24,10 +24,9 @@ extension API.Category: APIConfig {
         return nil
     }
     
-    func parse(_ input: Data) throws -> Bool {
+    func parse(_ input: Data) throws -> [Model.Category] {
         let json   = try? input.toDict()
-//        let result = (json?["result"] as? Bool)!
-        return true
-//        return try Model.Letter.decode(dictionary: result)
+        let result = (json?["result"] as? Array<[String: Any]>)!
+        return try result.map(Model.Category.decode)
     }
 }

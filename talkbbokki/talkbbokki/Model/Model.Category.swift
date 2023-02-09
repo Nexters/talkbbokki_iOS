@@ -8,7 +8,8 @@
 import Foundation
 
 extension Model {
-    struct Category: Codable {
+    struct Category: Codable, Equatable, Identifiable {
+        var id: String { self.code }
         let code: String
         let text: String
     }

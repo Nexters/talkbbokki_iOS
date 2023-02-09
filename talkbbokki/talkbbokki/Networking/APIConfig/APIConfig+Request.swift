@@ -19,15 +19,13 @@ extension APIConfig {
             print("*********************************")
             print("\n")
 
-            
             let request = Self.domainConfig.manager.request(self.fullPath,
                                                             method: self.method,
                                                             parameters: self.fullParameters,
                                                             encoding: self.encoding,
                                                             headers: HTTPHeaders(self.fullHeaders))
-            
             request.validate().responseData(completionHandler: self.responseHandler(future))
-            
+
         }
     }
 }

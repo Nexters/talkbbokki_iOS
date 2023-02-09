@@ -6,10 +6,13 @@
 //
 import UIKit
 import SwiftUI
+import Combine
 
 struct CardListView: View {
     private let width = UIScreen.main.bounds.width - 100
     @Binding var cards: [Model.Card]
+    private let viewModel = CardListViewModel()
+
     var body: some View {
         NavigationView{
             VStack {
@@ -18,12 +21,7 @@ struct CardListView: View {
                 Spacer()
             }.animation(.spring())
         }.onAppear {
-            API.Category().request().sink { completion in
-                
-            } receiveValue: { isAble in
-                
-            }
-
+            viewModel.start()
         }
     }
 }

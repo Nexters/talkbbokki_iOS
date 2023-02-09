@@ -20,6 +20,9 @@
 		CE39E1152986504400E3C93D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1142986504400E3C93D /* Model.swift */; };
 		CE39E1172986507F00E3C93D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1162986507F00E3C93D /* CardView.swift */; };
 		CE39E119298650BB00E3C93D /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E118298650BB00E3C93D /* CardListView.swift */; };
+		CE858E8129953EBD00F2FC42 /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E8029953EBD00F2FC42 /* CardListViewModel.swift */; };
+		CE858E852995427500F2FC42 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E842995427500F2FC42 /* CategoryView.swift */; };
+		CE858E872995468D00F2FC42 /* CategoryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E862995468D00F2FC42 /* CategoryReducer.swift */; };
 		CEC6327D297EBB5E00D9011E /* talkbbokkiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6327C297EBB5E00D9011E /* talkbbokkiApp.swift */; };
 		CEC6327F297EBB5E00D9011E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6327E297EBB5E00D9011E /* ContentView.swift */; };
 		CEC63281297EBB5F00D9011E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC63280297EBB5F00D9011E /* Assets.xcassets */; };
@@ -63,6 +66,9 @@
 		CE39E1142986504400E3C93D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CE39E1162986507F00E3C93D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CE39E118298650BB00E3C93D /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
+		CE858E8029953EBD00F2FC42 /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
+		CE858E842995427500F2FC42 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		CE858E862995468D00F2FC42 /* CategoryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryReducer.swift; sourceTree = "<group>"; };
 		CEC63279297EBB5E00D9011E /* talkbbokki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = talkbbokki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC6327C297EBB5E00D9011E /* talkbbokkiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkbbokkiApp.swift; sourceTree = "<group>"; };
 		CEC6327E297EBB5E00D9011E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -139,6 +145,7 @@
 			children = (
 				CE39E1162986507F00E3C93D /* CardView.swift */,
 				CE39E118298650BB00E3C93D /* CardListView.swift */,
+				CE858E8029953EBD00F2FC42 /* CardListViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -151,6 +158,24 @@
 				CE0F15AE2994007300295B43 /* Model.Category.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CE858E822995426000F2FC42 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE858E832995426900F2FC42 /* Category */,
+				CE39E10E29864FF300E3C93D /* Main */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE858E832995426900F2FC42 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				CE858E842995427500F2FC42 /* CategoryView.swift */,
+				CE858E862995468D00F2FC42 /* CategoryReducer.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		CEC63270297EBB5E00D9011E = {
@@ -179,7 +204,7 @@
 				CE0F15B02994025F00295B43 /* Info.plist */,
 				CE39E1112986502F00E3C93D /* Model */,
 				CE39E10D2984F69300E3C93D /* Networking */,
-				CE39E10E29864FF300E3C93D /* Main */,
+				CE858E822995426000F2FC42 /* View */,
 				CEC6327C297EBB5E00D9011E /* talkbbokkiApp.swift */,
 				CEC6327E297EBB5E00D9011E /* ContentView.swift */,
 				CEC63280297EBB5F00D9011E /* Assets.xcassets */,
@@ -353,9 +378,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE39E1152986504400E3C93D /* Model.swift in Sources */,
+				CE858E852995427500F2FC42 /* CategoryView.swift in Sources */,
 				CE39E1132986503900E3C93D /* Model.Card.swift in Sources */,
 				CEC6327F297EBB5E00D9011E /* ContentView.swift in Sources */,
 				CE39E1172986507F00E3C93D /* CardView.swift in Sources */,
+				CE858E8129953EBD00F2FC42 /* CardListViewModel.swift in Sources */,
 				CE0F15A62993F5FE00295B43 /* APIConfig+Request.swift in Sources */,
 				CE0F15A02993BB5B00295B43 /* APIConfig.Error.swift in Sources */,
 				CE0F15A42993F5DD00295B43 /* APIConfig.Parameters.swift in Sources */,
@@ -366,6 +393,7 @@
 				CE0F159D2993B9B000295B43 /* APIConfig.swift in Sources */,
 				CE0F15A92993FC6C00295B43 /* Domain.Talkbbokki.swift in Sources */,
 				CE0F15AD2993FD8F00295B43 /* Talkbbokki.Error.swift in Sources */,
+				CE858E872995468D00F2FC42 /* CategoryReducer.swift in Sources */,
 				CE0F15AF2994007300295B43 /* Model.Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

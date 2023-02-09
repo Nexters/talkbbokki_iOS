@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct talkbbokkiApp: App {
@@ -21,7 +22,9 @@ struct talkbbokkiApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CardListView(cards: $cards)
+//            CardListView(cards: $cards)
+            CategoryView(store: Store(initialState: CategoryReducer.State(),
+                                      reducer: CategoryReducer()))
         }
     }
 }
