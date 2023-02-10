@@ -54,10 +54,11 @@ class CategoryReducer: ReducerProtocol {
                     let models = [
                         Model.Category(code: "1", text: "aa"),
                         Model.Category(code: "2", text: "bb"),
-                        Model.Category(code: "2", text: "cc"),
-                        Model.Category(code: "2", text: "ee"),
+                        Model.Category(code: "3", text: "cc"),
+                        Model.Category(code: "4", text: "ee"),
                     ]
                     contiuation.resume(returning: models)
+//                    contiuation.resume(returning: categories)
                 }.store(in: &bag)
         })
     }

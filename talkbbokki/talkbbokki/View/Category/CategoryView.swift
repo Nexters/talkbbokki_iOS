@@ -15,6 +15,14 @@ private enum Design {
             static let leftInset: CGFloat = 20
             static let spacing: CGFloat = 5.0
         }
+        
+        struct CardView {
+            static let height: CGFloat = 179
+        }
+        
+        struct CategoryView {
+            static let spacing: CGFloat = 59
+        }
     }
     
     enum Text {
@@ -24,14 +32,16 @@ private enum Design {
 }
 
 struct CategoryView: View {
+    @State private var selectedCategory: Model.Category?
     let store: StoreOf<CategoryReducer>
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationView {
-                VStack {
+                VStack(spacing: Design.Constraint.CategoryView.spacing) {
                     CategoryTitleView()
+                    CategoryCardGridView(touchedCardView: $selectedCategory,
+                                         categories: viewStore.categories)
                     Spacer()
-                    CategoryCardGridView(categories: viewStore.categories)
                 }
             }.onAppear {
                 viewStore.send(.fetchCategories)
@@ -56,27 +66,45 @@ struct CategoryTitleView: View {
 }
 
 struct CategoryCardGridView: View {
+    @Binding var touchedCardView: Model.Category?
     let categories: [Model.Category]
     var body: some View {
-        LazyVGrid(columns: categories.map { _ in GridItem() }) {
+        LazyVGrid(columns: [GridItem(.flexible()),
+                            GridItem(.flexible())]) {
             ForEach(categories) { category in
-                CategoryCardView(category: category)
+                CategoryCardView(touched: $touchedCardView,
+                                 category: category)
             }
-        }
-        .background(Color.yellow)
+        }.background(Color.yellow)
     }
 }
 
 struct CategoryCardView: View {
+    @Binding var touched: Model.Category?
     let category: Model.Category
     var body: some View {
-        ZStack {
-            Color.red
-                .cornerRadius(15)
-                .frame(width: 150, height: 150)
-                .padding()
-            Text(category.text).zIndex(0)
+        NavigationLink(destination: CardListView()) {
+            ZStack {
+                Color.red
+                    .cornerRadius(15)
+                    .padding()
+                    .frame(height: Design.Constraint.CardView.height)
+                Text(category.text)
+                    .zIndex(0)
+            }
         }
+//        Button {
+//            touched = category
+//        } label: {
+//            ZStack {
+//                Color.red
+//                    .cornerRadius(15)
+//                    .padding()
+//                    .frame(height: Design.Constraint.CardView.height)
+//                Text(category.text)
+//                    .zIndex(0)
+//            }
+//        }
     }
 }
 

@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct CardView: View {
-    let width: CGFloat
-    let height: CGFloat
     var card : Model.Card
     var body : some View{
         VStack(alignment: .leading, spacing: 0){
@@ -19,8 +17,8 @@ struct CardView: View {
                 .padding(.leading)
             
         }
-        .frame(width: width, height: height)
-        .background(Color.red)
+        .frame(width: card.position.size.width, height: card.position.size.height)
+        .background(card.position.color)
         .cornerRadius(25)
         .rotationEffect(Angle(degrees: card.position.degree))
     }
