@@ -8,9 +8,52 @@
 import Foundation
 import SwiftUI
 extension Model {
-    struct Card : Identifiable {
-        var id : Int
-        var name : String
+    struct Topic : Codable, Identifiable, Equatable {
+        var id : Int { cardNumber }
+        let topicID: Int
+        let name : String
+        let viewCount: Int
+        let createAt: String
+        let category: String
+        let pcLink: String
+        let tag: String
+
+        enum CodingKeys: String, CodingKey {
+            case topicID = "id"
+            case name, viewCount, createAt, category,pcLink,tag
+        }
+        
+        init(cardNumber: Int,
+             topicID: Int,
+             name : String,
+             viewCount: Int,
+             createAt: String,
+             category: String,
+             pcLink: String,
+             tag: String
+        ) {
+            self.cardNumber = cardNumber
+            self.topicID = topicID
+            self.name = name
+            self.viewCount = viewCount
+            self.createAt = createAt
+            self.category = category
+            self.pcLink = pcLink
+            self.tag = tag
+        }
+        
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            topicID = try container.decode(Int.self, forKey: .topicID)
+            name = try container.decode(String.self, forKey: .name)
+            viewCount = try container.decode(Int.self, forKey: .viewCount)
+            createAt = try container.decode(String.self, forKey: .createAt)
+            category = try container.decode(String.self, forKey: .category)
+            pcLink = try container.decode(String.self, forKey: .pcLink)
+            tag = try container.decode(String.self, forKey: .tag)
+        }
+
+        var cardNumber = 0
         var degree: Double = 0.0
         var position: Position = .none
         
@@ -53,18 +96,18 @@ extension Model {
                 case .next: return CGSize(width: 134, height: 190)
                 case .afterNext, .right: return CGSize(width: 110, height: 156)
                 case .selected: return CGSize(width: 223, height: 314)
-                case .none: return CGSize(width: 50, height: 50)
+                case .none: return CGSize(width: 0, height: 0)
                 }
             }
             
-            var color: Color {
+            var background: Image {
                 switch self {
-                case .beforePrev,.left: return .blue
-                case .prev: return .yellow
-                case .next: return .yellow
-                case .afterNext,.right: return .blue
-                case .selected: return .red
-                case .none: return .green
+                case .beforePrev,.left: return Image("selectedCardSmall")
+                case .prev: return Image("selectedCardRegular")
+                case .next: return Image("selectedCardRegular")
+                case .afterNext,.right: return Image("selectedCardSmall")
+                case .selected: return Image("selectedCard")
+                case .none: return Image("")
                 }
             }
             

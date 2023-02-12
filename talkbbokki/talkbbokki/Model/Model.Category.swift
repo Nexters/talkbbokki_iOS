@@ -12,5 +12,9 @@ extension Model {
         var id: String { self.code }
         let code: String
         let text: String
+        
+        static var empty: Self {
+            Category(code: "", text: "")
+        }
     }
 }

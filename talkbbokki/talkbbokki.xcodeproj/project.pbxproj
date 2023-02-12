@@ -20,10 +20,24 @@
 		CE39E1152986504400E3C93D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1142986504400E3C93D /* Model.swift */; };
 		CE39E1172986507F00E3C93D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1162986507F00E3C93D /* CardView.swift */; };
 		CE39E119298650BB00E3C93D /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E118298650BB00E3C93D /* CardListView.swift */; };
-		CE858E8129953EBD00F2FC42 /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E8029953EBD00F2FC42 /* CardListViewModel.swift */; };
 		CE858E852995427500F2FC42 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E842995427500F2FC42 /* CategoryView.swift */; };
 		CE858E872995468D00F2FC42 /* CategoryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E862995468D00F2FC42 /* CategoryReducer.swift */; };
 		CEB93F2F2996B54A001087B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F2E2996B54A001087B6 /* Extension.swift */; };
+		CEB93F322997F776001087B6 /* ConfirmButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F312997F776001087B6 /* ConfirmButtonView.swift */; };
+		CEB93F352997FD3F001087B6 /* DetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F342997FD3F001087B6 /* DetailCardView.swift */; };
+		CEB93F37299801FB001087B6 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F36299801FB001087B6 /* View+.swift */; };
+		CEB93F3929980B3B001087B6 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F3829980B3B001087B6 /* Array+.swift */; };
+		CEB93F452998BFF7001087B6 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB93F3C2998BFF7001087B6 /* Pretendard-SemiBold.otf */; };
+		CEB93F462998BFF7001087B6 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB93F3D2998BFF7001087B6 /* Pretendard-Black.otf */; };
+		CEB93F472998BFF7001087B6 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB93F3E2998BFF7001087B6 /* Pretendard-ExtraLight.otf */; };
+		CEB93F482998BFF7001087B6 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB93F3F2998BFF7001087B6 /* Pretendard-Regular.otf */; };
+		CEB93F492998BFF7001087B6 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB93F402998BFF7001087B6 /* Pretendard-Medium.otf */; };
+		CEB93F4A2998BFF7001087B6 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB93F412998BFF7001087B6 /* Pretendard-Bold.otf */; };
+		CEB93F4B2998BFF7001087B6 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB93F422998BFF7001087B6 /* Pretendard-Light.otf */; };
+		CEB93F4C2998BFF7001087B6 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB93F432998BFF7001087B6 /* Pretendard-Thin.otf */; };
+		CEB93F4D2998BFF7001087B6 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB93F442998BFF7001087B6 /* Pretendard-ExtraBold.otf */; };
+		CEB93F4F2998C080001087B6 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F4E2998C080001087B6 /* Font+.swift */; };
+		CEB93F512998CA32001087B6 /* CardListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F502998CA32001087B6 /* CardListReducer.swift */; };
 		CEC6327D297EBB5E00D9011E /* talkbbokkiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6327C297EBB5E00D9011E /* talkbbokkiApp.swift */; };
 		CEC6327F297EBB5E00D9011E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6327E297EBB5E00D9011E /* ContentView.swift */; };
 		CEC63281297EBB5F00D9011E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC63280297EBB5F00D9011E /* Assets.xcassets */; };
@@ -67,10 +81,24 @@
 		CE39E1142986504400E3C93D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CE39E1162986507F00E3C93D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CE39E118298650BB00E3C93D /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
-		CE858E8029953EBD00F2FC42 /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
 		CE858E842995427500F2FC42 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		CE858E862995468D00F2FC42 /* CategoryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryReducer.swift; sourceTree = "<group>"; };
 		CEB93F2E2996B54A001087B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		CEB93F312997F776001087B6 /* ConfirmButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButtonView.swift; sourceTree = "<group>"; };
+		CEB93F342997FD3F001087B6 /* DetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardView.swift; sourceTree = "<group>"; };
+		CEB93F36299801FB001087B6 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		CEB93F3829980B3B001087B6 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
+		CEB93F3C2998BFF7001087B6 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.6/public/static/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		CEB93F3D2998BFF7001087B6 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Black.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.6/public/static/Pretendard-Black.otf"; sourceTree = "<group>"; };
+		CEB93F3E2998BFF7001087B6 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-ExtraLight.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.6/public/static/Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		CEB93F3F2998BFF7001087B6 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.6/public/static/Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		CEB93F402998BFF7001087B6 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.6/public/static/Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		CEB93F412998BFF7001087B6 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.6/public/static/Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		CEB93F422998BFF7001087B6 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Light.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.6/public/static/Pretendard-Light.otf"; sourceTree = "<group>"; };
+		CEB93F432998BFF7001087B6 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Thin.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.6/public/static/Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		CEB93F442998BFF7001087B6 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-ExtraBold.otf"; path = "../../../../../../../Downloads/Pretendard-1.3.6/public/static/Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		CEB93F4E2998C080001087B6 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		CEB93F502998CA32001087B6 /* CardListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListReducer.swift; sourceTree = "<group>"; };
 		CEC63279297EBB5E00D9011E /* talkbbokki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = talkbbokki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC6327C297EBB5E00D9011E /* talkbbokkiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkbbokkiApp.swift; sourceTree = "<group>"; };
 		CEC6327E297EBB5E00D9011E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -142,14 +170,14 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		CE39E10E29864FF300E3C93D /* Main */ = {
+		CE39E10E29864FF300E3C93D /* CardList */ = {
 			isa = PBXGroup;
 			children = (
 				CE39E1162986507F00E3C93D /* CardView.swift */,
 				CE39E118298650BB00E3C93D /* CardListView.swift */,
-				CE858E8029953EBD00F2FC42 /* CardListViewModel.swift */,
+				CEB93F502998CA32001087B6 /* CardListReducer.swift */,
 			);
-			path = Main;
+			path = CardList;
 			sourceTree = "<group>";
 		};
 		CE39E1112986502F00E3C93D /* Model */ = {
@@ -165,8 +193,10 @@
 		CE858E822995426000F2FC42 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CEB93F302997F76C001087B6 /* Common */,
 				CE858E832995426900F2FC42 /* Category */,
-				CE39E10E29864FF300E3C93D /* Main */,
+				CE39E10E29864FF300E3C93D /* CardList */,
+				CEB93F332997FD30001087B6 /* Detail */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,8 +214,52 @@
 			isa = PBXGroup;
 			children = (
 				CEB93F2E2996B54A001087B6 /* Extension.swift */,
+				CEB93F36299801FB001087B6 /* View+.swift */,
+				CEB93F3829980B3B001087B6 /* Array+.swift */,
+				CEB93F4E2998C080001087B6 /* Font+.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		CEB93F302997F76C001087B6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CEB93F312997F776001087B6 /* ConfirmButtonView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CEB93F332997FD30001087B6 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				CEB93F342997FD3F001087B6 /* DetailCardView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		CEB93F3A2998BFE2001087B6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CEC63280297EBB5F00D9011E /* Assets.xcassets */,
+				CEB93F3B2998BFE9001087B6 /* Font */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CEB93F3B2998BFE9001087B6 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				CEB93F3D2998BFF7001087B6 /* Pretendard-Black.otf */,
+				CEB93F412998BFF7001087B6 /* Pretendard-Bold.otf */,
+				CEB93F442998BFF7001087B6 /* Pretendard-ExtraBold.otf */,
+				CEB93F3E2998BFF7001087B6 /* Pretendard-ExtraLight.otf */,
+				CEB93F422998BFF7001087B6 /* Pretendard-Light.otf */,
+				CEB93F402998BFF7001087B6 /* Pretendard-Medium.otf */,
+				CEB93F3F2998BFF7001087B6 /* Pretendard-Regular.otf */,
+				CEB93F3C2998BFF7001087B6 /* Pretendard-SemiBold.otf */,
+				CEB93F432998BFF7001087B6 /* Pretendard-Thin.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		CEC63270297EBB5E00D9011E = {
@@ -211,6 +285,7 @@
 		CEC6327B297EBB5E00D9011E /* talkbbokki */ = {
 			isa = PBXGroup;
 			children = (
+				CEB93F3A2998BFE2001087B6 /* Resources */,
 				CE0F15B02994025F00295B43 /* Info.plist */,
 				CEB93F2D2996B541001087B6 /* Common */,
 				CE39E1112986502F00E3C93D /* Model */,
@@ -218,7 +293,6 @@
 				CE858E822995426000F2FC42 /* View */,
 				CEC6327C297EBB5E00D9011E /* talkbbokkiApp.swift */,
 				CEC6327E297EBB5E00D9011E /* ContentView.swift */,
-				CEC63280297EBB5F00D9011E /* Assets.xcassets */,
 				CEC63282297EBB5F00D9011E /* talkbbokki.entitlements */,
 				CEC63283297EBB5F00D9011E /* Preview Content */,
 			);
@@ -362,8 +436,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB93F492998BFF7001087B6 /* Pretendard-Medium.otf in Resources */,
+				CEB93F4C2998BFF7001087B6 /* Pretendard-Thin.otf in Resources */,
+				CEB93F4A2998BFF7001087B6 /* Pretendard-Bold.otf in Resources */,
+				CEB93F452998BFF7001087B6 /* Pretendard-SemiBold.otf in Resources */,
+				CEB93F482998BFF7001087B6 /* Pretendard-Regular.otf in Resources */,
 				CEC63285297EBB5F00D9011E /* Preview Assets.xcassets in Resources */,
+				CEB93F4D2998BFF7001087B6 /* Pretendard-ExtraBold.otf in Resources */,
+				CEB93F472998BFF7001087B6 /* Pretendard-ExtraLight.otf in Resources */,
+				CEB93F462998BFF7001087B6 /* Pretendard-Black.otf in Resources */,
 				CEC63281297EBB5F00D9011E /* Assets.xcassets in Resources */,
+				CEB93F4B2998BFF7001087B6 /* Pretendard-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,20 +471,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB93F4F2998C080001087B6 /* Font+.swift in Sources */,
 				CE39E1152986504400E3C93D /* Model.swift in Sources */,
 				CE858E852995427500F2FC42 /* CategoryView.swift in Sources */,
+				CEB93F3929980B3B001087B6 /* Array+.swift in Sources */,
 				CE39E1132986503900E3C93D /* Model.Card.swift in Sources */,
 				CEC6327F297EBB5E00D9011E /* ContentView.swift in Sources */,
 				CE39E1172986507F00E3C93D /* CardView.swift in Sources */,
-				CE858E8129953EBD00F2FC42 /* CardListViewModel.swift in Sources */,
 				CE0F15A62993F5FE00295B43 /* APIConfig+Request.swift in Sources */,
 				CE0F15A02993BB5B00295B43 /* APIConfig.Error.swift in Sources */,
 				CE0F15A42993F5DD00295B43 /* APIConfig.Parameters.swift in Sources */,
 				CE0F15A22993BBF000295B43 /* APIConfig+Error.swift in Sources */,
+				CEB93F352997FD3F001087B6 /* DetailCardView.swift in Sources */,
 				CE0F15AB2993FD2800295B43 /* API.swift in Sources */,
+				CEB93F322997F776001087B6 /* ConfirmButtonView.swift in Sources */,
 				CE39E119298650BB00E3C93D /* CardListView.swift in Sources */,
 				CEC6327D297EBB5E00D9011E /* talkbbokkiApp.swift in Sources */,
 				CEB93F2F2996B54A001087B6 /* Extension.swift in Sources */,
+				CEB93F37299801FB001087B6 /* View+.swift in Sources */,
+				CEB93F512998CA32001087B6 /* CardListReducer.swift in Sources */,
 				CE0F159D2993B9B000295B43 /* APIConfig.swift in Sources */,
 				CE0F15A92993FC6C00295B43 /* Domain.Talkbbokki.swift in Sources */,
 				CE0F15AD2993FD8F00295B43 /* Talkbbokki.Error.swift in Sources */,

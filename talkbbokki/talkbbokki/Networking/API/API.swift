@@ -12,6 +12,9 @@ struct API { }
 
 extension API {
     struct Category { }
+    struct Topics {
+        let category: String
+    }
 }
 
 extension API.Category: APIConfig {
@@ -28,5 +31,22 @@ extension API.Category: APIConfig {
         let json   = try? input.toDict()
         let result = (json?["result"] as? Array<[String: Any]>)!
         return try result.map(Model.Category.decode)
+    }
+}
+
+extension API.Topics: APIConfig {
+    static let domainConfig = Domain.Talkbbokki.self
+    static let serviceError = TalkbbokkiError.self
+    
+    var path: String { return "/api/categories/\(category)/topics" }
+    var method: HTTPMethod { return .get }
+    var parameters: API.Parameter? {
+        return nil
+    }
+    
+    func parse(_ input: Data) throws -> [Model.Topic] {
+        let json   = try? input.toDict()
+        let result = (json?["result"] as? Array<[String: Any]>)!
+        return try result.map(Model.Topic.decode)
     }
 }
