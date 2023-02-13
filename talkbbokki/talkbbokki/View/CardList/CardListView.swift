@@ -48,7 +48,13 @@ struct CardListView: View {
                                               currentIndex: $currentIndex,
                                               cards: viewStore.topics)
                             Spacer()
-                            NavigationLink(destination: presentDetailCardView) {
+                            NavigationLink {
+                                if let pickCard = viewStore.topics[safe:currentIndex] {
+                                    DetailCardView(card: pickCard)
+                                } else {
+                                    EmptyView()
+                                }
+                            } label: {
                                 ConfirmText(buttonMessage: Design.Text.confirm)
                             }
                         }

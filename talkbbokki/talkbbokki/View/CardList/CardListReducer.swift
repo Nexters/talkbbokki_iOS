@@ -64,7 +64,6 @@ class CardListReducer: ReducerProtocol {
             }
             
             state.offsetX = (UIScreen.main.bounds.width - width)/2
-//            state.offsetX = ((width + spacing) * CGFloat(topics.count / 2)) - (topics.count % 2 == 0 ? ((width + spacing) / 2) : 0)
             return EffectTask.concatenate(
                 state.topics.map { topic in
                     EffectTask.send(Action.setPositionTopic(cardNumber: topic.cardNumber, currentIndex: 0))
@@ -75,6 +74,7 @@ class CardListReducer: ReducerProtocol {
             return .none
         case .changedCurrentIndex(let index):
             state.currentIndex = index
+            HapticManager.instance.impact(style: .light)
             return EffectTask.concatenate(
                 state.topics.map { topic in
                     EffectTask.send(Action.setPositionTopic(cardNumber: topic.cardNumber, currentIndex: index))
