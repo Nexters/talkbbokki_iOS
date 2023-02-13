@@ -50,7 +50,9 @@ struct CardListView: View {
                             Spacer()
                             NavigationLink {
                                 if let pickCard = viewStore.topics[safe:currentIndex] {
-                                    DetailCardContainerView(card: pickCard)
+                                    DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(),
+                                                                         reducer: DetailCardReducer()),
+                                                            card: pickCard)
                                 } else {
                                     EmptyView()
                                 }

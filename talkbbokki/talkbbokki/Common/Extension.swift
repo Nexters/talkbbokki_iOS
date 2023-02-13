@@ -32,3 +32,17 @@ extension Optional where Wrapped: Collection {
         self?.compactMap({ $0 }) ?? []
     }
 }
+
+extension Optional where Wrapped == String {
+    var isEmpty: Bool {
+        orEmpty.isEmpty
+    }
+
+    var isNotEmpty: Bool {
+        isEmpty == false
+    }
+
+    var orEmpty: String {
+        unwrap(valueIfNone: "")
+    }
+}

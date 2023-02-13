@@ -21,7 +21,7 @@ private enum Design {
     }
 }
 
-class CardListReducer: ReducerProtocol {
+final class CardListReducer: ReducerProtocol {
     private let width: Double = Design.Constraint.CardView.width
     private let spacing: CGFloat = Design.Constraint.CardListView.spacing
     
@@ -66,7 +66,7 @@ class CardListReducer: ReducerProtocol {
             state.offsetX = (UIScreen.main.bounds.width - width)/2
             return EffectTask.concatenate(
                 state.topics.map { topic in
-                    EffectTask.send(Action.setPositionTopic(cardNumber: topic.cardNumber, currentIndex: 0))
+                    EffectTask.send(Action.setPositionTopic(cardNumber: topic.cardNumber, currentIndex: state.currentIndex))
                 }
             )
         case .setError(let error):

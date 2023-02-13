@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 private enum Design {
     enum Constraint {
@@ -20,39 +21,51 @@ private enum Design {
 }
 
 struct DetailCardContainerView: View {
+    let store: StoreOf<DetailCardReducer>
     let card: Model.Topic
     @State private var backgroundOpacity: CGFloat = 0.0
     @State private var onAppear: Bool = false
     @State private var backDegree = 0.0
     @State private var frontDegree = -90.0
     @State private var isFlipped = false
+    
+    @State private var didTapRefreshOrder = false
     @State private var didTapBookmark = false
     private let width : CGFloat = 200
     private let height : CGFloat = 250
     private let durationAndDelay : CGFloat = 0.3
     
     var body: some View {
-        ZStack {
-            Color.purple.ignoresSafeArea()
-            if onAppear {
-                DetailFrontCardView(card: card, degree: $backDegree)
-                .transition(.scale.animation(.spring())
-                    .combined(with: .move(edge: .bottom)))
-                DetailBackCardView(card: card,
-                                   touchedBookMark: $didTapBookmark,
-                                   degree: $frontDegree)
-            }
-        }.onAppear(perform: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                withAnimation(.spring(dampingFraction: 0.7, blendDuration: 0.9)) {
-                    onAppear.toggle()
+        WithViewStore(self.store) { viewStore in
+            ZStack {
+                Color.purple.ignoresSafeArea()
+                if onAppear {
+                    DetailFrontCardView(card: card, degree: $backDegree)
+                    .transition(.scale.animation(.spring())
+                        .combined(with: .move(edge: .bottom)))
+                    DetailBackCardView(card: card,
+                                       order: viewStore.order,
+                                       touchedRefreshOrder: $didTapRefreshOrder,
+                                       touchedBookMark: $didTapBookmark,
+                                       degree: $frontDegree)
                 }
+            }
+            .onChange(of: didTapRefreshOrder, perform: { newValue in
+                viewStore.send(.fetchOrder)
             })
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                flipCard()
+            .onAppear(perform: {
+                viewStore.send(.fetchOrder)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    withAnimation(.spring(dampingFraction: 0.7, blendDuration: 0.9)) {
+                        onAppear.toggle()
+                    }
+                })
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    flipCard()
+                })
             })
-        })
+        }
     }
     
     //MARK: Flip Card Function
@@ -107,6 +120,8 @@ struct DetailFrontCardView: View {
 
 struct DetailBackCardView: View {
     let card : Model.Topic
+    let order: Model.Order?
+    @Binding var touchedRefreshOrder: Bool
     @Binding var touchedBookMark: Bool
     @Binding var degree : Double
     var body : some View{
@@ -157,8 +172,16 @@ struct DetailBackCardView: View {
     
     private var starterGuideView: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(Design.Text.starter).font(.Pretendard.b2_regular)
-            Text("1인 1닭 가능할 것 같은사람").font(.Pretendard.b1_bold)
+            HStack(alignment: .center) {
+                Text(Design.Text.starter).font(.Pretendard.b2_regular)
+                Button {
+                    touchedRefreshOrder.toggle()
+                } label: {
+                    Image("refresh")
+                }
+                Spacer()
+            }
+            Text((order?.rule).orEmpty).font(.Pretendard.b1_bold)
         }.padding([.top, .leading, .trailing, .bottom], 24)
     }
     
@@ -183,7 +206,9 @@ struct DetailBackCardView: View {
 
 struct DetailCardContainerView_Preview: PreviewProvider {
     static var previews: some View {
-        DetailCardContainerView(card: Model.Topic(cardNumber: 0,
+        DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(),
+                                             reducer: DetailCardReducer()),
+                                card: Model.Topic(cardNumber: 0,
                                                   topicID: 1,
                                                   name: "밥 먹다가 체함",
                                                   viewCount: 20,
