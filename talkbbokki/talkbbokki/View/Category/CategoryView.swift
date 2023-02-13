@@ -41,11 +41,14 @@ struct CategoryView: View {
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationView {
-                VStack(spacing: Design.Constraint.CategoryView.spacing) {
-                    CategoryTitleView()
-                    CategoryCardGridView(touchedCardView: $selectedCategory,
-                                         categories: viewStore.categories)
-                    Spacer()
+                ZStack {
+                    Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
+                    VStack(spacing: Design.Constraint.CategoryView.spacing) {
+                        CategoryTitleView()
+                        CategoryCardGridView(touchedCardView: $selectedCategory,
+                                             categories: viewStore.categories)
+                        Spacer()
+                    }
                 }
             }
             .onChange(of: selectedCategory, perform: { newValue in
@@ -71,16 +74,16 @@ struct CategoryTitleView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: Design.Constraint.Title.spacing) {
-                Text(Design.Text.mainTitle).font(.Pretendard.h1)
-                    .frame(maxHeight: .infinity)
-                Text(Design.Text.subTitle).font(.Pretendard.b3_regular)
-                    .frame(maxHeight: .infinity)
+                Text(Design.Text.mainTitle)
+                    .font(.Pretendard.h1)
+                Text(Design.Text.subTitle)
+                    .font(.Pretendard.b3_regular)
             }
+            .foregroundColor(.Talkbbokki.GrayScale.white)
             Spacer()
         }
         .padding(.top, Design.Constraint.Title.topInset)
         .padding(.leading, Design.Constraint.Title.leftInset)
-        .background(Color.green)
     }
 }
 
@@ -98,7 +101,7 @@ struct CategoryCardGridView: View {
                 CategoryCardView(touched: $touchedCardView,
                                  category: category)
             }
-        }.background(Color.yellow)
+        }
     }
 }
 
@@ -111,7 +114,7 @@ struct CategoryCardView: View {
         } label: {
             ZStack {
                 Color.red
-                    .cornerRadius(15)
+                    .cornerRadius(8)
                     .frame(height: Design.Constraint.CardView.height)
                 VStack(spacing: 0) {
                     Image("")
@@ -121,7 +124,8 @@ struct CategoryCardView: View {
                     Text(category.text)
                         .foregroundColor(.white)
                         .font(.Pretendard.b2_bold)
-                }.zIndex(0)
+                }
+                Image("Bling").zIndex(0)
             }
         }
     }

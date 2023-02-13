@@ -22,6 +22,7 @@
 		CE39E119298650BB00E3C93D /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E118298650BB00E3C93D /* CardListView.swift */; };
 		CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498376299A9DCB008A3968 /* DetailCardReducer.swift */; };
 		CE498379299A9F25008A3968 /* Model.Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498378299A9F25008A3968 /* Model.Order.swift */; };
+		CE49837D299AA68C008A3968 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49837C299AA68C008A3968 /* Color.swift */; };
 		CE6EBF03299A88F100FA4DE1 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBEFA299A88F000FA4DE1 /* Pretendard-Bold.otf */; };
 		CE6EBF04299A88F100FA4DE1 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBEFB299A88F000FA4DE1 /* Pretendard-ExtraBold.otf */; };
 		CE6EBF05299A88F100FA4DE1 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBEFC299A88F000FA4DE1 /* Pretendard-SemiBold.otf */; };
@@ -86,6 +87,7 @@
 		CE39E118298650BB00E3C93D /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		CE498376299A9DCB008A3968 /* DetailCardReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardReducer.swift; sourceTree = "<group>"; };
 		CE498378299A9F25008A3968 /* Model.Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Order.swift; sourceTree = "<group>"; };
+		CE49837C299AA68C008A3968 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CE6EBEFA299A88F000FA4DE1 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		CE6EBEFB299A88F000FA4DE1 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
 		CE6EBEFC299A88F000FA4DE1 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				CEB93F36299801FB001087B6 /* View+.swift */,
 				CEB93F3829980B3B001087B6 /* Array+.swift */,
 				CEB93F4E2998C080001087B6 /* Font+.swift */,
+				CE49837C299AA68C008A3968 /* Color.swift */,
 				CEB93F52299940DF001087B6 /* HapticManager.swift */,
 			);
 			path = Common;
@@ -489,6 +492,7 @@
 				CE498379299A9F25008A3968 /* Model.Order.swift in Sources */,
 				CEC6327F297EBB5E00D9011E /* ContentView.swift in Sources */,
 				CE39E1172986507F00E3C93D /* CardView.swift in Sources */,
+				CE49837D299AA68C008A3968 /* Color.swift in Sources */,
 				CE0F15A62993F5FE00295B43 /* APIConfig+Request.swift in Sources */,
 				CE0F15A02993BB5B00295B43 /* APIConfig.Error.swift in Sources */,
 				CE0F15A42993F5DD00295B43 /* APIConfig.Parameters.swift in Sources */,
