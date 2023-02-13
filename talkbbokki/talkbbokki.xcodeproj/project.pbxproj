@@ -20,6 +20,7 @@
 		CE39E1152986504400E3C93D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1142986504400E3C93D /* Model.swift */; };
 		CE39E1172986507F00E3C93D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1162986507F00E3C93D /* CardView.swift */; };
 		CE39E119298650BB00E3C93D /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E118298650BB00E3C93D /* CardListView.swift */; };
+		CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498376299A9DCB008A3968 /* DetailCardReducer.swift */; };
 		CE6EBF03299A88F100FA4DE1 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBEFA299A88F000FA4DE1 /* Pretendard-Bold.otf */; };
 		CE6EBF04299A88F100FA4DE1 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBEFB299A88F000FA4DE1 /* Pretendard-ExtraBold.otf */; };
 		CE6EBF05299A88F100FA4DE1 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBEFC299A88F000FA4DE1 /* Pretendard-SemiBold.otf */; };
@@ -82,6 +83,7 @@
 		CE39E1142986504400E3C93D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CE39E1162986507F00E3C93D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CE39E118298650BB00E3C93D /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
+		CE498376299A9DCB008A3968 /* DetailCardReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardReducer.swift; sourceTree = "<group>"; };
 		CE6EBEFA299A88F000FA4DE1 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		CE6EBEFB299A88F000FA4DE1 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
 		CE6EBEFC299A88F000FA4DE1 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB93F342997FD3F001087B6 /* DetailCardView.swift */,
+				CE498376299A9DCB008A3968 /* DetailCardReducer.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				CEC6327D297EBB5E00D9011E /* talkbbokkiApp.swift in Sources */,
 				CEB93F2F2996B54A001087B6 /* Extension.swift in Sources */,
 				CEB93F37299801FB001087B6 /* View+.swift in Sources */,
+				CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */,
 				CEB93F512998CA32001087B6 /* CardListReducer.swift in Sources */,
 				CE0F159D2993B9B000295B43 /* APIConfig.swift in Sources */,
 				CE0F15A92993FC6C00295B43 /* Domain.Talkbbokki.swift in Sources */,

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CardView: View {
-    let size: CGSize
     let card : Model.Topic
     var body : some View{
         ZStack {
@@ -25,7 +24,7 @@ struct CardView: View {
             }
             .opacity(card.position == .selected ? 1.0 : 0.0)
         }
-        .frame(width: size.width, height: size.height)
+        .frame(width: card.position.size.width, height: card.position.size.height)
         .rotationEffect(Angle(degrees: card.position.degree))
     }
 }

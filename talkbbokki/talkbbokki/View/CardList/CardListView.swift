@@ -50,12 +50,13 @@ struct CardListView: View {
                             Spacer()
                             NavigationLink {
                                 if let pickCard = viewStore.topics[safe:currentIndex] {
-                                    DetailCardView(card: pickCard)
+                                    DetailCardContainerView(card: pickCard)
                                 } else {
                                     EmptyView()
                                 }
                             } label: {
                                 ConfirmText(buttonMessage: Design.Text.confirm)
+                                    .padding(.bottom, 16)
                             }
                         }
                         .frame(width: proxy.size.width,
@@ -71,15 +72,6 @@ struct CardListView: View {
                 }
             }
         }
-    }
-    
-    @ViewBuilder
-    private var presentDetailCardView: some View {
-//        if let pickCard = cards?[safe:currentIndex] {
-//            DetailCardView(card: pickCard)
-//        } else {
-            EmptyView()
-//        }
     }
     
     private var closeButton: some View {
@@ -122,8 +114,7 @@ struct CardContainerView: View {
     var body: some View {
         HStack(spacing: spacing){
             ForEach(cards){ cardData in
-                CardView(size: cardData.position.size,
-                         card: cardData)
+                CardView(card: cardData)
                     .zIndex(cardData.position.zIndex)
                     .offset(x: self.x, y: cardData.position.positionY)
                     .highPriorityGesture(DragGesture()

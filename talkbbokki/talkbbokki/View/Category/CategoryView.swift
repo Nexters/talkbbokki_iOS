@@ -72,8 +72,10 @@ struct CategoryTitleView: View {
         HStack {
             VStack(alignment: .leading, spacing: Design.Constraint.Title.spacing) {
                 Text(Design.Text.mainTitle).font(.Pretendard.h1)
+                    .frame(maxHeight: .infinity)
                 Text(Design.Text.subTitle).font(.Pretendard.b3_regular)
-            }.background(Color.blue)
+                    .frame(maxHeight: .infinity)
+            }
             Spacer()
         }
         .padding(.top, Design.Constraint.Title.topInset)
