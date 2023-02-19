@@ -14,6 +14,7 @@ final class DetailCardReducer: ReducerProtocol {
     struct State: Equatable {
         var order: Model.Order?
         var errorMessage: String = ""
+        var isShowBookMarkAlert = false
     }
     
     enum Action {
@@ -21,6 +22,7 @@ final class DetailCardReducer: ReducerProtocol {
         case orderResult(Result<Model.Order, Error>)
         case setOrder(Model.Order)
         case setError(Error)
+        case showBookMarkAlert
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -41,6 +43,9 @@ final class DetailCardReducer: ReducerProtocol {
             return .none
         case .setError(let error):
             state.errorMessage = error.localizedDescription
+            return .none
+        case .showBookMarkAlert:
+            state.isShowBookMarkAlert.toggle()
             return .none
         }
     }

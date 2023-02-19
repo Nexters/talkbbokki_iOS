@@ -10,12 +10,35 @@ import ComposableArchitecture
 
 @main
 struct talkbbokkiApp: App {
+    enum ViewScene {
+        case splash
+        case onboard
+        case home
+    }
+    
+    @State private var scene: ViewScene = .home
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @AppStorage("didShowOnboard") var didShowOnboard : Bool = UserDefaultValue.Onboard.didShow
     var body: some Scene {
         WindowGroup {
-//            CardListView(cards: $cards)
-            CategoryView(store: Store(initialState: CategoryReducer.State(),
-                                      reducer: CategoryReducer()))
+            ZStack {
+                switch scene {
+                case .splash:
+                    SplashView()
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                                scene = didShowOnboard ? .home : .onboard
+                            })
+                        }
+                case .onboard:
+                    OnboardView()
+                case .home:
+                    CategoryView(store: Store(initialState: CategoryReducer.State(),
+                                              reducer: CategoryReducer()))
+                }
+            }.onChange(of: didShowOnboard) { newValue in
+                scene = .home
+            }
         }
     }
 }

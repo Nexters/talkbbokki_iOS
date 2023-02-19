@@ -58,7 +58,8 @@ struct CardListView: View {
                                     EmptyView()
                                 }
                             } label: {
-                                ConfirmText(type: .confirm, buttonMessage: Design.Text.confirm)
+                                ConfirmText(type: .ok,
+                                            buttonMessage: Design.Text.confirm)
                                     .padding([.leading, .trailing], 20)
                                     .padding(.bottom, 16)
                             }
@@ -99,7 +100,7 @@ struct CardListTitleView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 0) {
-                Text(title).font(.Pretendard.h2_bold)
+                Text(title).font(.Pretendard.h2_bold).foregroundColor(.Talkbbokki.GrayScale.black)
                 Text(subTitie).font(.Pretendard.h2_bold)
                     .foregroundColor(.Talkbbokki.GrayScale.black)
                     .opacity(0.35)
@@ -130,18 +131,30 @@ struct CardContainerView: View {
                                     if value.translation.width > ((self.width) / 2) && Int(self.currentIndex) != 0{
                                         self.currentIndex -= 1
                                         self.x = -((self.width + spacing) * Double(self.currentIndex))
+                                        print("self.width + spacing: \(self.width + spacing)")
+                                        print("currentIndex: \(currentIndex)")
+                                        print(x)
                                     }
                                     else{
                                         self.x = -((self.width + spacing) * Double(self.currentIndex))
+                                        print("self.width + spacing: \(self.width + spacing)")
+                                        print("currentIndex: \(currentIndex)")
+                                        print(x)
                                     }
                                 }
                                 else{
                                     if -value.translation.width > ((self.width) / 2) && Int(self.currentIndex) !=  (cards.count - 1){
                                         self.currentIndex += 1
                                         self.x = -((self.width + spacing) * Double(self.currentIndex))
+                                        print("self.width + spacing: \(self.width + spacing)")
+                                        print("currentIndex: \(currentIndex)")
+                                        print(x)
                                     }
                                     else {
                                         self.x = -((self.width + spacing) * Double(self.currentIndex))
+                                        print("self.width + spacing: \(self.width + spacing)")
+                                        print("currentIndex: \(currentIndex)")
+                                        print(x)
                                     }
                                 }
                             })

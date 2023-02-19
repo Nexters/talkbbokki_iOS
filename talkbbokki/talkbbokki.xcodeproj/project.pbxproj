@@ -38,6 +38,20 @@
 		CE6EBF0B299A88F100FA4DE1 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBF02299A88F100FA4DE1 /* Pretendard-Light.otf */; };
 		CE858E852995427500F2FC42 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E842995427500F2FC42 /* CategoryView.swift */; };
 		CE858E872995468D00F2FC42 /* CategoryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E862995468D00F2FC42 /* CategoryReducer.swift */; };
+		CEA48CC929A270A300B39F84 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CEA48CC829A270A300B39F84 /* Lottie */; };
+		CEA48CCB29A271AE00B39F84 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CCA29A271AD00B39F84 /* LottieView.swift */; };
+		CEA48CCF29A272AC00B39F84 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CCE29A272AC00B39F84 /* SplashView.swift */; };
+		CEA48CD229A2730D00B39F84 /* Splash_Final.json in Resources */ = {isa = PBXBuildFile; fileRef = CEA48CD129A2730D00B39F84 /* Splash_Final.json */; };
+		CEA48CD529A276CB00B39F84 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CD429A276CB00B39F84 /* UserDefault.swift */; };
+		CEA48CD829A2771D00B39F84 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CD729A2771D00B39F84 /* UserDefaultKey.swift */; };
+		CEA48CDB29A277BA00B39F84 /* UserDefault.Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CDA29A277BA00B39F84 /* UserDefault.Value.swift */; };
+		CEA48CE029A27AA800B39F84 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CDF29A27AA800B39F84 /* OnboardView.swift */; };
+		CEA48CE429A27E2400B39F84 /* OnboardFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CE329A27E2400B39F84 /* OnboardFirstView.swift */; };
+		CEA48CE629A27E8A00B39F84 /* OnboardTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CE529A27E8A00B39F84 /* OnboardTitleView.swift */; };
+		CEA48CE829A2837800B39F84 /* OnboardSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CE729A2837800B39F84 /* OnboardSecondView.swift */; };
+		CEA48CEA29A2840000B39F84 /* Onboarding_img_02_Final.json in Resources */ = {isa = PBXBuildFile; fileRef = CEA48CE929A2840000B39F84 /* Onboarding_img_02_Final.json */; };
+		CEA48CEC29A2875600B39F84 /* OnboardThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CEB29A2875600B39F84 /* OnboardThirdView.swift */; };
+		CEA48CEE29A295DA00B39F84 /* AcitivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */; };
 		CEB93F2F2996B54A001087B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F2E2996B54A001087B6 /* Extension.swift */; };
 		CEB93F322997F776001087B6 /* ConfirmButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F312997F776001087B6 /* ConfirmButtonView.swift */; };
 		CEB93F352997FD3F001087B6 /* DetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F342997FD3F001087B6 /* DetailCardView.swift */; };
@@ -106,6 +120,19 @@
 		CE6EBF02299A88F100FA4DE1 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		CE858E842995427500F2FC42 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		CE858E862995468D00F2FC42 /* CategoryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryReducer.swift; sourceTree = "<group>"; };
+		CEA48CCA29A271AD00B39F84 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		CEA48CCE29A272AC00B39F84 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		CEA48CD129A2730D00B39F84 /* Splash_Final.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash_Final.json; sourceTree = "<group>"; };
+		CEA48CD429A276CB00B39F84 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		CEA48CD729A2771D00B39F84 /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
+		CEA48CDA29A277BA00B39F84 /* UserDefault.Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.Value.swift; sourceTree = "<group>"; };
+		CEA48CDF29A27AA800B39F84 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
+		CEA48CE329A27E2400B39F84 /* OnboardFirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardFirstView.swift; sourceTree = "<group>"; };
+		CEA48CE529A27E8A00B39F84 /* OnboardTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardTitleView.swift; sourceTree = "<group>"; };
+		CEA48CE729A2837800B39F84 /* OnboardSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardSecondView.swift; sourceTree = "<group>"; };
+		CEA48CE929A2840000B39F84 /* Onboarding_img_02_Final.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding_img_02_Final.json; sourceTree = "<group>"; };
+		CEA48CEB29A2875600B39F84 /* OnboardThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardThirdView.swift; sourceTree = "<group>"; };
+		CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcitivityViewController.swift; sourceTree = "<group>"; };
 		CEB93F2E2996B54A001087B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CEB93F312997F776001087B6 /* ConfirmButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButtonView.swift; sourceTree = "<group>"; };
 		CEB93F342997FD3F001087B6 /* DetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardView.swift; sourceTree = "<group>"; };
@@ -133,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEA48CC929A270A300B39F84 /* Lottie in Frameworks */,
 				CEE72A942982B2C10047403A /* ComposableArchitecture in Frameworks */,
 				CEE72A912982B2820047403A /* Alamofire in Frameworks */,
 				CE64A503299BDFB2004C4E8D /* FirebaseAnalytics in Frameworks */,
@@ -212,10 +240,12 @@
 		CE858E822995426000F2FC42 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CEA48CDC29A278F500B39F84 /* Onboard */,
 				CEB93F302997F76C001087B6 /* Common */,
 				CE858E832995426900F2FC42 /* Category */,
 				CE39E10E29864FF300E3C93D /* CardList */,
 				CEB93F332997FD30001087B6 /* Detail */,
+				CEA48CCE29A272AC00B39F84 /* SplashView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -229,7 +259,16 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
-		CEB93F2D2996B541001087B6 /* Common */ = {
+		CEA48CD029A2730200B39F84 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				CEA48CD129A2730D00B39F84 /* Splash_Final.json */,
+				CEA48CE929A2840000B39F84 /* Onboarding_img_02_Final.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
+		CEA48CD629A2770200B39F84 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				CEB93F2E2996B54A001087B6 /* Extension.swift */,
@@ -237,6 +276,37 @@
 				CEB93F3829980B3B001087B6 /* Array+.swift */,
 				CEB93F4E2998C080001087B6 /* Font+.swift */,
 				CE49837C299AA68C008A3968 /* Color.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		CEA48CD929A2774D00B39F84 /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				CEA48CD429A276CB00B39F84 /* UserDefault.swift */,
+				CEA48CD729A2771D00B39F84 /* UserDefaultKey.swift */,
+				CEA48CDA29A277BA00B39F84 /* UserDefault.Value.swift */,
+			);
+			path = UserDefault;
+			sourceTree = "<group>";
+		};
+		CEA48CDC29A278F500B39F84 /* Onboard */ = {
+			isa = PBXGroup;
+			children = (
+				CEA48CDF29A27AA800B39F84 /* OnboardView.swift */,
+				CEA48CE529A27E8A00B39F84 /* OnboardTitleView.swift */,
+				CEA48CE329A27E2400B39F84 /* OnboardFirstView.swift */,
+				CEA48CE729A2837800B39F84 /* OnboardSecondView.swift */,
+				CEA48CEB29A2875600B39F84 /* OnboardThirdView.swift */,
+			);
+			path = Onboard;
+			sourceTree = "<group>";
+		};
+		CEB93F2D2996B541001087B6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CEA48CD929A2774D00B39F84 /* UserDefault */,
+				CEA48CD629A2770200B39F84 /* Extension */,
 				CEB93F52299940DF001087B6 /* HapticManager.swift */,
 				CE64A506299BE9D1004C4E8D /* AppDelegate.swift */,
 			);
@@ -248,6 +318,8 @@
 			children = (
 				CEB93F312997F776001087B6 /* ConfirmButtonView.swift */,
 				CEF7CFB029A1115D005A7E6C /* AlertView.swift */,
+				CEA48CCA29A271AD00B39F84 /* LottieView.swift */,
+				CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -264,6 +336,7 @@
 		CEB93F3A2998BFE2001087B6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CEA48CD029A2730200B39F84 /* Lottie */,
 				CE64A4FF299BDE58004C4E8D /* GoogleService-Info.plist */,
 				CEC63280297EBB5F00D9011E /* Assets.xcassets */,
 				CEB93F3B2998BFE9001087B6 /* Font */,
@@ -370,6 +443,7 @@
 				CEE72A932982B2C10047403A /* ComposableArchitecture */,
 				CE64A502299BDFB2004C4E8D /* FirebaseAnalytics */,
 				CE64A504299BDFB2004C4E8D /* FirebaseDynamicLinks */,
+				CEA48CC829A270A300B39F84 /* Lottie */,
 			);
 			productName = talkbbokki;
 			productReference = CEC63279297EBB5E00D9011E /* talkbbokki.app */;
@@ -447,6 +521,7 @@
 				CEE72A8F2982B2820047403A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				CEE72A922982B2C10047403A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				CE64A501299BDFB2004C4E8D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CEA48CC729A270A300B39F84 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = CEC6327A297EBB5E00D9011E /* Products */;
 			projectDirPath = "";
@@ -471,8 +546,10 @@
 				CE6EBF07299A88F100FA4DE1 /* Pretendard-Thin.otf in Resources */,
 				CE64A500299BDE58004C4E8D /* GoogleService-Info.plist in Resources */,
 				CE6EBF0B299A88F100FA4DE1 /* Pretendard-Light.otf in Resources */,
+				CEA48CEA29A2840000B39F84 /* Onboarding_img_02_Final.json in Resources */,
 				CE6EBF05299A88F100FA4DE1 /* Pretendard-SemiBold.otf in Resources */,
 				CE6EBF04299A88F100FA4DE1 /* Pretendard-ExtraBold.otf in Resources */,
+				CEA48CD229A2730D00B39F84 /* Splash_Final.json in Resources */,
 				CE6EBF08299A88F100FA4DE1 /* Pretendard-Regular.otf in Resources */,
 				CE6EBF06299A88F100FA4DE1 /* Pretendard-Black.otf in Resources */,
 				CEC63281297EBB5F00D9011E /* Assets.xcassets in Resources */,
@@ -504,25 +581,36 @@
 				CEB93F53299940DF001087B6 /* HapticManager.swift in Sources */,
 				CE39E1152986504400E3C93D /* Model.swift in Sources */,
 				CE858E852995427500F2FC42 /* CategoryView.swift in Sources */,
+				CEA48CDB29A277BA00B39F84 /* UserDefault.Value.swift in Sources */,
+				CEA48CE429A27E2400B39F84 /* OnboardFirstView.swift in Sources */,
 				CE64A507299BE9D1004C4E8D /* AppDelegate.swift in Sources */,
 				CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */,
 				CEB93F3929980B3B001087B6 /* Array+.swift in Sources */,
+				CEA48CE629A27E8A00B39F84 /* OnboardTitleView.swift in Sources */,
 				CE39E1132986503900E3C93D /* Model.Card.swift in Sources */,
 				CE498379299A9F25008A3968 /* Model.Order.swift in Sources */,
+				CEA48CEC29A2875600B39F84 /* OnboardThirdView.swift in Sources */,
 				CEC6327F297EBB5E00D9011E /* ContentView.swift in Sources */,
 				CE39E1172986507F00E3C93D /* CardView.swift in Sources */,
 				CE49837D299AA68C008A3968 /* Color.swift in Sources */,
 				CE0F15A62993F5FE00295B43 /* APIConfig+Request.swift in Sources */,
 				CE0F15A02993BB5B00295B43 /* APIConfig.Error.swift in Sources */,
+				CEA48CD829A2771D00B39F84 /* UserDefaultKey.swift in Sources */,
+				CEA48CD529A276CB00B39F84 /* UserDefault.swift in Sources */,
 				CE0F15A42993F5DD00295B43 /* APIConfig.Parameters.swift in Sources */,
 				CE0F15A22993BBF000295B43 /* APIConfig+Error.swift in Sources */,
+				CEA48CE829A2837800B39F84 /* OnboardSecondView.swift in Sources */,
 				CEB93F352997FD3F001087B6 /* DetailCardView.swift in Sources */,
+				CEA48CCF29A272AC00B39F84 /* SplashView.swift in Sources */,
+				CEA48CCB29A271AE00B39F84 /* LottieView.swift in Sources */,
 				CE0F15AB2993FD2800295B43 /* API.swift in Sources */,
 				CEB93F322997F776001087B6 /* ConfirmButtonView.swift in Sources */,
 				CE39E119298650BB00E3C93D /* CardListView.swift in Sources */,
+				CEA48CEE29A295DA00B39F84 /* AcitivityViewController.swift in Sources */,
 				CEC6327D297EBB5E00D9011E /* talkbbokkiApp.swift in Sources */,
 				CEB93F2F2996B54A001087B6 /* Extension.swift in Sources */,
 				CEB93F37299801FB001087B6 /* View+.swift in Sources */,
+				CEA48CE029A27AA800B39F84 /* OnboardView.swift in Sources */,
 				CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */,
 				CEB93F512998CA32001087B6 /* CardListReducer.swift in Sources */,
 				CE0F159D2993B9B000295B43 /* APIConfig.swift in Sources */,
@@ -893,6 +981,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		CEA48CC729A270A300B39F84 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		CEE72A8F2982B2820047403A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -921,6 +1017,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE64A501299BDFB2004C4E8D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
+		};
+		CEA48CC829A270A300B39F84 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEA48CC729A270A300B39F84 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		CEE72A902982B2820047403A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

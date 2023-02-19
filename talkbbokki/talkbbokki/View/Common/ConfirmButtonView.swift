@@ -25,6 +25,7 @@ enum ButtonType {
     case confirm
     case ok
     case cancel
+    case next
     case none
     
     var backgroundColor: Color {
@@ -32,7 +33,15 @@ enum ButtonType {
         case .confirm: return .Talkbbokki.GrayScale.gray5
         case .cancel: return .Talkbbokki.Primary.mainColor1
         case .ok: return .Talkbbokki.GrayScale.black
+        case .next: return .Talkbbokki.GrayScale.white
         case .none: return .clear
+        }
+    }
+    
+    var forgroundColor: Color {
+        switch self {
+        case .next: return .Talkbbokki.Primary.mainColor1
+        case .confirm, .ok, .cancel, .none: return .Talkbbokki.GrayScale.white
         }
     }
 }
@@ -42,7 +51,7 @@ struct ConfirmText: View {
     let buttonMessage: String
     var body: some View {
         Text(buttonMessage)
-            .foregroundColor(.white)
+            .foregroundColor(type.forgroundColor)
             .fontWeight(.bold)
             .font(.system(size: 18))
             .padding(.top, 21)

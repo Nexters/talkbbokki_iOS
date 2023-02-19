@@ -18,6 +18,8 @@ private enum Design {
     enum Text {
         static let topic = "TOPIC"
         static let starter = "STARTER"
+        static let alertMessage = "아직 준비중이에요!\n조금만 기다려주세요."
+        static let alertConfrimButton = "슬프지만 닫기"
     }
 }
 
@@ -29,6 +31,7 @@ struct DetailCardContainerView: View {
     @State private var frontDegree = -90.0
     @State private var isFlipped = false
     
+    @State private var didTapAlert: ButtonType = .none
     @State private var didTapRefreshOrder = false
     @State private var didTapBookmark = false
     private let width : CGFloat = 200
@@ -49,9 +52,26 @@ struct DetailCardContainerView: View {
                                        touchedBookMark: $didTapBookmark,
                                        degree: $frontDegree)
                 }
+                
+                if viewStore.isShowBookMarkAlert {
+                    AlertView(message: Design.Text.alertMessage,
+                              subMessage: "",
+                              buttons: [AlertButton(type: .confirm,
+                                                    message: Design.Text.alertConfrimButton)],
+                              didTapButton: $didTapAlert)
+                    
+                }
             }
+            .onChange(of: didTapAlert, perform: { newValue in
+                guard didTapAlert != .none else { return }
+                viewStore.send(.showBookMarkAlert)
+                didTapAlert = .none
+            })
             .onChange(of: didTapRefreshOrder, perform: { newValue in
                 viewStore.send(.fetchOrder)
+            })
+            .onChange(of: didTapBookmark, perform: { newValue in
+                viewStore.send(.showBookMarkAlert)
             })
             .onAppear(perform: {
                 viewStore.send(.fetchOrder)
@@ -116,6 +136,7 @@ struct DetailBackCardView: View {
     @Binding var touchedRefreshOrder: Bool
     @Binding var touchedBookMark: Bool
     @Binding var degree : Double
+    @State private var didTapShare: Bool = false
     var body : some View{
         ZStack {
             backgroundView
@@ -132,6 +153,9 @@ struct DetailBackCardView: View {
         .cornerRadius(12)
         .shadow(radius: 12)
         .rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
+        .sheet(isPresented: $didTapShare) {
+            ActivityViewController(activityItems: [card.pcLink+"&rule=\((order?.id).orZero)"])
+        }
     }
     
     private var backgroundView: some View {
@@ -153,6 +177,7 @@ struct DetailBackCardView: View {
         HStack {
             Text(Design.Text.topic)
                 .font(.Pretendard.b2_regular)
+                .foregroundColor(.Talkbbokki.GrayScale.gray5)
             Spacer()
             Button {
                 touchedBookMark.toggle()
@@ -165,7 +190,9 @@ struct DetailBackCardView: View {
     private var starterGuideView: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .center) {
-                Text(Design.Text.starter).font(.Pretendard.b2_regular)
+                Text(Design.Text.starter)
+                    .font(.Pretendard.b2_regular)
+                    .foregroundColor(.Talkbbokki.GrayScale.gray5)
                 Button {
                     touchedRefreshOrder.toggle()
                 } label: {
@@ -173,14 +200,25 @@ struct DetailBackCardView: View {
                 }
                 Spacer()
             }
-            Text((order?.rule).orEmpty).font(.Pretendard.b1_bold)
+            Text((order?.rule).orEmpty)
+                .font(.Pretendard.b1_bold)
+                .foregroundColor(.Talkbbokki.GrayScale.black)
         }.padding([.top, .leading, .trailing, .bottom], 24)
     }
-    
+    /*
+     Button("공유하기") {
+           self.isSharePresented = true
+         }
+         .sheet(
+           isPresented: $isSharePresented,
+           onDismiss: { print("Dismiss") },
+           content: { ActivityViewController(activityItems: [image]) }
+         )
+     */
     private var buttons: some View {
         HStack {
             Button {
-                
+                didTapShare.toggle()
             } label: {
                 Image("shareButton")
             }

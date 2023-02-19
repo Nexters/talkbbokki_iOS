@@ -21,6 +21,7 @@ private enum Design {
             static let height: CGFloat = 180
             static let spacing: CGFloat = 16
             static let imageSize: CGSize = CGSize(width: 90, height: 90)
+            static let cardSize: CGSize = CGSize(width: 159, height: 180)
         }
         
         struct CategoryView {
@@ -104,18 +105,26 @@ struct CategoryView: View {
 
 struct CategoryTitleView: View {
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: Design.Constraint.Title.spacing) {
-                Text(Design.Text.mainTitle)
-                    .font(.Pretendard.h1)
-                Text(Design.Text.subTitle)
-                    .font(.Pretendard.b3_regular)
+        ZStack {
+            HStack {
+                Spacer()
+                Image("Graphic")
             }
-            .foregroundColor(.Talkbbokki.GrayScale.white)
-            Spacer()
+            .offset(y: 38)
+            
+            HStack {
+                VStack(alignment: .leading, spacing: Design.Constraint.Title.spacing) {
+                    Text(Design.Text.mainTitle)
+                        .font(.Pretendard.h1)
+                    Text(Design.Text.subTitle)
+                        .font(.Pretendard.b3_regular)
+                }
+                .foregroundColor(.Talkbbokki.GrayScale.white)
+                Spacer()
+            }
+            .padding(.top, Design.Constraint.Title.topInset)
+            .padding(.leading, Design.Constraint.Title.leftInset)
         }
-        .padding(.top, Design.Constraint.Title.topInset)
-        .padding(.leading, Design.Constraint.Title.leftInset)
     }
 }
 
@@ -132,6 +141,8 @@ struct CategoryCardGridView: View {
             ForEach(categories) { category in
                 CategoryCardView(touched: $touchedCardView,
                                  category: category)
+                .frame(width: Design.Constraint.CardView.cardSize.width,
+                       height: Design.Constraint.CardView.cardSize.height)
             }
         }
     }
@@ -157,7 +168,9 @@ struct CategoryCardView: View {
                         .foregroundColor(.white)
                         .font(.Pretendard.b2_bold)
                 }
-                Image("Bling").zIndex(0)
+                Image("Bling")
+                    .resizable()
+                    .zIndex(0)
             }
         }
     }
