@@ -9,6 +9,12 @@ import ComposableArchitecture
 import Combine
 
 class CategoryReducer: ReducerProtocol {
+    private let categoriesImages: [String] = [
+        "hand",
+        "Bowl_Graphic",
+        "Beer_Graphic",
+        "ComingSoon_Graphic",
+    ]
     private var bag = Set<AnyCancellable>()
     struct State: Equatable {
         var categories: [Model.Category] = []
@@ -51,7 +57,12 @@ class CategoryReducer: ReducerProtocol {
                 .print("API.Category()")
                 .sink { _ in
                 } receiveValue: { categories in
-                    contiuation.resume(returning: categories)
+                    let imageCategories = categories.enumerated().map { index, category in
+                        var imageCategory = category
+                        imageCategory.imageName = self.categoriesImages[safe: index] ?? ""
+                        return imageCategory
+                    }
+                    contiuation.resume(returning: imageCategories)
                 }.store(in: &bag)
         })
     }

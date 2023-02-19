@@ -38,11 +38,12 @@ struct CardListView: View {
             GeometryReader { proxy in
                 NavigationView{
                     ZStack(alignment: .topLeading) {
-                        Color.purple.ignoresSafeArea()
-                        
+                        Color(hex: category.bgColor.color)
+                            .ignoresSafeArea()
                         VStack(alignment: .leading) {
                             closeButton
-                            CardListTitleView(title: category.text)
+                            CardListTitleView(title: category.firstLineTitle,
+                                              subTitie: category.secondLineTitle)
                             Spacer()
                             CardContainerView(offsetX:viewStore.offsetX,
                                               currentIndex: $currentIndex,
@@ -93,11 +94,12 @@ struct CardListView: View {
 
 struct CardListTitleView: View {
     let title: String
+    let subTitie: String
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 0) {
                 Text(title).font(.Pretendard.h2_bold)
-                Text(Design.Text.subTitle).font(.Pretendard.h2_bold)
+                Text(subTitie).font(.Pretendard.h2_bold)
             }
             .padding(.leading, 20)
             Spacer()

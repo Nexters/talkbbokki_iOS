@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 @main
 struct talkbbokkiApp: App {
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
 //            CardListView(cards: $cards)

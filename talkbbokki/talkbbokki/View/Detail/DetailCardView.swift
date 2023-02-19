@@ -12,6 +12,7 @@ private enum Design {
     enum Constraint {
         static let originCardSize = CGSize(width: 100, height: 200)
         static let cardSize = CGSize(width: 320, height: 454)
+        static let imageSize: CGSize = CGSize(width: 259, height: 402)
     }
     
     enum Text {
@@ -99,18 +100,10 @@ struct DetailFrontCardView: View {
                 .resizable()
                 .frame(width: Design.Constraint.cardSize.width,
                        height: Design.Constraint.cardSize.height)
-            VStack(alignment: .center, spacing: 22){
-                Image("DetailCardImage")
-                VStack(spacing: 8) {
-                    Text(card.tag)
-                        .foregroundColor(.black)
-                        .font(.Pretendard.h1)
-                    HStack(spacing: 0) {
-                        Text("\(card.viewCount)").font(.Pretendard.b1_bold).foregroundColor(.black)
-                        Text("명의 PICK!").font(.Pretendard.b1_regular).foregroundColor(.black)
-                    }
-                }
-            }
+            Image(card.tag.image)
+                .resizable()
+                .frame(width: Design.Constraint.imageSize.width,
+                       height: Design.Constraint.imageSize.height)
         }
         .frame(width: Design.Constraint.cardSize.width,
                height: Design.Constraint.cardSize.height)
@@ -215,6 +208,6 @@ struct DetailCardContainerView_Preview: PreviewProvider {
                                                   createAt: "1101",
                                                   category: "LOVE",
                                                   pcLink: "",
-                                                  tag: "LOVE"))
+                                                  tag: .love))
     }
 }

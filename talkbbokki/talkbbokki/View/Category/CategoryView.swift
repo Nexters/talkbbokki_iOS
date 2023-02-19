@@ -20,7 +20,7 @@ private enum Design {
             static let width: CGFloat = 155
             static let height: CGFloat = 180
             static let spacing: CGFloat = 16
-            static let imageSize: CGSize = CGSize(width: 100, height: 100)
+            static let imageSize: CGSize = CGSize(width: 90, height: 90)
         }
         
         struct CategoryView {
@@ -113,14 +113,14 @@ struct CategoryCardView: View {
             touched = category
         } label: {
             ZStack {
-                Color.red
+                Color(hex: category.bgColor.color)
                     .cornerRadius(8)
                     .frame(height: Design.Constraint.CardView.height)
                 VStack(spacing: 0) {
-                    Image("")
+                    Image(category.imageName.orEmpty)
+                        .resizable()
                         .frame(width: Design.Constraint.CardView.imageSize.width,
                                height: Design.Constraint.CardView.imageSize.height)
-                        .background(Color.blue)
                     Text(category.text)
                         .foregroundColor(.white)
                         .font(.Pretendard.b2_bold)

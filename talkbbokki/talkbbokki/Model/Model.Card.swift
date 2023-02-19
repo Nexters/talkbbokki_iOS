@@ -16,7 +16,7 @@ extension Model {
         let createAt: String
         let category: String
         let pcLink: String
-        let tag: String
+        let tag: Tag
 
         enum CodingKeys: String, CodingKey {
             case topicID = "id"
@@ -30,7 +30,7 @@ extension Model {
              createAt: String,
              category: String,
              pcLink: String,
-             tag: String
+             tag: Tag
         ) {
             self.cardNumber = cardNumber
             self.topicID = topicID
@@ -50,13 +50,13 @@ extension Model {
             createAt = try container.decode(String.self, forKey: .createAt)
             category = try container.decode(String.self, forKey: .category)
             pcLink = try container.decode(String.self, forKey: .pcLink)
-            tag = try container.decode(String.self, forKey: .tag)
+            tag = try container.decode(Tag.self, forKey: .tag)
         }
 
         var cardNumber = 0
         var degree: Double = 0.0
         var position: Position = .none
-        
+
         enum Position {
             case beforePrev
             case prev
@@ -119,6 +119,23 @@ extension Model {
                 case .afterNext,.right: return 0.5
                 case .selected: return 1.0
                 case .none: return 0.0
+                }
+            }
+        }
+        
+        enum Tag: String, Codable {
+            case love = "LOVE"
+            case daily = "DAILY"
+            case ifThe = "IF"
+            
+            var image: String {
+                switch self {
+                case .love:
+                    return "ios_Tag_img_love"
+                case .daily:
+                    return "ios_Tag_img_daily"
+                case .ifThe:
+                    return "ios_Tag_img_if"
                 }
             }
         }

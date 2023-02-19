@@ -73,3 +73,17 @@ extension Color {
         self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
     }
 }
+
+extension String {
+    var color: Int {
+        var temp = self
+        if (self.hasPrefix("#")) {
+            temp.removeFirst()
+        }
+        
+        temp = "0x"+temp
+        var rgbValue: UInt64 = 0
+        Scanner(string: temp).scanHexInt64(&rgbValue)
+        return Int(rgbValue)
+    }
+}

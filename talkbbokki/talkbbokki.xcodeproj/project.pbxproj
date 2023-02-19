@@ -23,6 +23,10 @@
 		CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498376299A9DCB008A3968 /* DetailCardReducer.swift */; };
 		CE498379299A9F25008A3968 /* Model.Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498378299A9F25008A3968 /* Model.Order.swift */; };
 		CE49837D299AA68C008A3968 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49837C299AA68C008A3968 /* Color.swift */; };
+		CE64A500299BDE58004C4E8D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE64A4FF299BDE58004C4E8D /* GoogleService-Info.plist */; };
+		CE64A503299BDFB2004C4E8D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE64A502299BDFB2004C4E8D /* FirebaseAnalytics */; };
+		CE64A505299BDFB2004C4E8D /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = CE64A504299BDFB2004C4E8D /* FirebaseDynamicLinks */; };
+		CE64A507299BE9D1004C4E8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64A506299BE9D1004C4E8D /* AppDelegate.swift */; };
 		CE6EBF03299A88F100FA4DE1 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBEFA299A88F000FA4DE1 /* Pretendard-Bold.otf */; };
 		CE6EBF04299A88F100FA4DE1 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBEFB299A88F000FA4DE1 /* Pretendard-ExtraBold.otf */; };
 		CE6EBF05299A88F100FA4DE1 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBEFC299A88F000FA4DE1 /* Pretendard-SemiBold.otf */; };
@@ -51,6 +55,7 @@
 		CEC6329B297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6329A297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift */; };
 		CEE72A912982B2820047403A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CEE72A902982B2820047403A /* Alamofire */; };
 		CEE72A942982B2C10047403A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CEE72A932982B2C10047403A /* ComposableArchitecture */; };
+		CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7CFB029A1115D005A7E6C /* AlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +93,8 @@
 		CE498376299A9DCB008A3968 /* DetailCardReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardReducer.swift; sourceTree = "<group>"; };
 		CE498378299A9F25008A3968 /* Model.Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Order.swift; sourceTree = "<group>"; };
 		CE49837C299AA68C008A3968 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		CE64A4FF299BDE58004C4E8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE64A506299BE9D1004C4E8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6EBEFA299A88F000FA4DE1 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		CE6EBEFB299A88F000FA4DE1 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
 		CE6EBEFC299A88F000FA4DE1 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -118,6 +125,7 @@
 		CEC63294297EBB5F00D9011E /* talkbbokkiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = talkbbokkiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC63298297EBB5F00D9011E /* talkbbokkiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkbbokkiUITests.swift; sourceTree = "<group>"; };
 		CEC6329A297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkbbokkiUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CEF7CFB029A1115D005A7E6C /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +135,8 @@
 			files = (
 				CEE72A942982B2C10047403A /* ComposableArchitecture in Frameworks */,
 				CEE72A912982B2820047403A /* Alamofire in Frameworks */,
+				CE64A503299BDFB2004C4E8D /* FirebaseAnalytics in Frameworks */,
+				CE64A505299BDFB2004C4E8D /* FirebaseDynamicLinks in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +238,7 @@
 				CEB93F4E2998C080001087B6 /* Font+.swift */,
 				CE49837C299AA68C008A3968 /* Color.swift */,
 				CEB93F52299940DF001087B6 /* HapticManager.swift */,
+				CE64A506299BE9D1004C4E8D /* AppDelegate.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -236,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB93F312997F776001087B6 /* ConfirmButtonView.swift */,
+				CEF7CFB029A1115D005A7E6C /* AlertView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -252,6 +264,7 @@
 		CEB93F3A2998BFE2001087B6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE64A4FF299BDE58004C4E8D /* GoogleService-Info.plist */,
 				CEC63280297EBB5F00D9011E /* Assets.xcassets */,
 				CEB93F3B2998BFE9001087B6 /* Font */,
 			);
@@ -355,6 +368,8 @@
 			packageProductDependencies = (
 				CEE72A902982B2820047403A /* Alamofire */,
 				CEE72A932982B2C10047403A /* ComposableArchitecture */,
+				CE64A502299BDFB2004C4E8D /* FirebaseAnalytics */,
+				CE64A504299BDFB2004C4E8D /* FirebaseDynamicLinks */,
 			);
 			productName = talkbbokki;
 			productReference = CEC63279297EBB5E00D9011E /* talkbbokki.app */;
@@ -431,6 +446,7 @@
 			packageReferences = (
 				CEE72A8F2982B2820047403A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				CEE72A922982B2C10047403A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				CE64A501299BDFB2004C4E8D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = CEC6327A297EBB5E00D9011E /* Products */;
 			projectDirPath = "";
@@ -453,6 +469,7 @@
 				CEC63285297EBB5F00D9011E /* Preview Assets.xcassets in Resources */,
 				CE6EBF03299A88F100FA4DE1 /* Pretendard-Bold.otf in Resources */,
 				CE6EBF07299A88F100FA4DE1 /* Pretendard-Thin.otf in Resources */,
+				CE64A500299BDE58004C4E8D /* GoogleService-Info.plist in Resources */,
 				CE6EBF0B299A88F100FA4DE1 /* Pretendard-Light.otf in Resources */,
 				CE6EBF05299A88F100FA4DE1 /* Pretendard-SemiBold.otf in Resources */,
 				CE6EBF04299A88F100FA4DE1 /* Pretendard-ExtraBold.otf in Resources */,
@@ -487,6 +504,8 @@
 				CEB93F53299940DF001087B6 /* HapticManager.swift in Sources */,
 				CE39E1152986504400E3C93D /* Model.swift in Sources */,
 				CE858E852995427500F2FC42 /* CategoryView.swift in Sources */,
+				CE64A507299BE9D1004C4E8D /* AppDelegate.swift in Sources */,
+				CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */,
 				CEB93F3929980B3B001087B6 /* Array+.swift in Sources */,
 				CE39E1132986503900E3C93D /* Model.Card.swift in Sources */,
 				CE498379299A9F25008A3968 /* Model.Order.swift in Sources */,
@@ -866,6 +885,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CE64A501299BDFB2004C4E8D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		CEE72A8F2982B2820047403A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -885,6 +912,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CE64A502299BDFB2004C4E8D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE64A501299BDFB2004C4E8D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		CE64A504299BDFB2004C4E8D /* FirebaseDynamicLinks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE64A501299BDFB2004C4E8D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDynamicLinks;
+		};
 		CEE72A902982B2820047403A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CEE72A8F2982B2820047403A /* XCRemoteSwiftPackageReference "Alamofire" */;

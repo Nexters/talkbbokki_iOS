@@ -16,8 +16,6 @@ struct ConfirmButtonView: View {
         } label: {
             ConfirmText(buttonMessage: buttonMessage)
         }
-//        .padding(.leading, 20)
-//        .padding(.trailing, 20)
     }
 }
 
