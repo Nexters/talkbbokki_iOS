@@ -31,12 +31,22 @@ private enum Design {
     enum Text {
         static let mainTitle = "Let’s\nBBOKKI !"
         static let subTitle = "친밀도를 골라보세요!\n딱 - 맞는 대화주제 추천해줄게요!"
+        static let alertMessage = "아직 준비중이에요!\n조금만 기다려주세요."
+        static let alertConfrimButton = "슬프지만 닫기"
     }
 }
 
 struct CategoryView: View {
+    enum Scene: String, Identifiable {
+        var id: String {
+            self.rawValue
+        }
+        case cardList
+    }
+    
     @State private var selectedCategory: Model.Category = Model.Category.empty
-    @State private var presentCardListView: Bool = false
+    @State private var didTapAlert: ButtonType = .none
+    @State private var present: Scene?
     let store: StoreOf<CategoryReducer>
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -49,19 +59,41 @@ struct CategoryView: View {
                                              categories: viewStore.categories)
                         Spacer()
                     }
+                    
+                    if viewStore.isShowAlert {
+                        AlertView(message: Design.Text.alertMessage,
+                                  subMessage: "",
+                                  buttons: [AlertButton(type: .confirm,
+                                                        message: Design.Text.alertConfrimButton)],
+                                  didTapButton: $didTapAlert)
+                    }
                 }
             }
+            .onChange(of: didTapAlert, perform: { newValue in
+                guard didTapAlert != .none else { return }
+                didTapAlert = .none
+                selectedCategory = Model.Category.empty
+                viewStore.send(.showAlert)
+            })
             .onChange(of: selectedCategory, perform: { newValue in
                 guard newValue != Model.Category.empty else { return }
-                presentCardListView.toggle()
+                guard newValue.text != "COMING\nSOON" else {
+                    viewStore.send(.showAlert)
+                    return
+                }
+                present = .cardList
             })
-            .fullScreenCover(isPresented: $presentCardListView,
+            .fullScreenCover(item: $present,
                              onDismiss: {
                 selectedCategory = Model.Category.empty
-            },content: {
-                CardListView(category: selectedCategory,
-                             store: Store(initialState: CardListReducer.State(),
-                                          reducer: CardListReducer()))
+            },
+                             content: { scene in
+                switch scene {
+                case .cardList:
+                    CardListView(category: selectedCategory,
+                                 store: Store(initialState: CardListReducer.State(),
+                                              reducer: CardListReducer()))
+                }
             })
             .onAppear {
                 viewStore.send(.fetchCategories)

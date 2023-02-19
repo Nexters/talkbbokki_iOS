@@ -24,7 +24,6 @@ private enum Design {
 struct DetailCardContainerView: View {
     let store: StoreOf<DetailCardReducer>
     let card: Model.Topic
-    @State private var backgroundOpacity: CGFloat = 0.0
     @State private var onAppear: Bool = false
     @State private var backDegree = 0.0
     @State private var frontDegree = -90.0

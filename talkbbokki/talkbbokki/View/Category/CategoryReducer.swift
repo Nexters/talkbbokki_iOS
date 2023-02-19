@@ -19,6 +19,7 @@ class CategoryReducer: ReducerProtocol {
     struct State: Equatable {
         var categories: [Model.Category] = []
         var errorMessage: String = ""
+        var isShowAlert: Bool = false
     }
     
     enum Action {
@@ -26,6 +27,7 @@ class CategoryReducer: ReducerProtocol {
         case fetchResult(Result<[Model.Category], Error>)
         case setCategories([Model.Category])
         case setError(Error)
+        case showAlert
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -46,6 +48,9 @@ class CategoryReducer: ReducerProtocol {
             return .none
         case .setError(let error):
             state.errorMessage = error.localizedDescription
+            return .none
+        case .showAlert:
+            state.isShowAlert.toggle()
             return .none
         }
     }

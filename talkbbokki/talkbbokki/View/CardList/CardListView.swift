@@ -58,7 +58,8 @@ struct CardListView: View {
                                     EmptyView()
                                 }
                             } label: {
-                                ConfirmText(buttonMessage: Design.Text.confirm)
+                                ConfirmText(type: .confirm, buttonMessage: Design.Text.confirm)
+                                    .padding([.leading, .trailing], 20)
                                     .padding(.bottom, 16)
                             }
                         }
@@ -100,6 +101,8 @@ struct CardListTitleView: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text(title).font(.Pretendard.h2_bold)
                 Text(subTitie).font(.Pretendard.h2_bold)
+                    .foregroundColor(.Talkbbokki.GrayScale.black)
+                    .opacity(0.35)
             }
             .padding(.leading, 20)
             Spacer()
