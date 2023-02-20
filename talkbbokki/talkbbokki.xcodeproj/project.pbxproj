@@ -16,7 +16,7 @@
 		CE0F15AB2993FD2800295B43 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15AA2993FD2800295B43 /* API.swift */; };
 		CE0F15AD2993FD8F00295B43 /* Talkbbokki.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15AC2993FD8F00295B43 /* Talkbbokki.Error.swift */; };
 		CE0F15AF2994007300295B43 /* Model.Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15AE2994007300295B43 /* Model.Category.swift */; };
-		CE39E1132986503900E3C93D /* Model.Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1122986503900E3C93D /* Model.Card.swift */; };
+		CE39E1132986503900E3C93D /* Model.Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1122986503900E3C93D /* Model.Topic.swift */; };
 		CE39E1152986504400E3C93D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1142986504400E3C93D /* Model.swift */; };
 		CE39E1172986507F00E3C93D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1162986507F00E3C93D /* CardView.swift */; };
 		CE39E119298650BB00E3C93D /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E118298650BB00E3C93D /* CardListView.swift */; };
@@ -25,6 +25,7 @@
 		CE49837D299AA68C008A3968 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49837C299AA68C008A3968 /* Color.swift */; };
 		CE618E0A29A3AA2900076F7E /* SuggestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE618E0929A3AA2900076F7E /* SuggestView.swift */; };
 		CE618E0D29A3CB3600076F7E /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = CE618E0C29A3CB3600076F7E /* Introspect */; };
+		CE618E1129A3D81B00076F7E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE618E1029A3D81B00076F7E /* Date+.swift */; };
 		CE64A500299BDE58004C4E8D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE64A4FF299BDE58004C4E8D /* GoogleService-Info.plist */; };
 		CE64A503299BDFB2004C4E8D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE64A502299BDFB2004C4E8D /* FirebaseAnalytics */; };
 		CE64A505299BDFB2004C4E8D /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = CE64A504299BDFB2004C4E8D /* FirebaseDynamicLinks */; };
@@ -103,7 +104,7 @@
 		CE0F15AC2993FD8F00295B43 /* Talkbbokki.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Talkbbokki.Error.swift; sourceTree = "<group>"; };
 		CE0F15AE2994007300295B43 /* Model.Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Category.swift; sourceTree = "<group>"; };
 		CE0F15B02994025F00295B43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		CE39E1122986503900E3C93D /* Model.Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Card.swift; sourceTree = "<group>"; };
+		CE39E1122986503900E3C93D /* Model.Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Topic.swift; sourceTree = "<group>"; };
 		CE39E1142986504400E3C93D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CE39E1162986507F00E3C93D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CE39E118298650BB00E3C93D /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 		CE498378299A9F25008A3968 /* Model.Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Order.swift; sourceTree = "<group>"; };
 		CE49837C299AA68C008A3968 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CE618E0929A3AA2900076F7E /* SuggestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestView.swift; sourceTree = "<group>"; };
+		CE618E1029A3D81B00076F7E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		CE64A4FF299BDE58004C4E8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE64A506299BE9D1004C4E8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6EBEFA299A88F000FA4DE1 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -236,7 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				CE39E1142986504400E3C93D /* Model.swift */,
-				CE39E1122986503900E3C93D /* Model.Card.swift */,
+				CE39E1122986503900E3C93D /* Model.Topic.swift */,
 				CE0F15AE2994007300295B43 /* Model.Category.swift */,
 				CE498378299A9F25008A3968 /* Model.Order.swift */,
 			);
@@ -283,6 +285,7 @@
 				CEB93F3829980B3B001087B6 /* Array+.swift */,
 				CEB93F4E2998C080001087B6 /* Font+.swift */,
 				CE49837C299AA68C008A3968 /* Color.swift */,
+				CE618E1029A3D81B00076F7E /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -598,7 +601,8 @@
 				CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */,
 				CEB93F3929980B3B001087B6 /* Array+.swift in Sources */,
 				CEA48CE629A27E8A00B39F84 /* OnboardTitleView.swift in Sources */,
-				CE39E1132986503900E3C93D /* Model.Card.swift in Sources */,
+				CE618E1129A3D81B00076F7E /* Date+.swift in Sources */,
+				CE39E1132986503900E3C93D /* Model.Topic.swift in Sources */,
 				CE498379299A9F25008A3968 /* Model.Order.swift in Sources */,
 				CEA48CEC29A2875600B39F84 /* OnboardThirdView.swift in Sources */,
 				CEC6327F297EBB5E00D9011E /* ContentView.swift in Sources */,

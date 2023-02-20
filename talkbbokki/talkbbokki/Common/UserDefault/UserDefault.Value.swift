@@ -12,6 +12,12 @@ extension UserDefaultValue {
     enum Onboard {
         @UserDefault(key: UserDefaultKey.didShowOnboarding, defaultValue: false)
         static var didShow: Bool
+        
+        @UserDefault(key: UserDefaultKey.didShowTopic, defaultValue: [])
+        static var didShowTopic: [Int]
+        
+        @OptionalUserDefault(key: UserDefaultKey.enterTime)
+        static var enterTime: Date?
     }
 }
 

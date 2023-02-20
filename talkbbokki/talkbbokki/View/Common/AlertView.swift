@@ -23,13 +23,14 @@ struct AlertView: View {
                 .ignoresSafeArea()
             VStack(spacing: 24) {
                 Group {
-                    VStack(spacing: 16) {
+                    VStack(alignment: .center,spacing: 16) {
                         Image("Crying")
                         VStack(spacing: 4) {
-                            Text(message)
+                            Text(message).multilineTextAlignment(.center)
                                 .font(.Pretendard.b2_bold)
                                 .foregroundColor(.Talkbbokki.GrayScale.black)
                             Text(subMessage)
+                                .multilineTextAlignment(.center)
                                 .font(.Pretendard.caption1)
                                 .foregroundColor(.Talkbbokki.GrayScale.gray4)
                         }
@@ -72,8 +73,8 @@ struct AlertButton: Identifiable {
 struct AlertView_Previews: PreviewProvider {
     static var previews: some View {
         AlertView(
-            message: "안녕",
-            subMessage: "ㅋㅋㅋ",
+            message: "안녕\naa",
+            subMessage: "ㅋㅋㅋzzadasdadaaasdasd",
             buttons: [AlertButton(type: .ok, message: "확인"),
                       AlertButton(type: .cancel, message: "취소")],
             didTapButton: .constant(.confirm))

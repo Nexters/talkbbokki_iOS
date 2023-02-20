@@ -95,7 +95,7 @@ extension Model {
                 case .prev: return CGSize(width: 134, height: 190)
                 case .next: return CGSize(width: 134, height: 190)
                 case .afterNext, .right: return CGSize(width: 110, height: 156)
-                case .selected: return CGSize(width: 223, height: 314)
+                case .selected: return CGSize(width: 223, height: 346)
                 case .none: return CGSize(width: 0, height: 0)
                 }
             }

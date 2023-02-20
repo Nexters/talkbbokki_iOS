@@ -23,6 +23,8 @@ private enum Design {
     enum Text {
         static let confirm = "이 카드 뽑기"
         static let subTitle = "하는 사이라면"
+        static let finishedCardButton = "안녕하고 닫기"
+        static let finishedCardMessage = "오늘 준비한 카드를 모두 뽑았어요\n내일 다시 만나요 :)"
     }
 }
 
@@ -32,7 +34,7 @@ struct CardListView: View {
     let store: StoreOf<CardListReducer>
     @Environment(\.presentationMode) private var presentationMode
     @State private var currentIndex: Int = -1
-
+    @State private var didTapFinishedAlert: ButtonType = .none
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             GeometryReader { proxy in
@@ -40,6 +42,7 @@ struct CardListView: View {
                     ZStack(alignment: .topLeading) {
                         Color(hex: category.bgColor.color)
                             .ignoresSafeArea()
+                        
                         VStack(alignment: .leading) {
                             closeButton
                             CardListTitleView(title: category.firstLineTitle,
@@ -47,6 +50,7 @@ struct CardListView: View {
                             Spacer()
                             CardContainerView(offsetX:viewStore.offsetX,
                                               currentIndex: $currentIndex,
+                                              didShowTopicIds: viewStore.didShowTopicIds,
                                               cards: viewStore.topics)
                             Spacer()
                             NavigationLink {
@@ -71,7 +75,19 @@ struct CardListView: View {
                             viewStore.send(.changedCurrentIndex(currentIndex))
                         })
                         .onAppear {
+                            viewStore.send(.fetchDidShowTopics)
                             viewStore.send(.fetchCard(category: category.code))
+                        }
+                        
+                        if (viewStore.topics
+                            .map { $0.topicID }
+                            .filter { viewStore.didShowTopicIds.contains($0) }
+                            .count == viewStore.topics.count) && didTapFinishedAlert == .none {
+                            AlertView(message: Design.Text.finishedCardMessage,
+                                      subMessage: "",
+                                      buttons: [AlertButton(type: .ok, message: Design.Text.finishedCardButton)],
+                                      didTapButton: $didTapFinishedAlert)
+                            .zIndex(0)
                         }
                     }
                 }
@@ -117,12 +133,13 @@ struct CardContainerView: View {
     private let spacing: CGFloat = Design.Constraint.CardListView.spacing
     @State private var x: CGFloat = 0
     @Binding var currentIndex: Int
+    let didShowTopicIds: [Int]
     let cards: [Model.Topic]
     
     var body: some View {
         HStack(spacing: spacing){
             ForEach(cards){ cardData in
-                CardView(card: cardData)
+                CardView(didShow: didShowTopicIds.contains { $0 == cardData.topicID }, card: cardData)
                     .zIndex(cardData.position.zIndex)
                     .offset(x: self.x, y: cardData.position.positionY)
                     .highPriorityGesture(DragGesture()

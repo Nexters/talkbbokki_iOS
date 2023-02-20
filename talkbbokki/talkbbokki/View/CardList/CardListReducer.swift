@@ -27,6 +27,7 @@ final class CardListReducer: ReducerProtocol {
     
     private var bag = Set<AnyCancellable>()
     struct State: Equatable {
+        var didShowTopicIds: [Int] = []
         var topics: [Model.Topic] = []
         var errorMessage: String = ""
         var offsetX: Double = 0
@@ -34,6 +35,7 @@ final class CardListReducer: ReducerProtocol {
     }
     
     enum Action {
+        case fetchDidShowTopics
         case fetchCard(category: String)
         case fetchResult(Result<[Model.Topic], Error>)
         case changedCurrentIndex(Int)
@@ -45,6 +47,9 @@ final class CardListReducer: ReducerProtocol {
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
+        case .fetchDidShowTopics:
+            state.didShowTopicIds = UserDefaultValue.Onboard.didShowTopic
+            return .none
         case .fetchCard(let category):
             return EffectTask.run { send in
                 await send.send(.setTopics(self.fetchTopics(with: category)))

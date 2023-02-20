@@ -22,6 +22,7 @@ final class DetailCardReducer: ReducerProtocol {
     }
     
     enum Action {
+        case saveTopic(Model.Topic)
         case fetchOrder
         case orderResult(Result<Model.Order, Error>)
         case setOrder(Model.Order)
@@ -33,6 +34,11 @@ final class DetailCardReducer: ReducerProtocol {
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
+        case .saveTopic(let topic):
+            var topics = UserDefaultValue.Onboard.didShowTopic
+            topics.append(topic.topicID)
+            UserDefaultValue.Onboard.didShowTopic = topics
+            return .none
         case .fetchOrder:
             return EffectTask.run { send in
                 await send.send(.setOrder(self.fetchOrder()))

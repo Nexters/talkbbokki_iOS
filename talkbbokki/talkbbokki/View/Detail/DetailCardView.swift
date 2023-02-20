@@ -89,6 +89,7 @@ struct DetailCardContainerView: View {
                 viewStore.send(.showBookMarkAlert)
             })
             .onAppear(perform: {
+                viewStore.send(.saveTopic(card))
                 viewStore.send(.fetchOrder)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                     withAnimation(.spring(dampingFraction: 0.7, blendDuration: 0.9)) {
