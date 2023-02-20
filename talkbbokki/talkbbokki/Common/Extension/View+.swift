@@ -32,6 +32,15 @@ extension View {
             view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
         }
     }
+
+    /// Layers the given views behind this ``TextEditor``.
+    func textEditorBackground<V>(@ViewBuilder _ content: () -> V) -> some View where V : View {
+        self
+            .onAppear {
+                UITextView.appearance().backgroundColor = .clear
+            }
+            .background(content())
+    }
     
     static func hilightedText(str: String,
                               searched: String,

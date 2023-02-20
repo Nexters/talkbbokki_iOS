@@ -26,6 +26,7 @@ private enum Design {
         
         struct CategoryView {
             static let spacing: CGFloat = 60
+            static let bottomSpacing: CGFloat = 24
         }
     }
     
@@ -34,6 +35,8 @@ private enum Design {
         static let subTitle = "친밀도를 골라보세요!\n딱 - 맞는 대화주제 추천해줄게요!"
         static let alertMessage = "아직 준비중이에요!\n조금만 기다려주세요."
         static let alertConfrimButton = "슬프지만 닫기"
+        static let suggestButtonTitle = "이런 토픽 왜없어?"
+        static let suggest = "제안하기"
     }
 }
 
@@ -46,6 +49,7 @@ struct CategoryView: View {
     }
     
     @State private var selectedCategory: Model.Category = Model.Category.empty
+    @State private var didTapSuggest: Bool = false
     @State private var didTapAlert: ButtonType = .none
     @State private var present: Scene?
     let store: StoreOf<CategoryReducer>
@@ -56,9 +60,13 @@ struct CategoryView: View {
                     Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
                     VStack(spacing: Design.Constraint.CategoryView.spacing) {
                         CategoryTitleView()
-                        CategoryCardGridView(touchedCardView: $selectedCategory,
-                                             categories: viewStore.categories)
                         Spacer()
+                        VStack(spacing: Design.Constraint.CategoryView.bottomSpacing) {
+                            CategoryCardGridView(touchedCardView: $selectedCategory,
+                                                 categories: viewStore.categories)
+                            SuggestButton(didTapSuggest: $didTapSuggest)
+                        }
+                        
                     }
                     
                     if viewStore.isShowAlert {
@@ -84,6 +92,9 @@ struct CategoryView: View {
                 }
                 present = .cardList
             })
+            .fullScreenCover(isPresented: $didTapSuggest, content: {
+                SuggestView()
+            })
             .fullScreenCover(item: $present,
                              onDismiss: {
                 selectedCategory = Model.Category.empty
@@ -100,6 +111,32 @@ struct CategoryView: View {
                 viewStore.send(.fetchCategories)
             }
         }
+    }
+}
+
+struct SuggestButton: View {
+    @Binding var didTapSuggest: Bool
+    var body: some View {
+        Button {
+            didTapSuggest.toggle()
+        } label: {
+            HStack(spacing: 2.0) {
+                HStack(spacing: 8.0) {
+                    Text(Design.Text.suggestButtonTitle)
+                        .font(.Pretendard.button_small_regular)
+                        .foregroundColor(.Talkbbokki.GrayScale.gray4)
+                    Text(Design.Text.suggest)
+                        .font(.Pretendard.button_small_bold)
+                        .foregroundColor(.Talkbbokki.GrayScale.white)
+                }
+                Image("icon-arrow2_left-24_2")
+            }
+            .padding([.leading,.trailing], 24)
+            .padding([.top,.bottom], 10)
+            .background(Color.Talkbbokki.GrayScale.black.opacity(0.5))
+            .cornerRadius(24)
+        }
+
     }
 }
 

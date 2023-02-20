@@ -16,6 +16,9 @@ extension API {
         let category: String
     }
     struct RecommendOrder { }
+    struct Suggest {
+        let text: String
+    }
 }
 
 extension API.Category: APIConfig {
@@ -66,5 +69,20 @@ extension API.RecommendOrder: APIConfig {
         let json   = try? input.toDict()
         let result = (json?["result"] as? [String: Any])!
         return try Model.Order.decode(dictionary: result)
+    }
+}
+
+extension API.Suggest: APIConfig {
+    static let domainConfig = Domain.Talkbbokki.self
+    static let serviceError = TalkbbokkiError.self
+    
+    var path: String { return "/api/topic-suggestion?text=\(self.text)"}
+    var method: HTTPMethod { return .post }
+    var parameters: API.Parameter? {
+        return nil
+    }
+    
+    func parse(_: Data) throws -> Void {
+        return ()
     }
 }

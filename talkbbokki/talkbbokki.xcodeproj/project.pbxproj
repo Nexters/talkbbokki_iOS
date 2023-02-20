@@ -23,6 +23,8 @@
 		CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498376299A9DCB008A3968 /* DetailCardReducer.swift */; };
 		CE498379299A9F25008A3968 /* Model.Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498378299A9F25008A3968 /* Model.Order.swift */; };
 		CE49837D299AA68C008A3968 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49837C299AA68C008A3968 /* Color.swift */; };
+		CE618E0A29A3AA2900076F7E /* SuggestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE618E0929A3AA2900076F7E /* SuggestView.swift */; };
+		CE618E0D29A3CB3600076F7E /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = CE618E0C29A3CB3600076F7E /* Introspect */; };
 		CE64A500299BDE58004C4E8D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE64A4FF299BDE58004C4E8D /* GoogleService-Info.plist */; };
 		CE64A503299BDFB2004C4E8D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE64A502299BDFB2004C4E8D /* FirebaseAnalytics */; };
 		CE64A505299BDFB2004C4E8D /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = CE64A504299BDFB2004C4E8D /* FirebaseDynamicLinks */; };
@@ -108,6 +110,7 @@
 		CE498376299A9DCB008A3968 /* DetailCardReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardReducer.swift; sourceTree = "<group>"; };
 		CE498378299A9F25008A3968 /* Model.Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Order.swift; sourceTree = "<group>"; };
 		CE49837C299AA68C008A3968 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		CE618E0929A3AA2900076F7E /* SuggestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestView.swift; sourceTree = "<group>"; };
 		CE64A4FF299BDE58004C4E8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE64A506299BE9D1004C4E8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6EBEFA299A88F000FA4DE1 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA48CC929A270A300B39F84 /* Lottie in Frameworks */,
+				CE618E0D29A3CB3600076F7E /* Introspect in Frameworks */,
 				CEE72A942982B2C10047403A /* ComposableArchitecture in Frameworks */,
 				CEE72A912982B2820047403A /* Alamofire in Frameworks */,
 				CE64A503299BDFB2004C4E8D /* FirebaseAnalytics in Frameworks */,
@@ -257,6 +261,7 @@
 			children = (
 				CE858E842995427500F2FC42 /* CategoryView.swift */,
 				CE858E862995468D00F2FC42 /* CategoryReducer.swift */,
+				CE618E0929A3AA2900076F7E /* SuggestView.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -447,6 +452,7 @@
 				CE64A502299BDFB2004C4E8D /* FirebaseAnalytics */,
 				CE64A504299BDFB2004C4E8D /* FirebaseDynamicLinks */,
 				CEA48CC829A270A300B39F84 /* Lottie */,
+				CE618E0C29A3CB3600076F7E /* Introspect */,
 			);
 			productName = talkbbokki;
 			productReference = CEC63279297EBB5E00D9011E /* talkbbokki.app */;
@@ -525,6 +531,7 @@
 				CEE72A922982B2C10047403A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				CE64A501299BDFB2004C4E8D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CEA48CC729A270A300B39F84 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				CE618E0B29A3CB3600076F7E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = CEC6327A297EBB5E00D9011E /* Products */;
 			projectDirPath = "";
@@ -581,6 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB93F4F2998C080001087B6 /* Font+.swift in Sources */,
+				CE618E0A29A3AA2900076F7E /* SuggestView.swift in Sources */,
 				CEB93F53299940DF001087B6 /* HapticManager.swift in Sources */,
 				CE39E1152986504400E3C93D /* Model.swift in Sources */,
 				CE858E852995427500F2FC42 /* CategoryView.swift in Sources */,
@@ -985,6 +993,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CE618E0B29A3CB3600076F7E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.3;
+			};
+		};
 		CE64A501299BDFB2004C4E8D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1020,6 +1036,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CE618E0C29A3CB3600076F7E /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE618E0B29A3CB3600076F7E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
 		CE64A502299BDFB2004C4E8D /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE64A501299BDFB2004C4E8D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
