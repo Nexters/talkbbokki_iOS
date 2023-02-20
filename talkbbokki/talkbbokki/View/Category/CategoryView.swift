@@ -112,8 +112,9 @@ struct CategoryTitleView: View {
             }
             .offset(y: 38)
             
-            HStack {
+            HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: Design.Constraint.Title.spacing) {
+                    Spacer()
                     Text(Design.Text.mainTitle)
                         .font(.Pretendard.h1)
                     Text(Design.Text.subTitle)
@@ -122,7 +123,6 @@ struct CategoryTitleView: View {
                 .foregroundColor(.Talkbbokki.GrayScale.white)
                 Spacer()
             }
-            .padding(.top, Design.Constraint.Title.topInset)
             .padding(.leading, Design.Constraint.Title.leftInset)
         }
     }

@@ -5,6 +5,7 @@
 //  Created by USER on 2023/02/12.
 //
 
+import UIKit
 import SwiftUI
 
 extension View {
@@ -13,6 +14,22 @@ extension View {
         transaction.disablesAnimations = true
         withTransaction(transaction) {
             action()
+        }
+    }
+    
+    
+    func snapshot() -> UIImage {
+        let controller = UIHostingController(rootView: self)
+        let view = controller.view
+        
+        let targetSize = controller.view.intrinsicContentSize
+        view?.bounds = CGRect(origin: .zero, size: UIScreen.main.bounds.size)
+        view?.backgroundColor = .clear
+        
+        let renderer = UIGraphicsImageRenderer(size: UIScreen.main.bounds.size)
+        
+        return renderer.image { _ in
+            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
         }
     }
     

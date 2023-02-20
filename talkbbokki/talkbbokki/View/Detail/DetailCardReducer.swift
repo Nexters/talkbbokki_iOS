@@ -8,13 +8,17 @@
 import Foundation
 import ComposableArchitecture
 import Combine
+import UIKit
+import Photos
 
 final class DetailCardReducer: ReducerProtocol {
     private var bag = Set<AnyCancellable>()
+    private var onSuccessSavePhoto:(()->()) = {}
     struct State: Equatable {
         var order: Model.Order?
         var errorMessage: String = ""
         var isShowBookMarkAlert = false
+        var isSuccessSavePhoto = false
     }
     
     enum Action {
@@ -22,7 +26,9 @@ final class DetailCardReducer: ReducerProtocol {
         case orderResult(Result<Model.Order, Error>)
         case setOrder(Model.Order)
         case setError(Error)
+        case setIsSuccessSavePhoto
         case showBookMarkAlert
+        case savePhoto(Model.Topic)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -46,6 +52,19 @@ final class DetailCardReducer: ReducerProtocol {
             return .none
         case .showBookMarkAlert:
             state.isShowBookMarkAlert.toggle()
+            return .none
+        case .savePhoto(let topic):
+            let renderImage = DetailBackCardView(card: topic,
+                                                 order: state.order,
+                                                 touchedDownload: .constant(false),
+                                                 touchedRefreshOrder: .constant(false),
+                                                 touchedBookMark: .constant(false),
+                                                 degree: .constant(0.0)).snapshot()
+            UIImageWriteToSavedPhotosAlbum(renderImage,nil,nil,nil)
+            state.isSuccessSavePhoto.toggle()
+            return .none
+        case .setIsSuccessSavePhoto:
+            state.isSuccessSavePhoto.toggle()
             return .none
         }
     }

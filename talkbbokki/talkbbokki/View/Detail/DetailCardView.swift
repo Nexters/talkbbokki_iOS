@@ -31,6 +31,7 @@ struct DetailCardContainerView: View {
     @State private var frontDegree = -90.0
     @State private var isFlipped = false
     
+    @State private var didTapDownload = false
     @State private var didTapAlert: ButtonType = .none
     @State private var didTapRefreshOrder = false
     @State private var didTapBookmark = false
@@ -48,6 +49,7 @@ struct DetailCardContainerView: View {
                         .combined(with: .move(edge: .bottom)))
                     DetailBackCardView(card: card,
                                        order: viewStore.order,
+                                       touchedDownload: $didTapDownload,
                                        touchedRefreshOrder: $didTapRefreshOrder,
                                        touchedBookMark: $didTapBookmark,
                                        degree: $frontDegree)
@@ -61,7 +63,20 @@ struct DetailCardContainerView: View {
                               didTapButton: $didTapAlert)
                     
                 }
+                
+                if viewStore.isSuccessSavePhoto {
+                    EmoticonAlert(imageName: "heartImg",
+                                  message: "이미지 저장 완료!")
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                            viewStore.send(.setIsSuccessSavePhoto)
+                        })
+                    }
+                }
             }
+            .onChange(of: didTapDownload, perform: { newValue in
+                viewStore.send(.savePhoto(card))
+            })
             .onChange(of: didTapAlert, perform: { newValue in
                 guard didTapAlert != .none else { return }
                 viewStore.send(.showBookMarkAlert)
@@ -133,10 +148,12 @@ struct DetailFrontCardView: View {
 struct DetailBackCardView: View {
     let card : Model.Topic
     let order: Model.Order?
+    @Binding var touchedDownload: Bool
     @Binding var touchedRefreshOrder: Bool
     @Binding var touchedBookMark: Bool
     @Binding var degree : Double
     @State private var didTapShare: Bool = false
+    
     var body : some View{
         ZStack {
             backgroundView
@@ -157,7 +174,7 @@ struct DetailBackCardView: View {
             ActivityViewController(activityItems: [card.pcLink+"&rule=\((order?.id).orZero)"])
         }
     }
-    
+
     private var backgroundView: some View {
         Color.white
             .frame(width: Design.Constraint.cardSize.width,
@@ -205,16 +222,7 @@ struct DetailBackCardView: View {
                 .foregroundColor(.Talkbbokki.GrayScale.black)
         }.padding([.top, .leading, .trailing, .bottom], 24)
     }
-    /*
-     Button("공유하기") {
-           self.isSharePresented = true
-         }
-         .sheet(
-           isPresented: $isSharePresented,
-           onDismiss: { print("Dismiss") },
-           content: { ActivityViewController(activityItems: [image]) }
-         )
-     */
+
     private var buttons: some View {
         HStack {
             Button {
@@ -225,7 +233,7 @@ struct DetailBackCardView: View {
             .frame(minWidth: 0, maxWidth: .infinity)
             Divider()
             Button {
-                
+                touchedDownload.toggle()
             } label: {
                 Image("downloadButton")
             }

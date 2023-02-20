@@ -52,6 +52,7 @@
 		CEA48CEA29A2840000B39F84 /* Onboarding_img_02_Final.json in Resources */ = {isa = PBXBuildFile; fileRef = CEA48CE929A2840000B39F84 /* Onboarding_img_02_Final.json */; };
 		CEA48CEC29A2875600B39F84 /* OnboardThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CEB29A2875600B39F84 /* OnboardThirdView.swift */; };
 		CEA48CEE29A295DA00B39F84 /* AcitivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */; };
+		CEA48CF029A2A31800B39F84 /* EmoticonAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CEF29A2A31800B39F84 /* EmoticonAlert.swift */; };
 		CEB93F2F2996B54A001087B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F2E2996B54A001087B6 /* Extension.swift */; };
 		CEB93F322997F776001087B6 /* ConfirmButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F312997F776001087B6 /* ConfirmButtonView.swift */; };
 		CEB93F352997FD3F001087B6 /* DetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F342997FD3F001087B6 /* DetailCardView.swift */; };
@@ -133,6 +134,7 @@
 		CEA48CE929A2840000B39F84 /* Onboarding_img_02_Final.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding_img_02_Final.json; sourceTree = "<group>"; };
 		CEA48CEB29A2875600B39F84 /* OnboardThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardThirdView.swift; sourceTree = "<group>"; };
 		CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcitivityViewController.swift; sourceTree = "<group>"; };
+		CEA48CEF29A2A31800B39F84 /* EmoticonAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonAlert.swift; sourceTree = "<group>"; };
 		CEB93F2E2996B54A001087B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CEB93F312997F776001087B6 /* ConfirmButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButtonView.swift; sourceTree = "<group>"; };
 		CEB93F342997FD3F001087B6 /* DetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardView.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				CEF7CFB029A1115D005A7E6C /* AlertView.swift */,
 				CEA48CCA29A271AD00B39F84 /* LottieView.swift */,
 				CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */,
+				CEA48CEF29A2A31800B39F84 /* EmoticonAlert.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				CEA48CEE29A295DA00B39F84 /* AcitivityViewController.swift in Sources */,
 				CEC6327D297EBB5E00D9011E /* talkbbokkiApp.swift in Sources */,
 				CEB93F2F2996B54A001087B6 /* Extension.swift in Sources */,
+				CEA48CF029A2A31800B39F84 /* EmoticonAlert.swift in Sources */,
 				CEB93F37299801FB001087B6 /* View+.swift in Sources */,
 				CEA48CE029A27AA800B39F84 /* OnboardView.swift in Sources */,
 				CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */,
@@ -771,10 +775,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = talkbbokki/talkbbokki.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"talkbbokki/Preview Content\"";
-				DEVELOPMENT_TEAM = 594TR8CRP9;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 594TR8CRP9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = talkbbokki/Info.plist;
@@ -795,6 +802,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gabriel.jhh.talkbbokki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = talkbbokki_dev;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -811,10 +820,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = talkbbokki/talkbbokki.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"talkbbokki/Preview Content\"";
-				DEVELOPMENT_TEAM = 594TR8CRP9;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 594TR8CRP9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = talkbbokki/Info.plist;
@@ -835,6 +845,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gabriel.jhh.talkbbokki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = talkbbokki_dev;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
