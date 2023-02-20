@@ -35,6 +35,7 @@ struct DetailCardContainerView: View {
     @State private var didTapAlert: ButtonType = .none
     @State private var didTapRefreshOrder = false
     @State private var didTapBookmark = false
+    @State private var didTapShare = false
     private let width : CGFloat = 200
     private let height : CGFloat = 250
     private let durationAndDelay : CGFloat = 0.3
@@ -52,7 +53,8 @@ struct DetailCardContainerView: View {
                                        touchedDownload: $didTapDownload,
                                        touchedRefreshOrder: $didTapRefreshOrder,
                                        touchedBookMark: $didTapBookmark,
-                                       degree: $frontDegree)
+                                       degree: $frontDegree,
+                                       didTapShare: $didTapShare)
                 }
                 
                 if viewStore.isShowBookMarkAlert {
@@ -75,6 +77,7 @@ struct DetailCardContainerView: View {
                 }
             }
             .onChange(of: didTapDownload, perform: { newValue in
+                viewStore.send(.like(card))
                 viewStore.send(.savePhoto(card))
             })
             .onChange(of: didTapAlert, perform: { newValue in
@@ -87,6 +90,9 @@ struct DetailCardContainerView: View {
             })
             .onChange(of: didTapBookmark, perform: { newValue in
                 viewStore.send(.showBookMarkAlert)
+            })
+            .onChange(of: didTapShare, perform: { newValue in
+                viewStore.send(.like(card))
             })
             .onAppear(perform: {
                 viewStore.send(.saveTopic(card))
@@ -153,7 +159,7 @@ struct DetailBackCardView: View {
     @Binding var touchedRefreshOrder: Bool
     @Binding var touchedBookMark: Bool
     @Binding var degree : Double
-    @State private var didTapShare: Bool = false
+    @Binding var didTapShare: Bool
     
     var body : some View{
         ZStack {
@@ -246,7 +252,14 @@ struct DetailBackCardView: View {
 struct DetailCardContainerView_Preview: PreviewProvider {
     static var previews: some View {
         DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(),
-                                             reducer: DetailCardReducer()),
+                                             reducer: DetailCardReducer(topic: Model.Topic(cardNumber: 0,
+                                                                                           topicID: 1,
+                                                                                           name: "밥 먹다가 체함",
+                                                                                           viewCount: 20,
+                                                                                           createAt: "1101",
+                                                                                           category: "LOVE",
+                                                                                           pcLink: "",
+                                                                                           tag: .love))),
                                 card: Model.Topic(cardNumber: 0,
                                                   topicID: 1,
                                                   name: "밥 먹다가 체함",

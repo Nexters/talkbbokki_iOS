@@ -19,6 +19,9 @@ extension API {
     struct Suggest {
         let text: String
     }
+    struct Like {
+        let topicID: Int
+    }
 }
 
 extension API.Category: APIConfig {
@@ -77,6 +80,21 @@ extension API.Suggest: APIConfig {
     static let serviceError = TalkbbokkiError.self
     
     var path: String { return "/api/topic-suggestion?text=\(self.text)"}
+    var method: HTTPMethod { return .post }
+    var parameters: API.Parameter? {
+        return nil
+    }
+    
+    func parse(_: Data) throws -> Void {
+        return ()
+    }
+}
+
+extension API.Like: APIConfig {
+    static let domainConfig = Domain.Talkbbokki.self
+    static let serviceError = TalkbbokkiError.self
+    
+    var path: String { return "/api/topics/\(topicID)/view-count"}
     var method: HTTPMethod { return .post }
     var parameters: API.Parameter? {
         return nil

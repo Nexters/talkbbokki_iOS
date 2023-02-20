@@ -13,7 +13,7 @@ import Photos
 
 final class DetailCardReducer: ReducerProtocol {
     private var bag = Set<AnyCancellable>()
-    private var onSuccessSavePhoto:(()->()) = {}
+    private let topic: Model.Topic
     struct State: Equatable {
         var order: Model.Order?
         var errorMessage: String = ""
@@ -30,6 +30,12 @@ final class DetailCardReducer: ReducerProtocol {
         case setIsSuccessSavePhoto
         case showBookMarkAlert
         case savePhoto(Model.Topic)
+        case like(Model.Topic)
+    }
+    
+    init(topic: Model.Topic) {
+        self.topic = topic
+        NotificationCenter.default.addObserver(self, selector: #selector(screenshotTaken), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -65,12 +71,16 @@ final class DetailCardReducer: ReducerProtocol {
                                                  touchedDownload: .constant(false),
                                                  touchedRefreshOrder: .constant(false),
                                                  touchedBookMark: .constant(false),
-                                                 degree: .constant(0.0)).snapshot()
+                                                 degree: .constant(0.0),
+                                                 didTapShare: .constant(false)).snapshot()
             UIImageWriteToSavedPhotosAlbum(renderImage,nil,nil,nil)
             state.isSuccessSavePhoto.toggle()
             return .none
         case .setIsSuccessSavePhoto:
             state.isSuccessSavePhoto.toggle()
+            return .none
+        case .like(let topic):
+            requestLike(with: topic)
             return .none
         }
     }
@@ -85,5 +95,19 @@ final class DetailCardReducer: ReducerProtocol {
                     contiuation.resume(returning: topics)
                 }.store(in: &bag)
         })
+    }
+    
+    private func requestLike(with topic: Model.Topic) {
+        API.Like(topicID: topic.topicID)
+            .request()
+            .print("API.LIKE")
+            .sink { _ in
+            } receiveValue: { _ in
+            }.store(in: &bag)
+    }
+    
+    @objc
+    private func screenshotTaken() {
+        requestLike(with: self.topic)
     }
 }
