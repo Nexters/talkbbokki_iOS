@@ -58,16 +58,20 @@ struct CategoryView: View {
             NavigationView {
                 ZStack {
                     Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
-                    VStack(spacing: Design.Constraint.CategoryView.spacing) {
+                    
+                    VStack {
                         CategoryTitleView()
+                        Spacer()
+                    }
+                    
+                    VStack(spacing: Design.Constraint.CategoryView.spacing) {
                         Spacer()
                         VStack(spacing: Design.Constraint.CategoryView.bottomSpacing) {
                             CategoryCardGridView(touchedCardView: $selectedCategory,
                                                  categories: viewStore.categories)
                             SuggestButton(didTapSuggest: $didTapSuggest)
                         }
-                        
-                    }
+                    }.padding(.bottom, 20)
                     
                     if viewStore.isShowAlert {
                         AlertView(message: Design.Text.alertMessage,
@@ -147,11 +151,11 @@ struct CategoryTitleView: View {
                 Spacer()
                 Image("Graphic")
             }
-            .offset(y: 38)
+            .offset(y: 10)
             
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: Design.Constraint.Title.spacing) {
-                    Spacer()
+//                    Spacer()
                     Text(Design.Text.mainTitle)
                         .font(.Pretendard.h1)
                     Text(Design.Text.subTitle)

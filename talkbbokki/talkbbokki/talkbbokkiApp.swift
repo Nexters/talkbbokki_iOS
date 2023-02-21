@@ -16,7 +16,7 @@ struct talkbbokkiApp: App {
         case home
     }
     
-    @State private var scene: ViewScene = .home
+    @State private var scene: ViewScene = .splash
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @AppStorage("didShowOnboard") var didShowOnboard : Bool = UserDefaultValue.Onboard.didShow
     var body: some Scene {

@@ -36,6 +36,7 @@ struct DetailCardContainerView: View {
     @State private var didTapRefreshOrder = false
     @State private var didTapBookmark = false
     @State private var didTapShare = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     private let width : CGFloat = 200
     private let height : CGFloat = 250
     private let durationAndDelay : CGFloat = 0.3
@@ -94,6 +95,8 @@ struct DetailCardContainerView: View {
             .onChange(of: didTapShare, perform: { newValue in
                 viewStore.send(.like(card))
             })
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: backButton)
             .onAppear(perform: {
                 viewStore.send(.saveTopic(card))
                 viewStore.send(.fetchOrder)
@@ -110,8 +113,16 @@ struct DetailCardContainerView: View {
         }
     }
     
+    private var backButton: some View {
+        Button {
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            Image("Icon-arrow2_left-24")
+        }
+    }
+    
     //MARK: Flip Card Function
-    func flipCard () {
+    private func flipCard () {
         isFlipped.toggle()
         if isFlipped {
             withAnimation(.linear(duration: durationAndDelay)) {

@@ -83,7 +83,9 @@ struct CardListView: View {
                         if (viewStore.topics
                             .map { $0.topicID }
                             .filter { viewStore.didShowTopicIds.contains($0) }
-                            .count == viewStore.topics.count) && didTapFinishedAlert == .none {
+                            .count == viewStore.topics.count)
+                            && viewStore.topics.count > 0
+                            && didTapFinishedAlert == .none {
                             AlertView(message: Design.Text.finishedCardMessage,
                                       subMessage: "",
                                       buttons: [AlertButton(type: .ok, message: Design.Text.finishedCardButton)],

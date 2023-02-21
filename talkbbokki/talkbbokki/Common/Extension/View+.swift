@@ -55,7 +55,7 @@ extension View {
         var range = str.startIndex..<str.endIndex
         repeat {
             guard let found = str.range(of: searched, options: .caseInsensitive, range: range, locale: nil) else {
-                result = result + Text(str[range])
+                result = result + Text(str[range]).font(normalFont).foregroundColor(normalColor)
                 break
             }
 
