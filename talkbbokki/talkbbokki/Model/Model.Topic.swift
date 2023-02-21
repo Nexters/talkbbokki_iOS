@@ -102,12 +102,12 @@ extension Model {
             
             var background: Image {
                 switch self {
-                case .beforePrev,.left: return Image("selectedCardSmall")
+                case .beforePrev: return Image("selectedCardSmall")
                 case .prev: return Image("selectedCardRegular")
                 case .next: return Image("selectedCardRegular")
-                case .afterNext,.right: return Image("selectedCardSmall")
+                case .afterNext: return Image("selectedCardSmall")
                 case .selected: return Image("selectedCard")
-                case .none: return Image("")
+                case .none,.left,.right: return Image("")
                 }
             }
             

@@ -13,6 +13,7 @@ private enum Design {
     enum Constraint {
         struct CardView {
             static let width: CGFloat = 110
+            static let cardX: CGFloat = 65
         }
         
         struct CardListView {
@@ -129,8 +130,9 @@ struct CardListTitleView: View {
 
 struct CardContainerView: View {
     let offsetX: Double
-    private let width: Double = Design.Constraint.CardView.width
-    private let spacing: CGFloat = Design.Constraint.CardListView.spacing
+    private let width = Design.Constraint.CardView.width
+    private let spacing = Design.Constraint.CardListView.spacing
+    private let cardX: CGFloat = Design.Constraint.CardView.width + Design.Constraint.CardListView.spacing
     @State private var x: CGFloat = 0
     @Binding var currentIndex: Int
     let didShowTopicIds: [Int]
@@ -147,33 +149,17 @@ struct CardContainerView: View {
                                 if value.translation.width > 0{
                                     if value.translation.width > ((self.width) / 2) && Int(self.currentIndex) != 0{
                                         self.currentIndex -= 1
-                                        self.x = -((self.width + spacing) * Double(self.currentIndex))
-                                        print("self.width + spacing: \(self.width + spacing)")
-                                        print("currentIndex: \(currentIndex)")
-                                        print(x)
-                                    }
-                                    else{
-                                        self.x = -((self.width + spacing) * Double(self.currentIndex))
-                                        print("self.width + spacing: \(self.width + spacing)")
-                                        print("currentIndex: \(currentIndex)")
-                                        print(x)
                                     }
                                 }
                                 else{
                                     if -value.translation.width > ((self.width) / 2) && Int(self.currentIndex) !=  (cards.count - 1){
                                         self.currentIndex += 1
-                                        self.x = -((self.width + spacing) * Double(self.currentIndex))
-                                        print("self.width + spacing: \(self.width + spacing)")
-                                        print("currentIndex: \(currentIndex)")
-                                        print(x)
-                                    }
-                                    else {
-                                        self.x = -((self.width + spacing) * Double(self.currentIndex))
-                                        print("self.width + spacing: \(self.width + spacing)")
-                                        print("currentIndex: \(currentIndex)")
-                                        print(x)
                                     }
                                 }
+                                self.x = currentIndex == 0 ? 0 : -(cardX * Double(self.currentIndex)) - 20
+                                print("self.width + spacing: \(self.width + spacing)")
+                                print("currentIndex: \(currentIndex)")
+                                print(x)
                             })
                     )
             }
