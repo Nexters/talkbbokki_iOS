@@ -76,7 +76,7 @@ struct CategoryView: View {
                     if viewStore.isShowAlert {
                         AlertView(message: Design.Text.alertMessage,
                                   subMessage: "",
-                                  buttons: [AlertButton(type: .confirm,
+                                  buttons: [AlertButton(type: .ok,
                                                         message: Design.Text.alertConfrimButton)],
                                   didTapButton: $didTapAlert)
                     }
@@ -137,7 +137,7 @@ struct SuggestButton: View {
             }
             .padding([.leading,.trailing], 24)
             .padding([.top,.bottom], 10)
-            .background(Color.Talkbbokki.GrayScale.black.opacity(0.5))
+            .background(Color.Talkbbokki.GrayScale.black.opacity(0.05))
             .cornerRadius(24)
         }
 

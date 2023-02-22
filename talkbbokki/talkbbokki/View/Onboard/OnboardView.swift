@@ -22,7 +22,6 @@ struct OnboardView: View {
                 OnboardThirdView()
                     .tag(2)
             }
-            .disabled(true)
             .tabViewStyle(.page(indexDisplayMode: .never))
             .animation(.easeOut(duration: 0.2), value: selectionID)
             .ignoresSafeArea()
@@ -35,15 +34,18 @@ struct OnboardView: View {
             OnboardNextButton(isFinishedPage: selectionID >= 2,
                               didTapButton: $didTapNext)
         }
+        .onChange(of: selectionID, perform: { newValue in
+            print(selectionID)
+            taps = taps.map { _ in .nonSelected }
+            taps[selectionID] = .selected
+        })
         .onChange(of: didTapNext) { newValue in
-            guard selectionID < 2 else {
-                UserDefaultValue.Onboard.didShow = true
-                didShowOnboard.toggle()
+            guard selectionID >= 2 else {
+                selectionID += 1
                 return
             }
-            taps[selectionID] = .nonSelected
-            selectionID += 1
-            taps[selectionID] = .selected
+            UserDefaultValue.Onboard.didShow = true
+            didShowOnboard.toggle()
         }
     }
 }

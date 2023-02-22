@@ -24,20 +24,22 @@ private enum Design {
 final class CardListReducer: ReducerProtocol {
     private let width: Double = Design.Constraint.CardView.width
     private let spacing: CGFloat = Design.Constraint.CardListView.spacing
-    
     private var bag = Set<AnyCancellable>()
+    
     struct State: Equatable {
         var didShowTopicIds: [Int] = []
         var topics: [Model.Topic] = []
         var errorMessage: String = ""
         var offsetX: Double = 0
         var currentIndex: Int = -1
+        var viewCount: Int = 0
     }
     
     enum Action {
         case fetchDidShowTopics
         case fetchCard(category: String)
         case fetchResult(Result<[Model.Topic], Error>)
+        case fetchViewCount
         case changedCurrentIndex(Int)
         case setTopics([Model.Topic])
         case setError(Error)
@@ -61,6 +63,9 @@ final class CardListReducer: ReducerProtocol {
             case .failure(let error):
                 return .send(.setError(error))
             }
+        case .fetchViewCount:
+            state.viewCount = UserDefaultValue.Onboard.viewCount
+            return .none
         case .setTopics(let topics):
             state.topics = topics.enumerated().map { index, topic in
                 var tempTopic = topic

@@ -22,6 +22,8 @@ final class DetailCardReducer: ReducerProtocol {
     }
     
     enum Action {
+        case resetViewCount
+        case addViewCount(Model.Topic)
         case saveTopic(Model.Topic)
         case fetchOrder
         case orderResult(Result<Model.Order, Error>)
@@ -40,9 +42,22 @@ final class DetailCardReducer: ReducerProtocol {
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
+        case .resetViewCount:
+            UserDefaultValue.Onboard.viewCount = 0
+            return .none
+        case .addViewCount(let topic):
+            let topics = UserDefaultValue.Onboard.didShowTopic
+            var viewCount = UserDefaultValue.Onboard.viewCount
+            if topics.contains(where: { $0 == topic.topicID }) == false {
+                viewCount += 1
+            }
+            UserDefaultValue.Onboard.viewCount = viewCount
+            return .none
         case .saveTopic(let topic):
             var topics = UserDefaultValue.Onboard.didShowTopic
-            topics.append(topic.topicID)
+            if topics.contains(where: { $0 == topic.topicID }) == false {
+                topics.append(topic.topicID)
+            }
             UserDefaultValue.Onboard.didShowTopic = topics
             return .none
         case .fetchOrder:

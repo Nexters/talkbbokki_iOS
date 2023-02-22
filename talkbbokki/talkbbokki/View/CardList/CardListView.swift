@@ -22,6 +22,7 @@ private enum Design {
     }
     
     enum Text {
+        static let shouldAds = "광고 보고 카드 뽑기"
         static let confirm = "이 카드 뽑기"
         static let subTitle = "하는 사이라면"
         static let finishedCardButton = "안녕하고 닫기"
@@ -36,10 +37,15 @@ struct CardListView: View {
     @Environment(\.presentationMode) private var presentationMode
     @State private var currentIndex: Int = -1
     @State private var didTapFinishedAlert: ButtonType = .none
+    @State private var didTapDetailCard: ButtonType = .none
+    @State private var isActiveNavigationLink = false
+    @ObservedObject var adViewModel = AdViewModel()
+    private let adViewControllerRepresentable = AdViewControllerRepresentable()
+
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             GeometryReader { proxy in
-                NavigationView{
+                NavigationView {
                     ZStack(alignment: .topLeading) {
                         Color(hex: category.bgColor.color)
                             .ignoresSafeArea()
@@ -50,32 +56,55 @@ struct CardListView: View {
                                               subTitie: category.secondLineTitle)
                             Spacer()
                             CardContainerView(offsetX:viewStore.offsetX,
+                                              shouldAds: viewStore.viewCount.isAbleAds,
                                               currentIndex: $currentIndex,
+                                              touchedCard: $didTapDetailCard,
                                               didShowTopicIds: viewStore.didShowTopicIds,
-                                              cards: viewStore.topics)
+                                              cards: viewStore.topics
+                            )
                             Spacer()
-                            NavigationLink {
+                            NavigationLink(isActive: $isActiveNavigationLink) {
                                 if let pickCard = viewStore.topics[safe:currentIndex] {
                                     DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(),
                                                                          reducer: DetailCardReducer(topic: pickCard)),
-                                                            card: pickCard)
+                                                            card: pickCard,
+                                                            color: category.bgColor.color,
+                                                            enteredAds: viewStore.viewCount.isAbleAds
+                                    )
                                 } else {
                                     EmptyView()
                                 }
                             } label: {
-                                ConfirmText(type: .ok,
-                                            buttonMessage: Design.Text.confirm)
-                                    .padding([.leading, .trailing], 20)
-                                    .padding(.bottom, 16)
+                                ConfirmButtonView(didTapConfirm: $didTapDetailCard,
+                                                  type: .ok,
+                                                  buttonMessage: viewStore.viewCount.isAbleAds ? Design.Text.shouldAds : Design.Text.confirm)
+                                .padding([.leading, .trailing], 20)
+                                .padding(.bottom, 16)
                             }
                         }
                         .frame(width: proxy.size.width,
                                height: proxy.size.height, alignment: .topLeading)
                         .animation(.interactiveSpring(response: 0.3))
+                        .onChange(of: didTapDetailCard, perform: { newValue in
+                            guard didTapDetailCard != .none else { return }
+                            if viewStore.viewCount.isAbleAds {
+                                adViewModel.loadAd()
+                            } else {
+                                isActiveNavigationLink.toggle()
+                            }
+                            didTapDetailCard = .none
+                        })
+                        .onChange(of: adViewModel.ad, perform: { newValue in
+                            adViewModel.presentAd(from: adViewControllerRepresentable.viewController)
+                        })
+                        .onChange(of: adViewModel.dismissAd, perform: { newValue in
+                            isActiveNavigationLink.toggle()
+                        })
                         .onChange(of: currentIndex, perform: { newValue in
                             viewStore.send(.changedCurrentIndex(currentIndex))
                         })
                         .onAppear {
+                            viewStore.send(.fetchViewCount)
                             viewStore.send(.fetchDidShowTopics)
                             viewStore.send(.fetchCard(category: category.code))
                         }
@@ -94,7 +123,8 @@ struct CardListView: View {
                         }
                     }
                 }
-            }
+            }.background(adViewControllerRepresentable
+                .frame(width: .zero, height: .zero))
         }
     }
     
@@ -132,18 +162,22 @@ struct CardListTitleView: View {
 
 struct CardContainerView: View {
     let offsetX: Double
+    let shouldAds: Bool
     private let width = Design.Constraint.CardView.width
     private let spacing = Design.Constraint.CardListView.spacing
     private let cardX: CGFloat = Design.Constraint.CardView.width + Design.Constraint.CardListView.spacing
     @State private var x: CGFloat = 0
     @Binding var currentIndex: Int
+    @Binding var touchedCard: ButtonType
     let didShowTopicIds: [Int]
     let cards: [Model.Topic]
     
     var body: some View {
         HStack(spacing: spacing){
             ForEach(cards){ cardData in
-                CardView(didShow: didShowTopicIds.contains { $0 == cardData.topicID }, card: cardData)
+                CardView(shouldAds: shouldAds,
+                         didShow: didShowTopicIds.contains { $0 == cardData.topicID },
+                         card: cardData)
                     .zIndex(cardData.position.zIndex)
                     .offset(x: self.x, y: cardData.position.positionY)
                     .highPriorityGesture(DragGesture()
@@ -159,16 +193,21 @@ struct CardContainerView: View {
                                     }
                                 }
                                 self.x = currentIndex == 0 ? 0 : -(cardX * Double(self.currentIndex)) - 20
-                                print("self.width + spacing: \(self.width + spacing)")
-                                print("currentIndex: \(currentIndex)")
-                                print(x)
                             })
-                    )
+                    ).onTapGesture {
+                        touchedCard = .confirm
+                    }
             }
         }
         .offset(x: offsetX)
         .onAppear {
             currentIndex = currentIndex == -1 ? 0 : currentIndex
         }
+    }
+}
+
+private extension Int {
+    var isAbleAds: Bool {
+        return (self > 0 && self % 4 == 0)
     }
 }

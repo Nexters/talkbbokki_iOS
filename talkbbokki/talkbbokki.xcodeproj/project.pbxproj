@@ -44,7 +44,6 @@
 		CEA48CC929A270A300B39F84 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CEA48CC829A270A300B39F84 /* Lottie */; };
 		CEA48CCB29A271AE00B39F84 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CCA29A271AD00B39F84 /* LottieView.swift */; };
 		CEA48CCF29A272AC00B39F84 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CCE29A272AC00B39F84 /* SplashView.swift */; };
-		CEA48CD229A2730D00B39F84 /* Splash_Final.json in Resources */ = {isa = PBXBuildFile; fileRef = CEA48CD129A2730D00B39F84 /* Splash_Final.json */; };
 		CEA48CD529A276CB00B39F84 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CD429A276CB00B39F84 /* UserDefault.swift */; };
 		CEA48CD829A2771D00B39F84 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CD729A2771D00B39F84 /* UserDefaultKey.swift */; };
 		CEA48CDB29A277BA00B39F84 /* UserDefault.Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CDA29A277BA00B39F84 /* UserDefault.Value.swift */; };
@@ -71,8 +70,12 @@
 		CEC6328F297EBB5F00D9011E /* talkbbokkiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6328E297EBB5F00D9011E /* talkbbokkiTests.swift */; };
 		CEC63299297EBB5F00D9011E /* talkbbokkiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC63298297EBB5F00D9011E /* talkbbokkiUITests.swift */; };
 		CEC6329B297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6329A297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift */; };
+		CEDD7B8429A6751D00EAE53B /* AdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD7B8329A6751D00EAE53B /* AdViewModel.swift */; };
+		CEDD7B8629A676DF00EAE53B /* AdViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD7B8529A676DF00EAE53B /* AdViewControllerRepresentable.swift */; };
 		CEE72A912982B2820047403A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CEE72A902982B2820047403A /* Alamofire */; };
 		CEE72A942982B2C10047403A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CEE72A932982B2C10047403A /* ComposableArchitecture */; };
+		CEEAAF1929A66B27006A2519 /* Splash_Final_Exceptlogo.json in Resources */ = {isa = PBXBuildFile; fileRef = CEEAAF1829A66B27006A2519 /* Splash_Final_Exceptlogo.json */; };
+		CEF1702429A525F000B5C624 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = CEF1702329A525F000B5C624 /* GoogleMobileAds */; };
 		CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7CFB029A1115D005A7E6C /* AlertView.swift */; };
 /* End PBXBuildFile section */
 
@@ -128,7 +131,6 @@
 		CE858E862995468D00F2FC42 /* CategoryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryReducer.swift; sourceTree = "<group>"; };
 		CEA48CCA29A271AD00B39F84 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		CEA48CCE29A272AC00B39F84 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		CEA48CD129A2730D00B39F84 /* Splash_Final.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash_Final.json; sourceTree = "<group>"; };
 		CEA48CD429A276CB00B39F84 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		CEA48CD729A2771D00B39F84 /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
 		CEA48CDA29A277BA00B39F84 /* UserDefault.Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.Value.swift; sourceTree = "<group>"; };
@@ -159,6 +161,9 @@
 		CEC63294297EBB5F00D9011E /* talkbbokkiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = talkbbokkiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC63298297EBB5F00D9011E /* talkbbokkiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkbbokkiUITests.swift; sourceTree = "<group>"; };
 		CEC6329A297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkbbokkiUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CEDD7B8329A6751D00EAE53B /* AdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewModel.swift; sourceTree = "<group>"; };
+		CEDD7B8529A676DF00EAE53B /* AdViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		CEEAAF1829A66B27006A2519 /* Splash_Final_Exceptlogo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash_Final_Exceptlogo.json; sourceTree = "<group>"; };
 		CEF7CFB029A1115D005A7E6C /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,6 +178,7 @@
 				CEE72A912982B2820047403A /* Alamofire in Frameworks */,
 				CE64A503299BDFB2004C4E8D /* FirebaseAnalytics in Frameworks */,
 				CE64A505299BDFB2004C4E8D /* FirebaseDynamicLinks in Frameworks */,
+				CEF1702429A525F000B5C624 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +277,7 @@
 		CEA48CD029A2730200B39F84 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				CEA48CD129A2730D00B39F84 /* Splash_Final.json */,
+				CEEAAF1829A66B27006A2519 /* Splash_Final_Exceptlogo.json */,
 				CEA48CE929A2840000B39F84 /* Onboarding_img_02_Final.json */,
 			);
 			path = Lottie;
@@ -318,6 +324,8 @@
 				CEA48CD929A2774D00B39F84 /* UserDefault */,
 				CEA48CD629A2770200B39F84 /* Extension */,
 				CEB93F52299940DF001087B6 /* HapticManager.swift */,
+				CEDD7B8329A6751D00EAE53B /* AdViewModel.swift */,
+				CEDD7B8529A676DF00EAE53B /* AdViewControllerRepresentable.swift */,
 				CE64A506299BE9D1004C4E8D /* AppDelegate.swift */,
 			);
 			path = Common;
@@ -456,6 +464,7 @@
 				CE64A504299BDFB2004C4E8D /* FirebaseDynamicLinks */,
 				CEA48CC829A270A300B39F84 /* Lottie */,
 				CE618E0C29A3CB3600076F7E /* Introspect */,
+				CEF1702329A525F000B5C624 /* GoogleMobileAds */,
 			);
 			productName = talkbbokki;
 			productReference = CEC63279297EBB5E00D9011E /* talkbbokki.app */;
@@ -535,6 +544,7 @@
 				CE64A501299BDFB2004C4E8D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CEA48CC729A270A300B39F84 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				CE618E0B29A3CB3600076F7E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				CEF1702229A525F000B5C624 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = CEC6327A297EBB5E00D9011E /* Products */;
 			projectDirPath = "";
@@ -552,6 +562,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEEAAF1929A66B27006A2519 /* Splash_Final_Exceptlogo.json in Resources */,
 				CE6EBF09299A88F100FA4DE1 /* Pretendard-ExtraLight.otf in Resources */,
 				CE6EBF0A299A88F100FA4DE1 /* Pretendard-Medium.otf in Resources */,
 				CEC63285297EBB5F00D9011E /* Preview Assets.xcassets in Resources */,
@@ -562,7 +573,6 @@
 				CEA48CEA29A2840000B39F84 /* Onboarding_img_02_Final.json in Resources */,
 				CE6EBF05299A88F100FA4DE1 /* Pretendard-SemiBold.otf in Resources */,
 				CE6EBF04299A88F100FA4DE1 /* Pretendard-ExtraBold.otf in Resources */,
-				CEA48CD229A2730D00B39F84 /* Splash_Final.json in Resources */,
 				CE6EBF08299A88F100FA4DE1 /* Pretendard-Regular.otf in Resources */,
 				CE6EBF06299A88F100FA4DE1 /* Pretendard-Black.otf in Resources */,
 				CEC63281297EBB5F00D9011E /* Assets.xcassets in Resources */,
@@ -590,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDD7B8629A676DF00EAE53B /* AdViewControllerRepresentable.swift in Sources */,
 				CEB93F4F2998C080001087B6 /* Font+.swift in Sources */,
 				CE618E0A29A3AA2900076F7E /* SuggestView.swift in Sources */,
 				CEB93F53299940DF001087B6 /* HapticManager.swift in Sources */,
@@ -599,6 +610,7 @@
 				CEA48CE429A27E2400B39F84 /* OnboardFirstView.swift in Sources */,
 				CE64A507299BE9D1004C4E8D /* AppDelegate.swift in Sources */,
 				CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */,
+				CEDD7B8429A6751D00EAE53B /* AdViewModel.swift in Sources */,
 				CEB93F3929980B3B001087B6 /* Array+.swift in Sources */,
 				CEA48CE629A27E8A00B39F84 /* OnboardTitleView.swift in Sources */,
 				CE618E1129A3D81B00076F7E /* Date+.swift in Sources */,
@@ -797,22 +809,25 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = talkbbokki/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "톡뽀끼";
+				INFOPLIST_KEY_CFBundleDisplayName = "톡볶이";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "대화 토픽을 사진으로 저장";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = gabriel.jhh.talkbbokki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -843,22 +858,25 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = talkbbokki/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "톡뽀끼";
+				INFOPLIST_KEY_CFBundleDisplayName = "톡볶이";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "대화 토픽을 사진으로 저장";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = gabriel.jhh.talkbbokki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1041,6 +1059,14 @@
 				minimumVersion = 0.9.0;
 			};
 		};
+		CEF1702229A525F000B5C624 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1073,6 +1099,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEE72A922982B2C10047403A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		CEF1702329A525F000B5C624 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEF1702229A525F000B5C624 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

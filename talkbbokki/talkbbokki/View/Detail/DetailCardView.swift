@@ -26,6 +26,8 @@ private enum Design {
 struct DetailCardContainerView: View {
     let store: StoreOf<DetailCardReducer>
     let card: Model.Topic
+    let color: Int
+    let enteredAds: Bool
     @State private var onAppear: Bool = false
     @State private var backDegree = 0.0
     @State private var frontDegree = -90.0
@@ -40,11 +42,10 @@ struct DetailCardContainerView: View {
     private let width : CGFloat = 200
     private let height : CGFloat = 250
     private let durationAndDelay : CGFloat = 0.3
-    
     var body: some View {
         WithViewStore(self.store) { viewStore in
             ZStack {
-                Color.purple.ignoresSafeArea()
+                Color(hex: color).ignoresSafeArea()
                 if onAppear {
                     DetailFrontCardView(card: card, degree: $backDegree)
                     .transition(.scale.animation(.spring())
@@ -61,7 +62,7 @@ struct DetailCardContainerView: View {
                 if viewStore.isShowBookMarkAlert {
                     AlertView(message: Design.Text.alertMessage,
                               subMessage: "",
-                              buttons: [AlertButton(type: .confirm,
+                              buttons: [AlertButton(type: .ok,
                                                     message: Design.Text.alertConfrimButton)],
                               didTapButton: $didTapAlert)
                     
@@ -98,6 +99,11 @@ struct DetailCardContainerView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
             .onAppear(perform: {
+                if enteredAds {
+                    viewStore.send(.resetViewCount)
+                } else {
+                    viewStore.send(.addViewCount(card))
+                }
                 viewStore.send(.saveTopic(card))
                 viewStore.send(.fetchOrder)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
@@ -278,6 +284,8 @@ struct DetailCardContainerView_Preview: PreviewProvider {
                                                   createAt: "1101",
                                                   category: "LOVE",
                                                   pcLink: "",
-                                                  tag: .love))
+                                                  tag: .love),
+                                color: 00,
+                                enteredAds: false)
     }
 }

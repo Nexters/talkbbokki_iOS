@@ -11,4 +11,5 @@ enum UserDefaultKey {
     static let didShowOnboarding = "didShowOnboarding"
     static let didShowTopic = "didShowTopic"
     static let enterTime = "enterTime"
+    static let viewConut = "viewCount"
 }
