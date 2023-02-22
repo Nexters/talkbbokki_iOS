@@ -251,6 +251,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CE3DDCCB29A6849000B57E8F /* GoogleAds */ = {
+			isa = PBXGroup;
+			children = (
+				CEDD7B8329A6751D00EAE53B /* AdViewModel.swift */,
+				CEDD7B8529A676DF00EAE53B /* AdViewControllerRepresentable.swift */,
+			);
+			path = GoogleAds;
+			sourceTree = "<group>";
+		};
 		CE858E822995426000F2FC42 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,9 +332,8 @@
 			children = (
 				CEA48CD929A2774D00B39F84 /* UserDefault */,
 				CEA48CD629A2770200B39F84 /* Extension */,
+				CE3DDCCB29A6849000B57E8F /* GoogleAds */,
 				CEB93F52299940DF001087B6 /* HapticManager.swift */,
-				CEDD7B8329A6751D00EAE53B /* AdViewModel.swift */,
-				CEDD7B8529A676DF00EAE53B /* AdViewControllerRepresentable.swift */,
 				CE64A506299BE9D1004C4E8D /* AppDelegate.swift */,
 			);
 			path = Common;

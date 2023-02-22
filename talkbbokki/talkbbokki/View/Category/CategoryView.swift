@@ -58,14 +58,9 @@ struct CategoryView: View {
             NavigationView {
                 ZStack {
                     Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
-                    
-                    VStack {
+                    VStack(spacing: 0) {
                         CategoryTitleView()
-                        Spacer()
-                    }
-                    
-                    VStack(spacing: Design.Constraint.CategoryView.spacing) {
-                        Spacer()
+                        Spacer().frame(maxHeight: 60.0)
                         VStack(spacing: Design.Constraint.CategoryView.bottomSpacing) {
                             CategoryCardGridView(touchedCardView: $selectedCategory,
                                                  categories: viewStore.categories)
