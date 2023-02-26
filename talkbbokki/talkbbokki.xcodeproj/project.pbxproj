@@ -40,6 +40,11 @@
 		CE6EBF0A299A88F100FA4DE1 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBF01299A88F100FA4DE1 /* Pretendard-Medium.otf */; };
 		CE6EBF0B299A88F100FA4DE1 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBF02299A88F100FA4DE1 /* Pretendard-Light.otf */; };
 		CE7E034A29A9DBC500486623 /* SavePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E034929A9DBC500486623 /* SavePhotoView.swift */; };
+		CE7E034F29AB44D700486623 /* Topic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE7E034D29AB44D700486623 /* Topic.xcdatamodeld */; };
+		CE7E035129AB4B4900486623 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E035029AB4B4900486623 /* CoreDataManager.swift */; };
+		CE7E035329AB4ED600486623 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E035229AB4ED600486623 /* Int+.swift */; };
+		CE7E035629AB538800486623 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E035529AB538800486623 /* ToastView.swift */; };
+		CE7E035829AB542300486623 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E035729AB542300486623 /* String+.swift */; };
 		CE858E852995427500F2FC42 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E842995427500F2FC42 /* CategoryView.swift */; };
 		CE858E872995468D00F2FC42 /* CategoryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E862995468D00F2FC42 /* CategoryReducer.swift */; };
 		CEA48CC929A270A300B39F84 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CEA48CC829A270A300B39F84 /* Lottie */; };
@@ -56,7 +61,7 @@
 		CEA48CEC29A2875600B39F84 /* OnboardThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CEB29A2875600B39F84 /* OnboardThirdView.swift */; };
 		CEA48CEE29A295DA00B39F84 /* AcitivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */; };
 		CEA48CF029A2A31800B39F84 /* EmoticonAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CEF29A2A31800B39F84 /* EmoticonAlert.swift */; };
-		CEB93F2F2996B54A001087B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F2E2996B54A001087B6 /* Extension.swift */; };
+		CEB93F2F2996B54A001087B6 /* Optional+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F2E2996B54A001087B6 /* Optional+.swift */; };
 		CEB93F322997F776001087B6 /* ConfirmButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F312997F776001087B6 /* ConfirmButtonView.swift */; };
 		CEB93F352997FD3F001087B6 /* DetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F342997FD3F001087B6 /* DetailCardView.swift */; };
 		CEB93F37299801FB001087B6 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F36299801FB001087B6 /* View+.swift */; };
@@ -129,6 +134,11 @@
 		CE6EBF01299A88F100FA4DE1 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		CE6EBF02299A88F100FA4DE1 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		CE7E034929A9DBC500486623 /* SavePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoView.swift; sourceTree = "<group>"; };
+		CE7E034E29AB44D700486623 /* CoreData.Topic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.Topic.xcdatamodel; sourceTree = "<group>"; };
+		CE7E035029AB4B4900486623 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		CE7E035229AB4ED600486623 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
+		CE7E035529AB538800486623 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		CE7E035729AB542300486623 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		CE858E842995427500F2FC42 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		CE858E862995468D00F2FC42 /* CategoryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryReducer.swift; sourceTree = "<group>"; };
 		CEA48CCA29A271AD00B39F84 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -144,7 +154,7 @@
 		CEA48CEB29A2875600B39F84 /* OnboardThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardThirdView.swift; sourceTree = "<group>"; };
 		CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcitivityViewController.swift; sourceTree = "<group>"; };
 		CEA48CEF29A2A31800B39F84 /* EmoticonAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonAlert.swift; sourceTree = "<group>"; };
-		CEB93F2E2996B54A001087B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		CEB93F2E2996B54A001087B6 /* Optional+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+.swift"; sourceTree = "<group>"; };
 		CEB93F312997F776001087B6 /* ConfirmButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButtonView.swift; sourceTree = "<group>"; };
 		CEB93F342997FD3F001087B6 /* DetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardView.swift; sourceTree = "<group>"; };
 		CEB93F36299801FB001087B6 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
@@ -262,6 +272,15 @@
 			path = GoogleAds;
 			sourceTree = "<group>";
 		};
+		CE7E034C29AB445800486623 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CE7E034D29AB44D700486623 /* Topic.xcdatamodeld */,
+				CE7E035029AB4B4900486623 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		CE858E822995426000F2FC42 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,12 +316,14 @@
 		CEA48CD629A2770200B39F84 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				CEB93F2E2996B54A001087B6 /* Extension.swift */,
+				CEB93F2E2996B54A001087B6 /* Optional+.swift */,
 				CEB93F36299801FB001087B6 /* View+.swift */,
 				CEB93F3829980B3B001087B6 /* Array+.swift */,
 				CEB93F4E2998C080001087B6 /* Font+.swift */,
 				CE49837C299AA68C008A3968 /* Color.swift */,
 				CE618E1029A3D81B00076F7E /* Date+.swift */,
+				CE7E035229AB4ED600486623 /* Int+.swift */,
+				CE7E035729AB542300486623 /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -332,6 +353,7 @@
 		CEB93F2D2996B541001087B6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CE7E034C29AB445800486623 /* CoreData */,
 				CEA48CD929A2774D00B39F84 /* UserDefault */,
 				CEA48CD629A2770200B39F84 /* Extension */,
 				CE3DDCCB29A6849000B57E8F /* GoogleAds */,
@@ -345,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB93F312997F776001087B6 /* ConfirmButtonView.swift */,
+				CE7E035529AB538800486623 /* ToastView.swift */,
 				CEF7CFB029A1115D005A7E6C /* AlertView.swift */,
 				CEA48CCA29A271AD00B39F84 /* LottieView.swift */,
 				CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */,
@@ -640,8 +663,10 @@
 				CE39E1152986504400E3C93D /* Model.swift in Sources */,
 				CE858E852995427500F2FC42 /* CategoryView.swift in Sources */,
 				CEA48CDB29A277BA00B39F84 /* UserDefault.Value.swift in Sources */,
+				CE7E035329AB4ED600486623 /* Int+.swift in Sources */,
 				CEA48CE429A27E2400B39F84 /* OnboardFirstView.swift in Sources */,
 				CE64A507299BE9D1004C4E8D /* AppDelegate.swift in Sources */,
+				CE7E035829AB542300486623 /* String+.swift in Sources */,
 				CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */,
 				CEDD7B8429A6751D00EAE53B /* AdViewModel.swift in Sources */,
 				CEB93F3929980B3B001087B6 /* Array+.swift in Sources */,
@@ -652,6 +677,7 @@
 				CEA48CEC29A2875600B39F84 /* OnboardThirdView.swift in Sources */,
 				CEC6327F297EBB5E00D9011E /* ContentView.swift in Sources */,
 				CE39E1172986507F00E3C93D /* CardView.swift in Sources */,
+				CE7E035129AB4B4900486623 /* CoreDataManager.swift in Sources */,
 				CE49837D299AA68C008A3968 /* Color.swift in Sources */,
 				CE0F15A62993F5FE00295B43 /* APIConfig+Request.swift in Sources */,
 				CE0F15A02993BB5B00295B43 /* APIConfig.Error.swift in Sources */,
@@ -665,10 +691,12 @@
 				CEA48CCB29A271AE00B39F84 /* LottieView.swift in Sources */,
 				CE0F15AB2993FD2800295B43 /* API.swift in Sources */,
 				CEB93F322997F776001087B6 /* ConfirmButtonView.swift in Sources */,
+				CE7E035629AB538800486623 /* ToastView.swift in Sources */,
 				CE39E119298650BB00E3C93D /* CardListView.swift in Sources */,
 				CEA48CEE29A295DA00B39F84 /* AcitivityViewController.swift in Sources */,
 				CEC6327D297EBB5E00D9011E /* talkbbokkiApp.swift in Sources */,
-				CEB93F2F2996B54A001087B6 /* Extension.swift in Sources */,
+				CE7E034F29AB44D700486623 /* Topic.xcdatamodeld in Sources */,
+				CEB93F2F2996B54A001087B6 /* Optional+.swift in Sources */,
 				CEA48CF029A2A31800B39F84 /* EmoticonAlert.swift in Sources */,
 				CEB93F37299801FB001087B6 /* View+.swift in Sources */,
 				CEA48CE029A27AA800B39F84 /* OnboardView.swift in Sources */,
@@ -1140,6 +1168,19 @@
 			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		CE7E034D29AB44D700486623 /* Topic.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE7E034E29AB44D700486623 /* CoreData.Topic.xcdatamodel */,
+			);
+			currentVersion = CE7E034E29AB44D700486623 /* CoreData.Topic.xcdatamodel */;
+			path = Topic.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CEC63271297EBB5E00D9011E /* Project object */;
 }

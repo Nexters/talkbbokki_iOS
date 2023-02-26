@@ -11,6 +11,14 @@ extension Optional {
     func unwrap(valueIfNone: Wrapped) -> Wrapped {
         return self ?? valueIfNone
     }
+    
+    var isEmpty: Bool {
+        self == nil
+    }
+    
+    var isNonEmpty: Bool {
+        !isEmpty
+    }
 }
 
 extension Optional where Wrapped: Numeric {

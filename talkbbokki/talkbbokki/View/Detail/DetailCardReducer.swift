@@ -20,6 +20,8 @@ final class DetailCardReducer: ReducerProtocol {
         var errorMessage: String = ""
         var isShowBookMarkAlert = false
         var isSuccessSavePhoto = false
+        var isSaveTopic = false
+        var toastMessage: String = ""
     }
     
     enum Action {
@@ -31,7 +33,10 @@ final class DetailCardReducer: ReducerProtocol {
         case setOrder(Model.Order)
         case setError(Error)
         case setIsSuccessSavePhoto
-        case showBookMarkAlert
+        case setSaveTopic(Bool)
+        case fetchSaveTopic(id: Int)
+        case didTapBookMark(Model.Topic)
+        case setToastMessage(String)
         case savePhoto(Model.Topic)
         case like(Model.Topic)
     }
@@ -79,21 +84,35 @@ final class DetailCardReducer: ReducerProtocol {
         case .setError(let error):
             state.errorMessage = error.localizedDescription
             return .none
-        case .showBookMarkAlert:
-            state.isShowBookMarkAlert.toggle()
+        case .setSaveTopic(let isSave):
+            state.isSaveTopic = isSave
             return .none
+        case .fetchSaveTopic(let id):
+            let topic = CoreDataManager.shared.fetchTopic(with: id)
+            state.isSaveTopic = topic.isNonEmpty
+            return .none
+        case .setToastMessage(let message):
+            state.toastMessage = message
+            return .none
+        case .didTapBookMark(let topic):
+            return EffectTask.run { [state] send in
+                if state.isSaveTopic {
+                    let isDelete = await CoreDataManager.shared.deleteTopic(id: topic.topicID)
+                    if isDelete {
+                        await send.send(.setSaveTopic(false))
+                    }
+                } else {
+                    let isSave = await CoreDataManager.shared.save(topic: topic)
+                    if isSave {
+                        await send.send(.setToastMessage("즐겨찾기 등록 완료!"))
+                        await send.send(.setSaveTopic(true))
+                    }
+                }
+            }
         case .savePhoto(let topic):
             let renderImage = SavePhotoView(colorHex: color,
                                             contentMessage: topic.name,
                                             starter: (state.order?.rule).orEmpty).snapshot()
-//            let renderImage = DetailBackCardView(card: topic,
-//                                                 order: state.order,
-//                                                 touchedDownload: .constant(false),
-//                                                 touchedRefreshOrder: .constant(false),
-//                                                 touchedBookMark: .constant(false),
-//                                                 degree: .constant(0.0),
-//                                                 didTapShare: .constant(false))
-//                .snapshot()
             UIImageWriteToSavedPhotosAlbum(renderImage,nil,nil,nil)
             state.isSuccessSavePhoto.toggle()
             return .none

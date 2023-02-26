@@ -34,7 +34,7 @@ struct DetailCardContainerView: View {
     @State private var backDegree = 0.0
     @State private var frontDegree = -90.0
     @State private var isFlipped = false
-    @State private var showToast = false
+    @State private var showToast = ""
     
     @State private var didTapDownload = false
     @State private var didTapAlert: ButtonType = .none
@@ -56,6 +56,7 @@ struct DetailCardContainerView: View {
                         .combined(with: .move(edge: .bottom)))
                     DetailBackCardView(card: card,
                                        order: viewStore.order,
+                                       isSaveTopic: viewStore.isSaveTopic,
                                        touchedDownload: $didTapDownload,
                                        touchedRefreshOrder: $didTapRefreshOrder,
                                        touchedBookMark: $didTapBookmark,
@@ -63,27 +64,10 @@ struct DetailCardContainerView: View {
                                        didTapShare: $didTapShare)
                 }
                 
-                if viewStore.isShowBookMarkAlert {
-                    AlertView(message: Design.Text.alertMessage,
-                              subMessage: "",
-                              buttons: [AlertButton(type: .ok(),
-                                                    message: Design.Text.alertConfrimButton)],
-                              didTapButton: $didTapAlert)
-                    
-                }
-                
-                if notReadyAds && showToast {
-                    VStack(alignment: .center) {
-                        Spacer()
-                        Text(Design.Text.notReadyAdstoast)
-                            .padding([.top,.bottom], 5)
-                            .padding([.leading,.trailing], 15)
-                            .font(.Pretendard.button_small_regular)
-                            .foregroundColor(.white)
-                            .background(Color.black.opacity(0.6))
-                            .cornerRadius(4.0)
-                            .padding(.bottom, 20)
-                    }.opacity(showToast ? 1.0 : 0.0)
+                if viewStore.toastMessage.isNonEmpty {
+                    ToastView(message: viewStore.toastMessage)
+                        .opacity(viewStore.toastMessage.isNonEmpty ? 1.0 : 0.0)
+                        .transition(.opacity.animation(.easeOut))
                 }
                 
                 if viewStore.isSuccessSavePhoto {
@@ -100,52 +84,38 @@ struct DetailCardContainerView: View {
                 viewStore.send(.like(card))
                 viewStore.send(.savePhoto(card))
             })
-            .onChange(of: didTapAlert, perform: { newValue in
-                guard didTapAlert != .none else { return }
-                viewStore.send(.showBookMarkAlert)
-                didTapAlert = .none
-            })
             .onChange(of: didTapRefreshOrder, perform: { newValue in
                 viewStore.send(.fetchOrder)
             })
             .onChange(of: didTapBookmark, perform: { newValue in
-                viewStore.send(.showBookMarkAlert)
+                viewStore.send(.didTapBookMark(card))
             })
             .onChange(of: didTapShare, perform: { newValue in
                 viewStore.send(.like(card))
             })
+            .onChange(of: viewStore.toastMessage, perform: { newValue in
+                guard newValue.isNonEmpty else { return }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                    viewStore.send(.setToastMessage(""))
+                })
+            })
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
             .onAppear(perform: {
-                showToastAds()
+                viewStore.send(.fetchSaveTopic(id: card.topicID))
                 viewStore.send(.addViewCount(card))
                 viewStore.send(.saveTopic(card))
                 viewStore.send(.fetchOrder)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                     withAnimation(.spring(dampingFraction: 0.7, blendDuration: 0.9)) {
                         onAppear.toggle()
+                        if notReadyAds { viewStore.send(.setToastMessage(Design.Text.notReadyAdstoast)) }
                     }
                 })
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                     flipCard()
                 })
-            })
-        }
-    }
-    
-    private func showToastAds() {
-        if notReadyAds {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                withAnimation {
-                    showToast.toggle()
-                }
-            })
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                withAnimation {
-                    showToast.toggle()
-                }
             })
         }
     }
@@ -203,6 +173,7 @@ struct DetailFrontCardView: View {
 struct DetailBackCardView: View {
     let card : Model.Topic
     let order: Model.Order?
+    let isSaveTopic: Bool
     @Binding var touchedDownload: Bool
     @Binding var touchedRefreshOrder: Bool
     @Binding var touchedBookMark: Bool
@@ -254,7 +225,7 @@ struct DetailBackCardView: View {
             Button {
                 touchedBookMark.toggle()
             } label: {
-                Image("emptyBookMark")
+                isSaveTopic ? Image("Icon_Fill_star_24") : Image("emptyBookMark")
             }
         }
     }

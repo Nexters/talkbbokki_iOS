@@ -8,9 +8,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>https://talkbbokki.me/share</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
 	<key>GADApplicationIdentifier</key>
