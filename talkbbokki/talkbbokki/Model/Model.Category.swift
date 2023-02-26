@@ -13,6 +13,7 @@ extension Model {
         let code: String
         let text: String
         let bgColor: String
+        let activeYn: Bool
         var imageName: String?
         
         var firstLineTitle: String {
@@ -24,7 +25,7 @@ extension Model {
         }
         
         enum CodingKeys: String, CodingKey {
-            case code, text, bgColor
+            case code, text, bgColor, activeYn
         }
         
         init(from decoder: Decoder) throws {
@@ -32,12 +33,14 @@ extension Model {
             code = try container.decode(String.self, forKey: .code)
             text = try container.decode(String.self, forKey: .text)
             bgColor = try container.decode(String.self, forKey: .bgColor)
+            activeYn = try container.decode(Bool.self, forKey: .activeYn)
         }
         
         init(code: String, text: String) {
             self.code = code
             self.text = text
             self.bgColor = ""
+            self.activeYn = false
         }
         
         static var empty: Self {

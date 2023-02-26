@@ -87,7 +87,8 @@ final class DetailCardReducer: ReducerProtocol {
                                                  touchedRefreshOrder: .constant(false),
                                                  touchedBookMark: .constant(false),
                                                  degree: .constant(0.0),
-                                                 didTapShare: .constant(false)).snapshot()
+                                                 didTapShare: .constant(false))
+                .snapshot()
             UIImageWriteToSavedPhotosAlbum(renderImage,nil,nil,nil)
             state.isSuccessSavePhoto.toggle()
             return .none

@@ -71,7 +71,7 @@ struct CategoryView: View {
                     if viewStore.isShowAlert {
                         AlertView(message: Design.Text.alertMessage,
                                   subMessage: "",
-                                  buttons: [AlertButton(type: .ok,
+                                  buttons: [AlertButton(type: .ok(),
                                                         message: Design.Text.alertConfrimButton)],
                                   didTapButton: $didTapAlert)
                     }
@@ -85,7 +85,7 @@ struct CategoryView: View {
             })
             .onChange(of: selectedCategory, perform: { newValue in
                 guard newValue != Model.Category.empty else { return }
-                guard newValue.text != "COMING\nSOON" else {
+                guard newValue.activeYn else {
                     viewStore.send(.showAlert)
                     return
                 }
@@ -132,7 +132,7 @@ struct SuggestButton: View {
             }
             .padding([.leading,.trailing], 24)
             .padding([.top,.bottom], 10)
-            .background(Color.Talkbbokki.GrayScale.black.opacity(0.05))
+            .background(Color.Talkbbokki.GrayScale.black.opacity(0.5))
             .cornerRadius(24)
         }
 
@@ -150,7 +150,6 @@ struct CategoryTitleView: View {
             
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: Design.Constraint.Title.spacing) {
-//                    Spacer()
                     Text(Design.Text.mainTitle)
                         .font(.Pretendard.h1)
                     Text(Design.Text.subTitle)

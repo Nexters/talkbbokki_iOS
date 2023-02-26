@@ -95,7 +95,7 @@ struct SuggestView: View {
             
             Spacer()
             ConfirmButtonView(didTapConfirm: $didTapConfirm,
-                              type: .cancel,
+                              type: .cancel(),
                               buttonMessage: "보내기")
             .padding([.leading,.trailing, .bottom], Design.Constraint.leadingPadding)
         }
@@ -123,7 +123,7 @@ struct SuggestView: View {
             VStack {
                 Spacer()
                 ConfirmButtonView(didTapConfirm: $didTapComplete,
-                                  type: .cancel,
+                                  type: .cancel(),
                                   buttonMessage: "홈으로")
                 .padding([.leading,.trailing, .bottom], Design.Constraint.leadingPadding)
             }

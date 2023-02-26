@@ -10,6 +10,7 @@ import SwiftUI
 
 class AdViewModel: NSObject, ObservableObject {
     @Published var ad: GADInterstitialAd?
+    @Published var notReadyAds: Bool = false
     @Published var dismissAd: Bool = false
 
     private let testAdID = "ca-app-pub-3940256099942544/4411468910"
@@ -22,6 +23,7 @@ class AdViewModel: NSObject, ObservableObject {
                                completionHandler: { [self] ad, error in
             if let error = error {
                 print("Failed to load interstitial ad: \(error.localizedDescription)")
+                notReadyAds.toggle()
                 dismissAd.toggle()
                 return
             }

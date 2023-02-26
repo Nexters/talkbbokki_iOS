@@ -29,10 +29,12 @@ struct AlertView: View {
                             Text(message).multilineTextAlignment(.center)
                                 .font(.Pretendard.b2_bold)
                                 .foregroundColor(.Talkbbokki.GrayScale.black)
-                            Text(subMessage)
-                                .multilineTextAlignment(.center)
-                                .font(.Pretendard.caption1)
-                                .foregroundColor(.Talkbbokki.GrayScale.gray4)
+                            if subMessage.isEmpty == false {
+                                Text(subMessage)
+                                    .multilineTextAlignment(.center)
+                                    .font(.Pretendard.caption1)
+                                    .foregroundColor(.Talkbbokki.GrayScale.gray4)
+                            }
                         }
                     }
                     .padding(.top, 24)
@@ -40,7 +42,7 @@ struct AlertView: View {
                     HStack {
                         ForEach(buttons) { button in
                             ConfirmButtonView(didTapConfirm: $didTapButton,
-                                              type: button.type,
+                                              type: button.type.convert(with: 50),
                                               buttonMessage: button.message)
                         }
                     }
@@ -75,8 +77,8 @@ struct AlertView_Previews: PreviewProvider {
         AlertView(
             message: "안녕\naa",
             subMessage: "ㅋㅋㅋzzadasdadaaasdasd",
-            buttons: [AlertButton(type: .ok, message: "확인"),
-                      AlertButton(type: .cancel, message: "취소")],
-            didTapButton: .constant(.confirm))
+            buttons: [AlertButton(type: .ok(), message: "확인"),
+                      AlertButton(type: .cancel(), message: "취소")],
+            didTapButton: .constant(.confirm()))
     }
 }

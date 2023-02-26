@@ -16,6 +16,7 @@ private enum Design {
     }
     
     enum Text {
+        static let notReadyAdstoast = "준비된 광고가 없습니다."
         static let topic = "TOPIC"
         static let starter = "STARTER"
         static let alertMessage = "아직 준비중이에요!\n조금만 기다려주세요."
@@ -28,10 +29,12 @@ struct DetailCardContainerView: View {
     let card: Model.Topic
     let color: Int
     let enteredAds: Bool
+    let notReadyAds: Bool
     @State private var onAppear: Bool = false
     @State private var backDegree = 0.0
     @State private var frontDegree = -90.0
     @State private var isFlipped = false
+    @State private var showToast = false
     
     @State private var didTapDownload = false
     @State private var didTapAlert: ButtonType = .none
@@ -42,6 +45,7 @@ struct DetailCardContainerView: View {
     private let width : CGFloat = 200
     private let height : CGFloat = 250
     private let durationAndDelay : CGFloat = 0.3
+    
     var body: some View {
         WithViewStore(self.store) { viewStore in
             ZStack {
@@ -62,10 +66,24 @@ struct DetailCardContainerView: View {
                 if viewStore.isShowBookMarkAlert {
                     AlertView(message: Design.Text.alertMessage,
                               subMessage: "",
-                              buttons: [AlertButton(type: .ok,
+                              buttons: [AlertButton(type: .ok(),
                                                     message: Design.Text.alertConfrimButton)],
                               didTapButton: $didTapAlert)
                     
+                }
+                
+                if notReadyAds && showToast {
+                    VStack(alignment: .center) {
+                        Spacer()
+                        Text(Design.Text.notReadyAdstoast)
+                            .padding([.top,.bottom], 5)
+                            .padding([.leading,.trailing], 15)
+                            .font(.Pretendard.button_small_regular)
+                            .foregroundColor(.white)
+                            .background(Color.black.opacity(0.6))
+                            .cornerRadius(4.0)
+                            .padding(.bottom, 20)
+                    }.opacity(showToast ? 1.0 : 0.0)
                 }
                 
                 if viewStore.isSuccessSavePhoto {
@@ -99,11 +117,8 @@ struct DetailCardContainerView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
             .onAppear(perform: {
-                if enteredAds {
-                    viewStore.send(.resetViewCount)
-                } else {
-                    viewStore.send(.addViewCount(card))
-                }
+                showToastAds()
+                viewStore.send(.addViewCount(card))
                 viewStore.send(.saveTopic(card))
                 viewStore.send(.fetchOrder)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
@@ -115,6 +130,22 @@ struct DetailCardContainerView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                     flipCard()
                 })
+            })
+        }
+    }
+    
+    private func showToastAds() {
+        if notReadyAds {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                withAnimation {
+                    showToast.toggle()
+                }
+            })
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                withAnimation {
+                    showToast.toggle()
+                }
             })
         }
     }
@@ -230,7 +261,7 @@ struct DetailBackCardView: View {
     
     private var starterGuideView: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .center) {
+            HStack(alignment: .center, spacing: 4) {
                 Text(Design.Text.starter)
                     .font(.Pretendard.b2_regular)
                     .foregroundColor(.Talkbbokki.GrayScale.gray5)
@@ -248,7 +279,7 @@ struct DetailBackCardView: View {
     }
 
     private var buttons: some View {
-        HStack {
+        HStack(alignment: .center, spacing: .zero) {
             Button {
                 didTapShare.toggle()
             } label: {
@@ -286,6 +317,6 @@ struct DetailCardContainerView_Preview: PreviewProvider {
                                                   pcLink: "",
                                                   tag: .love),
                                 color: 00,
-                                enteredAds: false)
+                                enteredAds: false, notReadyAds: true)
     }
 }

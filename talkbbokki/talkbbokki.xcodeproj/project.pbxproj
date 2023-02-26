@@ -39,6 +39,7 @@
 		CE6EBF09299A88F100FA4DE1 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBF00299A88F100FA4DE1 /* Pretendard-ExtraLight.otf */; };
 		CE6EBF0A299A88F100FA4DE1 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBF01299A88F100FA4DE1 /* Pretendard-Medium.otf */; };
 		CE6EBF0B299A88F100FA4DE1 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBF02299A88F100FA4DE1 /* Pretendard-Light.otf */; };
+		CE7E034A29A9DBC500486623 /* SavePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E034929A9DBC500486623 /* SavePhotoView.swift */; };
 		CE858E852995427500F2FC42 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E842995427500F2FC42 /* CategoryView.swift */; };
 		CE858E872995468D00F2FC42 /* CategoryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E862995468D00F2FC42 /* CategoryReducer.swift */; };
 		CEA48CC929A270A300B39F84 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CEA48CC829A270A300B39F84 /* Lottie */; };
@@ -127,6 +128,7 @@
 		CE6EBF00299A88F100FA4DE1 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
 		CE6EBF01299A88F100FA4DE1 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		CE6EBF02299A88F100FA4DE1 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		CE7E034929A9DBC500486623 /* SavePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoView.swift; sourceTree = "<group>"; };
 		CE858E842995427500F2FC42 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		CE858E862995468D00F2FC42 /* CategoryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryReducer.swift; sourceTree = "<group>"; };
 		CEA48CCA29A271AD00B39F84 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 			children = (
 				CEB93F342997FD3F001087B6 /* DetailCardView.swift */,
 				CE498376299A9DCB008A3968 /* DetailCardReducer.swift */,
+				CE7E034929A9DBC500486623 /* SavePhotoView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				CEC63275297EBB5E00D9011E /* Sources */,
 				CEC63276297EBB5E00D9011E /* Frameworks */,
 				CEC63277297EBB5E00D9011E /* Resources */,
+				CE7E034B29AB24A600486623 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -603,6 +607,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CE7E034B29AB24A600486623 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CEC63275297EBB5E00D9011E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -650,6 +675,7 @@
 				CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */,
 				CEB93F512998CA32001087B6 /* CardListReducer.swift in Sources */,
 				CE0F159D2993B9B000295B43 /* APIConfig.swift in Sources */,
+				CE7E034A29A9DBC500486623 /* SavePhotoView.swift in Sources */,
 				CE0F15A92993FC6C00295B43 /* Domain.Talkbbokki.swift in Sources */,
 				CE0F15AD2993FD8F00295B43 /* Talkbbokki.Error.swift in Sources */,
 				CE858E872995468D00F2FC42 /* CategoryReducer.swift in Sources */,
@@ -835,7 +861,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
 				MARKETING_VERSION = 1.0.3;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = gabriel.jhh.talkbbokki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -884,7 +910,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
 				MARKETING_VERSION = 1.0.3;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = gabriel.jhh.talkbbokki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

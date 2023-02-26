@@ -22,6 +22,7 @@ private enum Design {
     }
     
     enum Text {
+        static let alreadyShowCard = "이 카드 다시 뽑기"
         static let shouldAds = "광고 보고 카드 뽑기"
         static let confirm = "이 카드 뽑기"
         static let subTitle = "하는 사이라면"
@@ -69,17 +70,16 @@ struct CardListView: View {
                                                                          reducer: DetailCardReducer(topic: pickCard)),
                                                             card: pickCard,
                                                             color: category.bgColor.color,
-                                                            enteredAds: viewStore.viewCount.isAbleAds
+                                                            enteredAds: viewStore.viewCount.isAbleAds,
+                                                            notReadyAds: adViewModel.notReadyAds
                                     )
                                 } else {
                                     EmptyView()
                                 }
                             } label: {
-                                ConfirmButtonView(didTapConfirm: $didTapDetailCard,
-                                                  type: .ok,
-                                                  buttonMessage: viewStore.viewCount.isAbleAds ? Design.Text.shouldAds : Design.Text.confirm)
-                                .padding([.leading, .trailing], 20)
-                                .padding(.bottom, 16)
+                                confirmButton(didShowTopicIds: viewStore.didShowTopicIds,
+                                              isAbleAds: viewStore.viewCount.isAbleAds,
+                                              currentTopic: viewStore.topics[safe:currentIndex])
                             }
                         }
                         .frame(width: proxy.size.width,
@@ -117,7 +117,7 @@ struct CardListView: View {
                             && didTapFinishedAlert == .none {
                             AlertView(message: Design.Text.finishedCardMessage,
                                       subMessage: "",
-                                      buttons: [AlertButton(type: .ok, message: Design.Text.finishedCardButton)],
+                                      buttons: [AlertButton(type: .ok(), message: Design.Text.finishedCardButton)],
                                       didTapButton: $didTapFinishedAlert)
                             .zIndex(0)
                         }
@@ -126,6 +126,26 @@ struct CardListView: View {
             }.background(adViewControllerRepresentable
                 .frame(width: .zero, height: .zero))
         }
+    }
+
+    private func confirmButton(didShowTopicIds: [Int],
+                               isAbleAds: Bool,
+                               currentTopic: Model.Topic?) -> some View {
+        let didShow = didShowTopicIds.contains { $0 == (currentTopic?.topicID).orZero }
+        var message = ""
+        switch (isAbleAds, didShow) {
+        case (true, _):
+            message = Design.Text.shouldAds
+        case (_, true):
+            message = Design.Text.alreadyShowCard
+        case (_, false):
+            message = Design.Text.confirm
+        }
+        return ConfirmButtonView(didTapConfirm: $didTapDetailCard,
+                                 type: .ok(),
+                                 buttonMessage: message)
+        .padding([.leading, .trailing], 20)
+        .padding(.bottom, 16)
     }
     
     private var closeButton: some View {
@@ -195,7 +215,7 @@ struct CardContainerView: View {
                                 self.x = currentIndex == 0 ? 0 : -(cardX * Double(self.currentIndex)) - 20
                             })
                     ).onTapGesture {
-                        touchedCard = .confirm
+                        touchedCard = .confirm()
                     }
             }
         }
@@ -208,6 +228,6 @@ struct CardContainerView: View {
 
 private extension Int {
     var isAbleAds: Bool {
-        return (self > 0 && self % 4 == 0)
+        return (self > 0 && self >= 4)
     }
 }

@@ -77,10 +77,10 @@ struct OnboardNextButton: View {
                 didTapButton.toggle()
             } label: {
                 if isFinishedPage {
-                    ConfirmText(type: .cancel,
+                    ConfirmText(type: .cancel(),
                                 buttonMessage: "시작할래요!")
                 } else {
-                    ConfirmText(type: .next,
+                    ConfirmText(type: .next(),
                                 buttonMessage: "다음")
                 }
             }.padding([.leading,.trailing,.bottom], 20)

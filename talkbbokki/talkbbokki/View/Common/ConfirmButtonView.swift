@@ -21,11 +21,11 @@ struct ConfirmButtonView: View {
     }
 }
 
-enum ButtonType {
-    case confirm
-    case ok
-    case cancel
-    case next
+enum ButtonType: Equatable {
+    case confirm(height: CGFloat = 60)
+    case ok(height: CGFloat = 60)
+    case cancel(height: CGFloat = 60)
+    case next(height: CGFloat = 60)
     case none
     
     var backgroundColor: Color {
@@ -44,6 +44,31 @@ enum ButtonType {
         case .confirm, .ok, .cancel, .none: return .Talkbbokki.GrayScale.white
         }
     }
+    
+    var height: CGFloat {
+        switch self {
+        case .confirm(let height): return height
+        case .ok(let height): return height
+        case .cancel(let height): return height
+        case .next(let height): return height
+        case .none: return 0.0
+        }
+    }
+    
+    func convert(with height: CGFloat) -> Self {
+        switch self {
+        case .confirm(_):
+            return .confirm(height: height)
+        case .ok(_):
+            return .ok(height:height)
+        case .cancel(_):
+            return .cancel(height:height)
+        case .next(_):
+            return .next(height:height)
+        case .none:
+            return .none
+        }
+    }
 }
 
 struct ConfirmText: View {
@@ -56,7 +81,8 @@ struct ConfirmText: View {
             .font(.system(size: 18))
             .padding(.top, 21)
             .padding(.bottom, 21)
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity,
+                   maxHeight: type.height)
             .background(type.backgroundColor)
             .cornerRadius(8)
     }
@@ -64,8 +90,8 @@ struct ConfirmText: View {
 
 struct ConfirmButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfirmButtonView(didTapConfirm: .constant(ButtonType.confirm),
-                          type: .ok,
+        ConfirmButtonView(didTapConfirm: .constant(ButtonType.confirm()),
+                          type: .ok(),
                           buttonMessage: "ddddd")
     }
 }
