@@ -14,6 +14,7 @@ import Photos
 final class DetailCardReducer: ReducerProtocol {
     private var bag = Set<AnyCancellable>()
     private let topic: Model.Topic
+    private let color: Int
     struct State: Equatable {
         var order: Model.Order?
         var errorMessage: String = ""
@@ -35,8 +36,9 @@ final class DetailCardReducer: ReducerProtocol {
         case like(Model.Topic)
     }
     
-    init(topic: Model.Topic) {
+    init(topic: Model.Topic, color: Int) {
         self.topic = topic
+        self.color = color
         NotificationCenter.default.addObserver(self, selector: #selector(screenshotTaken), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
     }
     
@@ -81,14 +83,17 @@ final class DetailCardReducer: ReducerProtocol {
             state.isShowBookMarkAlert.toggle()
             return .none
         case .savePhoto(let topic):
-            let renderImage = DetailBackCardView(card: topic,
-                                                 order: state.order,
-                                                 touchedDownload: .constant(false),
-                                                 touchedRefreshOrder: .constant(false),
-                                                 touchedBookMark: .constant(false),
-                                                 degree: .constant(0.0),
-                                                 didTapShare: .constant(false))
-                .snapshot()
+            let renderImage = SavePhotoView(colorHex: color,
+                                            contentMessage: topic.name,
+                                            starter: (state.order?.rule).orEmpty).snapshot()
+//            let renderImage = DetailBackCardView(card: topic,
+//                                                 order: state.order,
+//                                                 touchedDownload: .constant(false),
+//                                                 touchedRefreshOrder: .constant(false),
+//                                                 touchedBookMark: .constant(false),
+//                                                 degree: .constant(0.0),
+//                                                 didTapShare: .constant(false))
+//                .snapshot()
             UIImageWriteToSavedPhotosAlbum(renderImage,nil,nil,nil)
             state.isSuccessSavePhoto.toggle()
             return .none

@@ -67,7 +67,8 @@ struct CardListView: View {
                             NavigationLink(isActive: $isActiveNavigationLink) {
                                 if let pickCard = viewStore.topics[safe:currentIndex] {
                                     DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(),
-                                                                         reducer: DetailCardReducer(topic: pickCard)),
+                                                                         reducer: DetailCardReducer(topic: pickCard,
+                                                                                                    color: category.bgColor.color)),
                                                             card: pickCard,
                                                             color: category.bgColor.color,
                                                             enteredAds: viewStore.viewCount.isAbleAds,

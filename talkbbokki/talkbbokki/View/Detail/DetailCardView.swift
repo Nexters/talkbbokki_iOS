@@ -307,7 +307,7 @@ struct DetailCardContainerView_Preview: PreviewProvider {
                                                                                            createAt: "1101",
                                                                                            category: "LOVE",
                                                                                            pcLink: "",
-                                                                                           tag: .love))),
+                                                                                           tag: .love), color: 0000)),
                                 card: Model.Topic(cardNumber: 0,
                                                   topicID: 1,
                                                   name: "밥 먹다가 체함",
