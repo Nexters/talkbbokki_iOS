@@ -36,7 +36,7 @@ struct CardListView: View {
     let category: Model.Category
     let store: StoreOf<CardListReducer>
     @Environment(\.presentationMode) private var presentationMode
-    @State private var currentIndex: Int = -1
+    @State private var currentIndex: Int = 0
     @State private var didTapFinishedAlert: ButtonType = .none
     @State private var didTapDetailCard: ButtonType = .none
     @State private var isActiveNavigationLink = false
@@ -123,6 +123,7 @@ struct CardListView: View {
                             .zIndex(0)
                         }
                     }
+                    .navigationBarHidden(true)
                 }
             }.background(adViewControllerRepresentable
                 .frame(width: .zero, height: .zero))

@@ -76,6 +76,7 @@ struct CategoryView: View {
                                   didTapButton: $didTapAlert)
                     }
                 }
+                .navigationBarHidden(true)
             }
             .onChange(of: didTapAlert, perform: { newValue in
                 guard didTapAlert != .none else { return }

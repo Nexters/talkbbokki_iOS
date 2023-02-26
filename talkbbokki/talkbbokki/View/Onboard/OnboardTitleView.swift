@@ -13,7 +13,7 @@ struct OnboardTitleView: View {
     let hilightedText: String
     
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(alignment:.center, spacing: 8) {
             Text(subMessage)
                 .foregroundColor(.Talkbbokki.GrayScale.gray4)
                 .font(.Pretendard.b3_regular)
@@ -23,6 +23,8 @@ struct OnboardTitleView: View {
                                hilightedColor: .Talkbbokki.Primary.mainColor1,
                                hilightedFont: .Pretendard.h2_bold)
             .font(.Pretendard.h2_bold)
+            .multilineTextAlignment(.center)
+            .padding([.leading,.trailing], 63)
         }
     }
 }

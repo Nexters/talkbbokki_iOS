@@ -31,7 +31,7 @@ final class CardListReducer: ReducerProtocol {
         var topics: [Model.Topic] = []
         var errorMessage: String = ""
         var offsetX: Double = 0
-        var currentIndex: Int = -1
+        var currentIndex: Int = 0
         var viewCount: Int = 0
     }
     

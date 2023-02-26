@@ -10,7 +10,7 @@ import SwiftUI
 private enum Design {
     enum Text {
         static let subMessage: String = "오늘은 누구부터 이야기 해볼까요?"
-        static let mainMessage: String = "톡뽀끼가 제안하는 오늘의 STARTER!"
+        static let mainMessage: String = "톡뽀끼가 제안하는\n오늘의 STARTER!"
     }
 }
 
