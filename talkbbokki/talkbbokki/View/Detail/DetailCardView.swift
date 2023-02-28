@@ -30,6 +30,7 @@ struct DetailCardContainerView: View {
     let color: Int
     let enteredAds: Bool
     let notReadyAds: Bool
+    let isEnteredModal: Bool
     @State private var onAppear: Bool = false
     @State private var backDegree = 0.0
     @State private var frontDegree = -90.0
@@ -50,6 +51,10 @@ struct DetailCardContainerView: View {
         WithViewStore(self.store) { viewStore in
             ZStack {
                 Color(hex: color).ignoresSafeArea()
+                if isEnteredModal {
+                    closeButton
+                }
+                
                 if onAppear {
                     DetailFrontCardView(card: card, degree: $backDegree)
                     .transition(.scale.animation(.spring())
@@ -88,7 +93,7 @@ struct DetailCardContainerView: View {
                 viewStore.send(.fetchOrder)
             })
             .onChange(of: didTapBookmark, perform: { newValue in
-                viewStore.send(.didTapBookMark(card))
+                viewStore.send(.didTapBookMark(card, color))
             })
             .onChange(of: didTapShare, perform: { newValue in
                 viewStore.send(.like(card))
@@ -125,6 +130,23 @@ struct DetailCardContainerView: View {
             presentationMode.wrappedValue.dismiss()
         } label: {
             Image("Icon-arrow2_left-24")
+        }
+    }
+    
+    private var closeButton: some View {
+        VStack {
+            HStack {
+                Spacer()
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image("close")
+                        .font(.title)
+                        .foregroundColor(.black)
+                        .padding(20)
+                }
+            }
+            Spacer()
         }
     }
     
@@ -167,6 +189,12 @@ struct DetailFrontCardView: View {
         .frame(width: Design.Constraint.cardSize.width,
                height: Design.Constraint.cardSize.height)
         .rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
+    }
+    
+    private var backgroundView: some View {
+        Color.white
+            .frame(width: Design.Constraint.cardSize.width,
+                   height: Design.Constraint.cardSize.height)
     }
 }
 
@@ -288,6 +316,6 @@ struct DetailCardContainerView_Preview: PreviewProvider {
                                                   pcLink: "",
                                                   tag: .love),
                                 color: 00,
-                                enteredAds: false, notReadyAds: true)
+                                enteredAds: false, notReadyAds: true, isEnteredModal: true)
     }
 }

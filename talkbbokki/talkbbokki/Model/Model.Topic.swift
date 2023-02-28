@@ -127,7 +127,8 @@ extension Model {
             case love = "LOVE"
             case daily = "DAILY"
             case ifThe = "IF"
-            
+            case event = "EVENT"
+
             var image: String {
                 switch self {
                 case .love:
@@ -136,6 +137,21 @@ extension Model {
                     return "ios_Tag_img_daily"
                 case .ifThe:
                     return "ios_Tag_img_if"
+                case .event:
+                    return "Event"
+                }
+            }
+            
+            var big_image: String {
+                switch self {
+                case .love:
+                    return "Tag_love"
+                case .daily:
+                    return "Tag_daily"
+                case .ifThe:
+                    return "Tag_if"
+                case .event:
+                    return "Tag_Event"
                 }
             }
         }

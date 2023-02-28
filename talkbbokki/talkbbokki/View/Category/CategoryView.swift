@@ -50,6 +50,7 @@ struct CategoryView: View {
     
     @State private var selectedCategory: Model.Category = Model.Category.empty
     @State private var didTapSuggest: Bool = false
+    @State private var didTapNavigationButton: Bool = false
     @State private var didTapAlert: ButtonType = .none
     @State private var present: Scene?
     let store: StoreOf<CategoryReducer>
@@ -59,6 +60,13 @@ struct CategoryView: View {
                 ZStack {
                     Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
                     VStack(spacing: 0) {
+                        NavigationLink {
+                            BookmarkView(store: Store(initialState: BookmarkReducer.State(),
+                                                      reducer: BookmarkReducer()))
+                        } label: {
+                            HomeNavigationView()
+                        }
+
                         CategoryTitleView()
                         Spacer().frame(maxHeight: 60.0)
                         VStack(spacing: Design.Constraint.CategoryView.bottomSpacing) {
@@ -67,7 +75,6 @@ struct CategoryView: View {
                             SuggestButton(didTapSuggest: $didTapSuggest)
                         }
                     }.padding(.bottom, 20)
-                    
                     if viewStore.isShowAlert {
                         AlertView(message: Design.Text.alertMessage,
                                   subMessage: "",
@@ -92,6 +99,9 @@ struct CategoryView: View {
                 }
                 present = .cardList
             })
+            .onChange(of: didTapNavigationButton, perform: { newValue in
+                
+            })
             .fullScreenCover(isPresented: $didTapSuggest, content: {
                 SuggestView()
             })
@@ -110,6 +120,16 @@ struct CategoryView: View {
             .onAppear {
                 viewStore.send(.fetchCategories)
             }
+        }
+    }
+}
+
+struct HomeNavigationView: View {
+    var body: some View {
+        HStack {
+            Spacer()
+            Image("Icon_Likelist_28")
+                .padding(.trailing, 20)
         }
     }
 }

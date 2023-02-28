@@ -72,7 +72,8 @@ struct CardListView: View {
                                                             card: pickCard,
                                                             color: category.bgColor.color,
                                                             enteredAds: viewStore.viewCount.isAbleAds,
-                                                            notReadyAds: adViewModel.notReadyAds
+                                                            notReadyAds: adViewModel.notReadyAds,
+                                                            isEnteredModal: false
                                     )
                                 } else {
                                     EmptyView()
@@ -156,7 +157,7 @@ struct CardListView: View {
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {
-                Image(systemName: "xmark")
+                Image("close")
                     .font(.title)
                     .foregroundColor(.black)
                     .padding(20)

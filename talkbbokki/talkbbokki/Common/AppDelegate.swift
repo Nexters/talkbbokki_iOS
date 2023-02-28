@@ -49,5 +49,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     private func resetUserDefault() {
         UserDefaultValue.Onboard.didShowTopic = []
         UserDefaultValue.Onboard.viewCount = 0
+        UserDefaultValue.Onboard.showBookmarkDeleteAlert = false
     }
 }

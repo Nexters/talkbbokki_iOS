@@ -53,7 +53,7 @@ struct CardView: View {
                 }
                 ZStack {
                     card.position.background
-                    Image(card.tag.image)
+                    Image(card.tag.big_image)
                         .resizable()
                         .frame(width: Design.Constraint.imageSize.width,
                                height: Design.Constraint.imageSize.height)

@@ -76,6 +76,8 @@
 		CEC6328F297EBB5F00D9011E /* talkbbokkiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6328E297EBB5F00D9011E /* talkbbokkiTests.swift */; };
 		CEC63299297EBB5F00D9011E /* talkbbokkiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC63298297EBB5F00D9011E /* talkbbokkiUITests.swift */; };
 		CEC6329B297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6329A297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift */; };
+		CED4EFFE29AD10BC0063D3C6 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4EFFD29AD10BC0063D3C6 /* BookmarkView.swift */; };
+		CED4F00029AD12CA0063D3C6 /* BookmarkReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4EFFF29AD12CA0063D3C6 /* BookmarkReducer.swift */; };
 		CEDD7B8429A6751D00EAE53B /* AdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD7B8329A6751D00EAE53B /* AdViewModel.swift */; };
 		CEDD7B8629A676DF00EAE53B /* AdViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD7B8529A676DF00EAE53B /* AdViewControllerRepresentable.swift */; };
 		CEE72A912982B2820047403A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CEE72A902982B2820047403A /* Alamofire */; };
@@ -173,6 +175,8 @@
 		CEC63294297EBB5F00D9011E /* talkbbokkiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = talkbbokkiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC63298297EBB5F00D9011E /* talkbbokkiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkbbokkiUITests.swift; sourceTree = "<group>"; };
 		CEC6329A297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkbbokkiUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CED4EFFD29AD10BC0063D3C6 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
+		CED4EFFF29AD12CA0063D3C6 /* BookmarkReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkReducer.swift; sourceTree = "<group>"; };
 		CEDD7B8329A6751D00EAE53B /* AdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewModel.swift; sourceTree = "<group>"; };
 		CEDD7B8529A676DF00EAE53B /* AdViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewControllerRepresentable.swift; sourceTree = "<group>"; };
 		CEEAAF1829A66B27006A2519 /* Splash_Final_Exceptlogo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash_Final_Exceptlogo.json; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 				CE858E832995426900F2FC42 /* Category */,
 				CE39E10E29864FF300E3C93D /* CardList */,
 				CEB93F332997FD30001087B6 /* Detail */,
+				CED4EFFC29AD10A60063D3C6 /* Bookmark */,
 				CEA48CCE29A272AC00B39F84 /* SplashView.swift */,
 			);
 			path = View;
@@ -473,6 +478,15 @@
 				CEC6329A297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift */,
 			);
 			path = talkbbokkiUITests;
+			sourceTree = "<group>";
+		};
+		CED4EFFC29AD10A60063D3C6 /* Bookmark */ = {
+			isa = PBXGroup;
+			children = (
+				CED4EFFD29AD10BC0063D3C6 /* BookmarkView.swift */,
+				CED4EFFF29AD12CA0063D3C6 /* BookmarkReducer.swift */,
+			);
+			path = Bookmark;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -666,6 +680,7 @@
 				CE7E035329AB4ED600486623 /* Int+.swift in Sources */,
 				CEA48CE429A27E2400B39F84 /* OnboardFirstView.swift in Sources */,
 				CE64A507299BE9D1004C4E8D /* AppDelegate.swift in Sources */,
+				CED4F00029AD12CA0063D3C6 /* BookmarkReducer.swift in Sources */,
 				CE7E035829AB542300486623 /* String+.swift in Sources */,
 				CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */,
 				CEDD7B8429A6751D00EAE53B /* AdViewModel.swift in Sources */,
@@ -694,6 +709,7 @@
 				CE7E035629AB538800486623 /* ToastView.swift in Sources */,
 				CE39E119298650BB00E3C93D /* CardListView.swift in Sources */,
 				CEA48CEE29A295DA00B39F84 /* AcitivityViewController.swift in Sources */,
+				CED4EFFE29AD10BC0063D3C6 /* BookmarkView.swift in Sources */,
 				CEC6327D297EBB5E00D9011E /* talkbbokkiApp.swift in Sources */,
 				CE7E034F29AB44D700486623 /* Topic.xcdatamodeld in Sources */,
 				CEB93F2F2996B54A001087B6 /* Optional+.swift in Sources */,

@@ -48,7 +48,7 @@ final class CoreDataManager {
         return nil
     }
     
-    func save(topic: Model.Topic) async -> Bool {
+    func save(topic: Model.Topic, bgColor: Int) async -> Bool {
         let context = self.persistentContainer.viewContext
         guard let entitiy = NSEntityDescription.entity(forEntityName: "Topic", in: context) else { return false }
         guard let topicObject: Topic = NSManagedObject(entity: entitiy, insertInto: context) as? Topic else { return false }
@@ -59,6 +59,7 @@ final class CoreDataManager {
         topicObject.name = topic.name
         topicObject.createAt = topic.createAt
         topicObject.category = topic.category
+        topicObject.bgColor = Int64(bgColor)
         topicObject.saveAt = Date()
         return await contextSave()
     }

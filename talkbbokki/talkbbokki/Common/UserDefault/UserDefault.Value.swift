@@ -21,6 +21,9 @@ extension UserDefaultValue {
         
         @UserDefault(key: UserDefaultKey.viewConut, defaultValue: 0)
         static var viewCount: Int
+        
+        @UserDefault(key: UserDefaultKey.showBookmarkDeleteAlert, defaultValue: false)
+        static var showBookmarkDeleteAlert: Bool
     }
 }
 
