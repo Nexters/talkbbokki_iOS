@@ -35,37 +35,35 @@ struct BookmarkView: View {
     var body: some View {
         WithViewStore(self.store, observe: {$0}) { viewStore in
             GeometryReader { proxy in
-                NavigationView {
-                    ZStack {
-                        Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: Design.Constraint.titleAndContentSpacing) {
-                                title()
-                                VStack(alignment: .leading, spacing: Design.Constraint.contentSpacing) {
-                                    countText(with: viewStore.bookmarks.count)
-                                    if viewStore.bookmarks.isEmpty == false {
-                                        BookmarkGridView(topic: viewStore.bookmarks,
-                                                         fullWidth: proxy.size.width,
-                                                         didTapDetail: $didTapDetail,
-                                                         didTapBookMark: $didTapBookmark)
-                                    }
+                ZStack {
+                    Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: Design.Constraint.titleAndContentSpacing) {
+                            title()
+                            VStack(alignment: .leading, spacing: Design.Constraint.contentSpacing) {
+                                countText(with: viewStore.bookmarks.count)
+                                if viewStore.bookmarks.isEmpty == false {
+                                    BookmarkGridView(topic: viewStore.bookmarks,
+                                                     fullWidth: proxy.size.width,
+                                                     didTapDetail: $didTapDetail,
+                                                     didTapBookMark: $didTapBookmark)
                                 }
-                            }.padding([.leading, .trailing], Design.Constraint.leadingMargin)
-                        }
-                        
-                        if viewStore.bookmarks.isEmpty {
-                            emptyView
-                        }
-                        
-                        if showAlert {
-                            AlertView(message: Design.Text.alertMessage,
-                                      subMessage: Design.Text.alertSubMessage,
-                                      buttons: [AlertButton(type: .cancel(),
-                                                            message: Design.Text.alertDeny),
-                                                AlertButton(type: .confirm(), message: Design.Text.alertConfirm)
-                                      ],
-                                      didTapButton: $didTapAlertButton)
-                        }
+                            }
+                        }.padding([.leading, .trailing], Design.Constraint.leadingMargin)
+                    }
+                    
+                    if viewStore.bookmarks.isEmpty {
+                        emptyView
+                    }
+                    
+                    if showAlert {
+                        AlertView(message: Design.Text.alertMessage,
+                                  subMessage: Design.Text.alertSubMessage,
+                                  buttons: [AlertButton(type: .cancel(),
+                                                        message: Design.Text.alertDeny),
+                                            AlertButton(type: .confirm(), message: Design.Text.alertConfirm)
+                                  ],
+                                  didTapButton: $didTapAlertButton)
                     }
                 }
                 .onChange(of: didTapBookmark, perform: { newValue in

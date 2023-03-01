@@ -26,7 +26,7 @@ struct talkbbokkiApp: App {
                 case .splash:
                     SplashView()
                         .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
                                 scene = didShowOnboard ? .home : .onboard
                             })
                         }

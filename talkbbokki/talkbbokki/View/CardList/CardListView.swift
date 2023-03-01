@@ -17,7 +17,7 @@ private enum Design {
         }
         
         struct CardListView {
-            static let spacing: CGFloat = -50
+            static let spacing: CGFloat = -55
         }
     }
     
@@ -51,37 +51,48 @@ struct CardListView: View {
                         Color(hex: category.bgColor.color)
                             .ignoresSafeArea()
                         
-                        VStack(alignment: .leading) {
-                            closeButton
-                            CardListTitleView(title: category.firstLineTitle,
-                                              subTitie: category.secondLineTitle)
-                            Spacer()
-                            CardContainerView(offsetX:viewStore.offsetX,
-                                              shouldAds: viewStore.viewCount.isAbleAds,
-                                              currentIndex: $currentIndex,
-                                              touchedCard: $didTapDetailCard,
-                                              didShowTopicIds: viewStore.didShowTopicIds,
-                                              cards: viewStore.topics
-                            )
-                            Spacer()
-                            NavigationLink(isActive: $isActiveNavigationLink) {
-                                if let pickCard = viewStore.topics[safe:currentIndex] {
-                                    DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(),
-                                                                         reducer: DetailCardReducer(topic: pickCard,
-                                                                                                    color: category.bgColor.color)),
-                                                            card: pickCard,
-                                                            color: category.bgColor.color,
-                                                            enteredAds: viewStore.viewCount.isAbleAds,
-                                                            notReadyAds: adViewModel.notReadyAds,
-                                                            isEnteredModal: false
-                                    )
-                                } else {
-                                    EmptyView()
+                        Group {
+                            VStack {
+                                Spacer()
+                                CardContainerView(offsetX:viewStore.offsetX,
+                                                  shouldAds: isAbleAds(viewCount: viewStore.viewCount,
+                                                                       didShowTopicIds: viewStore.didShowTopicIds,
+                                                                       currentTopic: viewStore.topics[safe:currentIndex]),
+                                                  currentIndex: $currentIndex,
+                                                  touchedCard: $didTapDetailCard,
+                                                  didShowTopicIds: viewStore.didShowTopicIds,
+                                                  cards: viewStore.topics)
+                                Spacer()
+                            }
+                            
+                            VStack(alignment: .leading) {
+                                closeButton
+                                CardListTitleView(title: category.firstLineTitle,
+                                                  subTitie: category.secondLineTitle)
+                                Spacer()
+                                NavigationLink(isActive: $isActiveNavigationLink) {
+                                    if let pickCard = viewStore.topics[safe:currentIndex] {
+                                        DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(),
+                                                                             reducer: DetailCardReducer(topic: pickCard,
+                                                                                                        color: category.bgColor.color)),
+                                                                card: pickCard,
+                                                                color: category.bgColor.color,
+                                                                enteredAds: isAbleAds(viewCount: viewStore.viewCount,
+                                                                                      didShowTopicIds: viewStore.didShowTopicIds,
+                                                                                      currentTopic: viewStore.topics[safe:currentIndex]),
+                                                                notReadyAds: adViewModel.notReadyAds,
+                                                                isEnteredModal: false
+                                        )
+                                    } else {
+                                        EmptyView()
+                                    }
+                                } label: {
+                                    confirmButton(didShowTopicIds: viewStore.didShowTopicIds,
+                                                  isAbleAds: isAbleAds(viewCount: viewStore.viewCount,
+                                                                       didShowTopicIds: viewStore.didShowTopicIds,
+                                                                       currentTopic: viewStore.topics[safe:currentIndex]),
+                                                  currentTopic: viewStore.topics[safe:currentIndex])
                                 }
-                            } label: {
-                                confirmButton(didShowTopicIds: viewStore.didShowTopicIds,
-                                              isAbleAds: viewStore.viewCount.isAbleAds,
-                                              currentTopic: viewStore.topics[safe:currentIndex])
                             }
                         }
                         .frame(width: proxy.size.width,
@@ -89,7 +100,9 @@ struct CardListView: View {
                         .animation(.interactiveSpring(response: 0.3))
                         .onChange(of: didTapDetailCard, perform: { newValue in
                             guard didTapDetailCard != .none else { return }
-                            if viewStore.viewCount.isAbleAds {
+                            if isAbleAds(viewCount: viewStore.viewCount,
+                                         didShowTopicIds: viewStore.didShowTopicIds,
+                                         currentTopic: viewStore.topics[safe:currentIndex]) {
                                 adViewModel.loadAd()
                             } else {
                                 isActiveNavigationLink.toggle()
@@ -164,6 +177,13 @@ struct CardListView: View {
             }
         }
     }
+    
+    private func isAbleAds(viewCount: Int,
+                           didShowTopicIds: [Int],
+                           currentTopic: Model.Topic?) -> Bool {
+        let didShow = didShowTopicIds.contains { $0 == (currentTopic?.topicID).orZero }
+        return (viewCount > 0 && viewCount >= 4) && !didShow
+    }
 }
 
 struct CardListTitleView: View {
@@ -173,7 +193,7 @@ struct CardListTitleView: View {
         HStack {
             VStack(alignment: .leading, spacing: 0) {
                 Text(title).font(.Pretendard.h2_bold).foregroundColor(.Talkbbokki.GrayScale.black)
-                Text(subTitie).font(.Pretendard.h2_bold)
+                Text(subTitie+"라면").font(.Pretendard.h2_bold)
                     .foregroundColor(.Talkbbokki.GrayScale.black)
                     .opacity(0.35)
             }

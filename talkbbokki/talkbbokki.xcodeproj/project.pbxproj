@@ -84,6 +84,10 @@
 		CEE72A942982B2C10047403A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CEE72A932982B2C10047403A /* ComposableArchitecture */; };
 		CEEAAF1929A66B27006A2519 /* Splash_Final_Exceptlogo.json in Resources */ = {isa = PBXBuildFile; fileRef = CEEAAF1829A66B27006A2519 /* Splash_Final_Exceptlogo.json */; };
 		CEF1702429A525F000B5C624 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = CEF1702329A525F000B5C624 /* GoogleMobileAds */; };
+		CEF3323B29AE2505001486DC /* Splash_Final_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = CEF3323A29AE2505001486DC /* Splash_Final_ios.json */; };
+		CEF3323F29AE2970001486DC /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3323E29AE2970001486DC /* FileUtil.swift */; };
+		CEF3324129AE3324001486DC /* CoreData.Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3324029AE3324001486DC /* CoreData.Topic.swift */; };
+		CEF3324329AE332C001486DC /* CoreData.Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3324229AE332C001486DC /* CoreData.Category.swift */; };
 		CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7CFB029A1115D005A7E6C /* AlertView.swift */; };
 /* End PBXBuildFile section */
 
@@ -180,6 +184,10 @@
 		CEDD7B8329A6751D00EAE53B /* AdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewModel.swift; sourceTree = "<group>"; };
 		CEDD7B8529A676DF00EAE53B /* AdViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewControllerRepresentable.swift; sourceTree = "<group>"; };
 		CEEAAF1829A66B27006A2519 /* Splash_Final_Exceptlogo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash_Final_Exceptlogo.json; sourceTree = "<group>"; };
+		CEF3323A29AE2505001486DC /* Splash_Final_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash_Final_ios.json; sourceTree = "<group>"; };
+		CEF3323E29AE2970001486DC /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
+		CEF3324029AE3324001486DC /* CoreData.Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.Topic.swift; sourceTree = "<group>"; };
+		CEF3324229AE332C001486DC /* CoreData.Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.Category.swift; sourceTree = "<group>"; };
 		CEF7CFB029A1115D005A7E6C /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -281,6 +289,8 @@
 			children = (
 				CE7E034D29AB44D700486623 /* Topic.xcdatamodeld */,
 				CE7E035029AB4B4900486623 /* CoreDataManager.swift */,
+				CEF3324029AE3324001486DC /* CoreData.Topic.swift */,
+				CEF3324229AE332C001486DC /* CoreData.Category.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -312,6 +322,7 @@
 		CEA48CD029A2730200B39F84 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				CEF3323A29AE2505001486DC /* Splash_Final_ios.json */,
 				CEEAAF1829A66B27006A2519 /* Splash_Final_Exceptlogo.json */,
 				CEA48CE929A2840000B39F84 /* Onboarding_img_02_Final.json */,
 			);
@@ -358,6 +369,7 @@
 		CEB93F2D2996B541001087B6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CEF3323D29AE295C001486DC /* FileUtil */,
 				CE7E034C29AB445800486623 /* CoreData */,
 				CEA48CD929A2774D00B39F84 /* UserDefault */,
 				CEA48CD629A2770200B39F84 /* Extension */,
@@ -489,6 +501,14 @@
 			path = Bookmark;
 			sourceTree = "<group>";
 		};
+		CEF3323D29AE295C001486DC /* FileUtil */ = {
+			isa = PBXGroup;
+			children = (
+				CEF3323E29AE2970001486DC /* FileUtil.swift */,
+			);
+			path = FileUtil;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -615,6 +635,7 @@
 				CE6EBF09299A88F100FA4DE1 /* Pretendard-ExtraLight.otf in Resources */,
 				CE6EBF0A299A88F100FA4DE1 /* Pretendard-Medium.otf in Resources */,
 				CEC63285297EBB5F00D9011E /* Preview Assets.xcassets in Resources */,
+				CEF3323B29AE2505001486DC /* Splash_Final_ios.json in Resources */,
 				CE6EBF03299A88F100FA4DE1 /* Pretendard-Bold.otf in Resources */,
 				CE6EBF07299A88F100FA4DE1 /* Pretendard-Thin.otf in Resources */,
 				CE64A500299BDE58004C4E8D /* GoogleService-Info.plist in Resources */,
@@ -684,6 +705,7 @@
 				CE7E035829AB542300486623 /* String+.swift in Sources */,
 				CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */,
 				CEDD7B8429A6751D00EAE53B /* AdViewModel.swift in Sources */,
+				CEF3323F29AE2970001486DC /* FileUtil.swift in Sources */,
 				CEB93F3929980B3B001087B6 /* Array+.swift in Sources */,
 				CEA48CE629A27E8A00B39F84 /* OnboardTitleView.swift in Sources */,
 				CE618E1129A3D81B00076F7E /* Date+.swift in Sources */,
@@ -700,6 +722,7 @@
 				CEA48CD529A276CB00B39F84 /* UserDefault.swift in Sources */,
 				CE0F15A42993F5DD00295B43 /* APIConfig.Parameters.swift in Sources */,
 				CE0F15A22993BBF000295B43 /* APIConfig+Error.swift in Sources */,
+				CEF3324129AE3324001486DC /* CoreData.Topic.swift in Sources */,
 				CEA48CE829A2837800B39F84 /* OnboardSecondView.swift in Sources */,
 				CEB93F352997FD3F001087B6 /* DetailCardView.swift in Sources */,
 				CEA48CCF29A272AC00B39F84 /* SplashView.swift in Sources */,
@@ -721,6 +744,7 @@
 				CE0F159D2993B9B000295B43 /* APIConfig.swift in Sources */,
 				CE7E034A29A9DBC500486623 /* SavePhotoView.swift in Sources */,
 				CE0F15A92993FC6C00295B43 /* Domain.Talkbbokki.swift in Sources */,
+				CEF3324329AE332C001486DC /* CoreData.Category.swift in Sources */,
 				CE0F15AD2993FD8F00295B43 /* Talkbbokki.Error.swift in Sources */,
 				CE858E872995468D00F2FC42 /* CategoryReducer.swift in Sources */,
 				CE0F15AF2994007300295B43 /* Model.Category.swift in Sources */,

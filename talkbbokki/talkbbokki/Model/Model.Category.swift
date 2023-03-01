@@ -14,8 +14,9 @@ extension Model {
         let text: String
         let bgColor: String
         let activeYn: Bool
-        var imageName: String?
-        
+        var imageUrl: String?
+        var filePath: String?
+
         var firstLineTitle: String {
             text.components(separatedBy: "\n").first.orEmpty
         }
@@ -25,7 +26,7 @@ extension Model {
         }
         
         enum CodingKeys: String, CodingKey {
-            case code, text, bgColor, activeYn
+            case code, text, bgColor, activeYn, imageUrl
         }
         
         init(from decoder: Decoder) throws {
@@ -34,13 +35,20 @@ extension Model {
             text = try container.decode(String.self, forKey: .text)
             bgColor = try container.decode(String.self, forKey: .bgColor)
             activeYn = try container.decode(Bool.self, forKey: .activeYn)
+            imageUrl = try container.decode(String.self, forKey: .imageUrl)
         }
         
-        init(code: String, text: String) {
+        init(code: String, text: String, bgColor: String = "", activeYn: Bool = false, imageUrl: String = "", filePath: String? = nil) {
             self.code = code
             self.text = text
-            self.bgColor = ""
-            self.activeYn = false
+            self.bgColor = bgColor
+            self.activeYn = activeYn
+            self.imageUrl = imageUrl
+            self.filePath = filePath
+        }
+        
+        var imagePath: String {
+            "\(FileUtil.shared.rootDirectory.orEmpty)/\(filePath.orEmpty)"
         }
         
         static var empty: Self {

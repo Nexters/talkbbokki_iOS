@@ -60,13 +60,6 @@ struct CategoryView: View {
                 ZStack {
                     Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
                     VStack(spacing: 0) {
-                        NavigationLink {
-                            BookmarkView(store: Store(initialState: BookmarkReducer.State(),
-                                                      reducer: BookmarkReducer()))
-                        } label: {
-                            HomeNavigationView()
-                        }
-
                         CategoryTitleView()
                         Spacer().frame(maxHeight: 60.0)
                         VStack(spacing: Design.Constraint.CategoryView.bottomSpacing) {
@@ -75,6 +68,17 @@ struct CategoryView: View {
                             SuggestButton(didTapSuggest: $didTapSuggest)
                         }
                     }.padding(.bottom, 20)
+                    
+                    VStack {
+                        NavigationLink {
+                            BookmarkView(store: Store(initialState: BookmarkReducer.State(),
+                                                      reducer: BookmarkReducer()))
+                        } label: {
+                            HomeNavigationView()
+                        }
+                        Spacer()
+                    }
+                    
                     if viewStore.isShowAlert {
                         AlertView(message: Design.Text.alertMessage,
                                   subMessage: "",
@@ -129,6 +133,7 @@ struct HomeNavigationView: View {
         HStack {
             Spacer()
             Image("Icon_Likelist_28")
+                .padding(.top, 16)
                 .padding(.trailing, 20)
         }
     }
@@ -216,7 +221,7 @@ struct CategoryCardView: View {
                     .cornerRadius(8)
                     .frame(height: Design.Constraint.CardView.height)
                 VStack(spacing: 0) {
-                    Image(category.imageName.orEmpty)
+                    Image(uiImage: UIImage(contentsOfFile: category.imagePath) ?? UIImage())
                         .resizable()
                         .frame(width: Design.Constraint.CardView.imageSize.width,
                                height: Design.Constraint.CardView.imageSize.height)

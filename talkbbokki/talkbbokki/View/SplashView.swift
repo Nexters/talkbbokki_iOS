@@ -11,7 +11,7 @@ struct SplashView: View {
     var body: some View {
         ZStack {
             Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
-            LottieView(jsonName: "Splash_Final_Exceptlogo",
+            LottieView(jsonName: "Splash_Final_ios",
                        loopMode: .playOnce)
             Image("Logo_Width").offset(y: 80)
         }

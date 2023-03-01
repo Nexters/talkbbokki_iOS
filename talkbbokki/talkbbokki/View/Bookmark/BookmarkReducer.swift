@@ -22,13 +22,13 @@ final class BookmarkReducer: ReducerProtocol {
         switch action {
         case .removeBookmark(let topicID):
             return EffectTask.run { send in
-                let isDelete = await CoreDataManager.shared.deleteTopic(id: topicID)
+                let isDelete = await CoreDataManager.shared.topic.deleteTopic(id: topicID)
                 if isDelete {
                     await send.send(.fetchBookmarkList)
                 }
             }
         case .fetchBookmarkList:
-            if let topics = CoreDataManager.shared.fetchTopics() {
+            if let topics = CoreDataManager.shared.topic.fetchTopics() {
                 state.bookmarks = topics
             }
             return .none

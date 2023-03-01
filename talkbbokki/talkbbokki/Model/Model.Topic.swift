@@ -80,10 +80,10 @@ extension Model {
             
             var positionY: Double {
                 switch self {
-                case .beforePrev, .left: return 70.0
-                case .prev: return 50.0
-                case .next: return 50.0
-                case .afterNext, .right: return 70.0
+                case .beforePrev, .left: return 40.0
+                case .prev: return 20.0
+                case .next: return 20.0
+                case .afterNext, .right: return 40.0
                 case .selected: return 0.0
                 case .none: return 0.0
                 }

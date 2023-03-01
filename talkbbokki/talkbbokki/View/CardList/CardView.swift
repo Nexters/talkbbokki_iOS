@@ -32,7 +32,7 @@ struct CardView: View {
                     .foregroundColor(.white)
             }
             
-            VStack(spacing: -27) {
+            VStack(spacing: -38) {
                 if showAdsAlert {
                     VStack(alignment: .center, spacing: -1) {
                         Text("4개부터는 광고를\n보면 뽑을 수 있어요")
@@ -41,7 +41,7 @@ struct CardView: View {
                             .multilineTextAlignment(.center)
                             .font(.Pretendard.b3_regular)
                             .foregroundColor(.white)
-                            .padding([.top,.bottom], 8)
+                            .padding([.top,.bottom], 12)
                             .padding([.leading,.trailing], 16)
                             .background(Color.Talkbbokki.GrayScale.gray7)
                             .cornerRadius(8)

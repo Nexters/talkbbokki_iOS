@@ -49,30 +49,41 @@ struct DetailCardContainerView: View {
     
     var body: some View {
         WithViewStore(self.store) { viewStore in
-            ZStack {
+            ZStack(alignment: .top) {
                 Color(hex: color).ignoresSafeArea()
                 if isEnteredModal {
                     closeButton
                 }
                 
                 if onAppear {
-                    DetailFrontCardView(card: card, degree: $backDegree)
-                    .transition(.scale.animation(.spring())
-                        .combined(with: .move(edge: .bottom)))
-                    DetailBackCardView(card: card,
-                                       order: viewStore.order,
-                                       isSaveTopic: viewStore.isSaveTopic,
-                                       touchedDownload: $didTapDownload,
-                                       touchedRefreshOrder: $didTapRefreshOrder,
-                                       touchedBookMark: $didTapBookmark,
-                                       degree: $frontDegree,
-                                       didTapShare: $didTapShare)
+                    VStack {
+                        Spacer()
+                        ZStack {
+                            DetailFrontCardView(card: card, degree: $backDegree)
+                            .transition(.scale.animation(.spring())
+                                .combined(with: .move(edge: .bottom)))
+                            DetailBackCardView(card: card,
+                                               order: viewStore.order,
+                                               isSaveTopic: viewStore.isSaveTopic,
+                                               touchedDownload: $didTapDownload,
+                                               touchedRefreshOrder: $didTapRefreshOrder,
+                                               touchedBookMark: $didTapBookmark,
+                                               degree: $frontDegree,
+                                               didTapShare: $didTapShare)
+                        }
+                        Spacer()
+                    }
+                    .ignoresSafeArea()
                 }
                 
                 if viewStore.toastMessage.isNonEmpty {
-                    ToastView(message: viewStore.toastMessage)
-                        .opacity(viewStore.toastMessage.isNonEmpty ? 1.0 : 0.0)
-                        .transition(.opacity.animation(.easeOut))
+                    VStack {
+                        Spacer()
+                        ToastView(message: viewStore.toastMessage)
+                            .opacity(viewStore.toastMessage.isNonEmpty ? 1.0 : 0.0)
+                            .transition(.opacity.animation(.easeOut))
+                        Spacer()
+                    }
                 }
                 
                 if viewStore.isSuccessSavePhoto {
