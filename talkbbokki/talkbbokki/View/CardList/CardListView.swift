@@ -40,9 +40,10 @@ struct CardListView: View {
     @State private var didTapFinishedAlert: ButtonType = .none
     @State private var didTapDetailCard: ButtonType = .none
     @State private var isActiveNavigationLink = false
+    @State private var didAppear = false
     @ObservedObject var adViewModel = AdViewModel()
     private let adViewControllerRepresentable = AdViewControllerRepresentable()
-
+    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             GeometryReader { proxy in
@@ -119,9 +120,12 @@ struct CardListView: View {
                             viewStore.send(.changedCurrentIndex(currentIndex))
                         })
                         .onAppear {
+                            if didAppear == false {
+                                viewStore.send(.fetchCard(category: category.code))
+                                didAppear = true
+                            }
                             viewStore.send(.fetchViewCount)
                             viewStore.send(.fetchDidShowTopics)
-                            viewStore.send(.fetchCard(category: category.code))
                         }
                         
                         if (viewStore.topics
@@ -182,7 +186,7 @@ struct CardListView: View {
                            didShowTopicIds: [Int],
                            currentTopic: Model.Topic?) -> Bool {
         let didShow = didShowTopicIds.contains { $0 == (currentTopic?.topicID).orZero }
-        return (viewCount > 0 && viewCount >= 4) && !didShow
+        return viewCount.isAbleAdsCount && !didShow
     }
 }
 
@@ -250,7 +254,7 @@ struct CardContainerView: View {
 }
 
 private extension Int {
-    var isAbleAds: Bool {
-        return (self > 0 && self >= 4)
+    var isAbleAdsCount: Bool {
+        return (self > 0 && self%4 == 0)
     }
 }

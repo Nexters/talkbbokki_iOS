@@ -50,7 +50,7 @@ final class DetailCardReducer: ReducerProtocol {
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
         case .resetViewCount:
-            UserDefaultValue.Onboard.viewCount = 0
+            UserDefaultValue.Onboard.viewCount = 1
             return .none
         case .addViewCount(let topic):
             let topics = UserDefaultValue.Onboard.didShowTopic

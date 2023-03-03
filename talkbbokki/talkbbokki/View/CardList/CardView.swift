@@ -35,7 +35,7 @@ struct CardView: View {
             VStack(spacing: -38) {
                 if showAdsAlert {
                     VStack(alignment: .center, spacing: -1) {
-                        Text("4개부터는 광고를\n보면 뽑을 수 있어요")
+                        Text("광고를 보면\n 뽑을 수 있어요")
                             .lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
                             .multilineTextAlignment(.center)

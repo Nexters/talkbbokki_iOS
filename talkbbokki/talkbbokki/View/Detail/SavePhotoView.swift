@@ -18,7 +18,7 @@ struct SavePhotoView: View {
                 contentView(with: "TOPIC", message: contentMessage, height: 196)
                     .padding([.top, .leading,.trailing],24)
                 Divider()
-                contentView(with: "STARTER", message: starter)
+                contentView(with: "STARTER", message: starter, height: 56)
                     .padding([.leading,.trailing],24)
                     .padding(.bottom, 42)
             }

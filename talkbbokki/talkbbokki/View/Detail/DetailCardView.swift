@@ -48,53 +48,54 @@ struct DetailCardContainerView: View {
     private let durationAndDelay : CGFloat = 0.3
     
     var body: some View {
-        WithViewStore(self.store) { viewStore in
-            ZStack(alignment: .top) {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            ZStack {
                 Color(hex: color).ignoresSafeArea()
                 if isEnteredModal {
-                    closeButton
+                    closeButton.zIndex(0)
                 }
                 
-                if onAppear {
-                    VStack {
-                        Spacer()
-                        ZStack {
-                            DetailFrontCardView(card: card, degree: $backDegree)
-                            .transition(.scale.animation(.spring())
-                                .combined(with: .move(edge: .bottom)))
-                            DetailBackCardView(card: card,
-                                               order: viewStore.order,
-                                               isSaveTopic: viewStore.isSaveTopic,
-                                               touchedDownload: $didTapDownload,
-                                               touchedRefreshOrder: $didTapRefreshOrder,
-                                               touchedBookMark: $didTapBookmark,
-                                               degree: $frontDegree,
-                                               didTapShare: $didTapShare)
+                ZStack(alignment: .top) {
+                    if onAppear {
+                        Group {
+                            VStack {
+                                Spacer()
+                                ZStack {
+                                    DetailFrontCardView(card: card, degree: $backDegree)
+                                    DetailBackCardView(card: card,
+                                                       order: viewStore.order,
+                                                       isSaveTopic: viewStore.isSaveTopic,
+                                                       touchedDownload: $didTapDownload,
+                                                       touchedRefreshOrder: $didTapRefreshOrder,
+                                                       touchedBookMark: $didTapBookmark,
+                                                       degree: $frontDegree,
+                                                       didTapShare: $didTapShare)
+                                }
+                                Spacer()
+                            }
+                        }.transition(.scale.animation(.spring()).combined(with: .move(edge: .bottom)))
+                    }
+                    
+                    if viewStore.toastMessage.isNonEmpty {
+                        VStack {
+                            Spacer()
+                            ToastView(message: viewStore.toastMessage)
+                                .offset(y: -20.0)
+                                .opacity(viewStore.toastMessage.isNonEmpty ? 1.0 : 0.0)
+                                .transition(.opacity.animation(.easeOut))
                         }
-                        Spacer()
                     }
-                    .ignoresSafeArea()
-                }
-                
-                if viewStore.toastMessage.isNonEmpty {
-                    VStack {
-                        Spacer()
-                        ToastView(message: viewStore.toastMessage)
-                            .opacity(viewStore.toastMessage.isNonEmpty ? 1.0 : 0.0)
-                            .transition(.opacity.animation(.easeOut))
-                        Spacer()
+                    
+                    if viewStore.isSuccessSavePhoto {
+                        EmoticonAlert(imageName: "heartImg",
+                                      message: "이미지 저장 완료!")
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                                viewStore.send(.setIsSuccessSavePhoto)
+                            })
+                        }
                     }
-                }
-                
-                if viewStore.isSuccessSavePhoto {
-                    EmoticonAlert(imageName: "heartImg",
-                                  message: "이미지 저장 완료!")
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
-                            viewStore.send(.setIsSuccessSavePhoto)
-                        })
-                    }
-                }
+                }.ignoresSafeArea()
             }
             .onChange(of: didTapDownload, perform: { newValue in
                 viewStore.send(.like(card))
@@ -284,6 +285,7 @@ struct DetailBackCardView: View {
             }
             Text((order?.rule).orEmpty)
                 .font(.Pretendard.b1_bold)
+                .frame(height: 56, alignment: .topLeading)
                 .foregroundColor(.Talkbbokki.GrayScale.black)
         }.padding([.top, .leading, .trailing, .bottom], 24)
     }

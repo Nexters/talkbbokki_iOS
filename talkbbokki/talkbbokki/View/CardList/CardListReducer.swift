@@ -32,7 +32,7 @@ final class CardListReducer: ReducerProtocol {
         var errorMessage: String = ""
         var offsetX: Double = 0
         var currentIndex: Int = 0
-        var viewCount: Int = 0
+        var viewCount: Int = 1
     }
     
     enum Action {

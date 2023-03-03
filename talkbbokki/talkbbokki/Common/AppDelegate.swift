@@ -44,11 +44,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                                                                                     GADSimulatorID]
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         UserDefaultValue.Onboard.enterTime = Date()
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     private func resetUserDefault() {
         UserDefaultValue.Onboard.didShowTopic = []
-        UserDefaultValue.Onboard.viewCount = 0
+        UserDefaultValue.Onboard.viewCount = 1
         UserDefaultValue.Onboard.showBookmarkDeleteAlert = false
     }
 }

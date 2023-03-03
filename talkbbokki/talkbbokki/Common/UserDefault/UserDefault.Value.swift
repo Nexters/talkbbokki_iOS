@@ -19,7 +19,7 @@ extension UserDefaultValue {
         @OptionalUserDefault(key: UserDefaultKey.enterTime)
         static var enterTime: Date?
         
-        @UserDefault(key: UserDefaultKey.viewConut, defaultValue: 0)
+        @UserDefault(key: UserDefaultKey.viewConut, defaultValue: 1)
         static var viewCount: Int
         
         @UserDefault(key: UserDefaultKey.showBookmarkDeleteAlert, defaultValue: false)

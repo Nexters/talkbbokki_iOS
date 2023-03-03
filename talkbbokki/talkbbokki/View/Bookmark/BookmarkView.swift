@@ -118,7 +118,7 @@ struct BookmarkView: View {
         Button {
             presentationMode.wrappedValue.dismiss()
         } label: {
-            Image("Icon-arrow2_left-24")
+            Image("Icon-arrow2_left-24_white")
         }
     }
     
