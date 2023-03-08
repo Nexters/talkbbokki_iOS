@@ -136,12 +136,10 @@ struct SuggestView: View {
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {
-                Image(systemName: "xmark")
+                Image("Icon-Close-24")
                     .resizable()
                     .frame(width: 24, height: 24)
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .padding([.trailing],20)
+                    .padding([.trailing, .top],20)
             }
         }
     }
