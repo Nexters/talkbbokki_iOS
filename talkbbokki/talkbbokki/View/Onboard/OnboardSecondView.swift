@@ -27,7 +27,7 @@ struct OnboardSecondView: View {
                     .frame(width: 360,
                            height: 360)
             }
-        }
+        }.ignoresSafeArea()
     }
 }
 

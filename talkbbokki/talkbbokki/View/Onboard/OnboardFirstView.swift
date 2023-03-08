@@ -23,7 +23,7 @@ struct OnboardFirstView: View {
                                  hilightedText: "친밀도")
                 Image("Onboarding_img_01")
             }
-        }
+        }.ignoresSafeArea()
     }
 }
 

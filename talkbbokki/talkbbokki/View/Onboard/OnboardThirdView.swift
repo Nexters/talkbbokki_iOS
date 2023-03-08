@@ -25,6 +25,7 @@ struct OnboardThirdView: View {
                 Image("Onboarding_img_03")
             }
         }
+        .ignoresSafeArea()
     }
 }
 

@@ -27,6 +27,7 @@ struct OnboardView: View {
             .ignoresSafeArea()
             
             VStack {
+                Spacer().frame(height: 60)
                 OnboardTabView(selectedIndex: selectionID,
                                select: taps).padding([.top])
                 Spacer()

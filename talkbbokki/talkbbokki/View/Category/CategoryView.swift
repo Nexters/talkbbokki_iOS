@@ -55,23 +55,19 @@ struct CategoryView: View {
     @State private var present: Scene?
     let store: StoreOf<CategoryReducer>
     
-//    init(store: StoreOf<CategoryReducer>) {
-//        self.store = store
-//        let navBarAppearance = UINavigationBarAppearance()
-//        navBarAppearance.configureWithOpaqueBackground()
-//        navBarAppearance.backgroundColor = .clear
-////        UINavigationBar.appearance().standardAppearance = navBarAppearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-//    }
-    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationView {
-                ZStack {
+                ZStack(alignment:.top) {
                     Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
+                    
                     VStack(spacing: 0) {
-                        CategoryTitleView()
-                        Spacer().frame(maxHeight: 60.0)
+                        VStack {
+                            Spacer().frame(maxHeight: 88)
+                            CategoryTitleView()
+                            Spacer()
+                        }
+                        
                         VStack(spacing: Design.Constraint.CategoryView.bottomSpacing) {
                             CategoryCardGridView(touchedCardView: $selectedCategory,
                                                  categories: viewStore.categories)
