@@ -34,6 +34,10 @@ struct BookmarkView: View {
     @State private var didTapBookmark: Topic? = nil
     @State private var didTapDetail: Topic? = nil
     
+    init(store: StoreOf<BookmarkReducer>) {
+        self.store = store
+    }
+    
     var body: some View {
         WithViewStore(self.store, observe: {$0}) { viewStore in
             GeometryReader { proxy in

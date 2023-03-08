@@ -54,6 +54,16 @@ struct CategoryView: View {
     @State private var didTapAlert: ButtonType = .none
     @State private var present: Scene?
     let store: StoreOf<CategoryReducer>
+    
+//    init(store: StoreOf<CategoryReducer>) {
+//        self.store = store
+//        let navBarAppearance = UINavigationBarAppearance()
+//        navBarAppearance.configureWithOpaqueBackground()
+//        navBarAppearance.backgroundColor = .clear
+////        UINavigationBar.appearance().standardAppearance = navBarAppearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+//    }
+    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationView {
@@ -87,6 +97,9 @@ struct CategoryView: View {
                                   didTapButton: $didTapAlert)
                     }
                 }
+                .navigationBarBackground({
+                    Color.clear
+                })
                 .navigationBarHidden(true)
             }
             .onChange(of: didTapAlert, perform: { newValue in

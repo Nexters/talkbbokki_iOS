@@ -20,6 +20,7 @@
 		CE39E1152986504400E3C93D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1142986504400E3C93D /* Model.swift */; };
 		CE39E1172986507F00E3C93D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1162986507F00E3C93D /* CardView.swift */; };
 		CE39E119298650BB00E3C93D /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E118298650BB00E3C93D /* CardListView.swift */; };
+		CE44AEDB29B8C85A002004B3 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44AEDA29B8C85A002004B3 /* NavigationBar.swift */; };
 		CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498376299A9DCB008A3968 /* DetailCardReducer.swift */; };
 		CE498379299A9F25008A3968 /* Model.Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498378299A9F25008A3968 /* Model.Order.swift */; };
 		CE49837D299AA68C008A3968 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49837C299AA68C008A3968 /* Color.swift */; };
@@ -123,6 +124,7 @@
 		CE39E1142986504400E3C93D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CE39E1162986507F00E3C93D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CE39E118298650BB00E3C93D /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
+		CE44AEDA29B8C85A002004B3 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		CE498376299A9DCB008A3968 /* DetailCardReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardReducer.swift; sourceTree = "<group>"; };
 		CE498378299A9F25008A3968 /* Model.Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Order.swift; sourceTree = "<group>"; };
 		CE49837C299AA68C008A3968 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				CE618E1029A3D81B00076F7E /* Date+.swift */,
 				CE7E035229AB4ED600486623 /* Int+.swift */,
 				CE7E035729AB542300486623 /* String+.swift */,
+				CE44AEDA29B8C85A002004B3 /* NavigationBar.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -742,6 +745,7 @@
 				CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */,
 				CEB93F512998CA32001087B6 /* CardListReducer.swift in Sources */,
 				CE0F159D2993B9B000295B43 /* APIConfig.swift in Sources */,
+				CE44AEDB29B8C85A002004B3 /* NavigationBar.swift in Sources */,
 				CE7E034A29A9DBC500486623 /* SavePhotoView.swift in Sources */,
 				CE0F15A92993FC6C00295B43 /* Domain.Talkbbokki.swift in Sources */,
 				CEF3324329AE332C001486DC /* CoreData.Category.swift in Sources */,
