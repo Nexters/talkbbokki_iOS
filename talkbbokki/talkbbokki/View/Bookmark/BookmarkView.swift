@@ -22,16 +22,18 @@ private enum Design {
         static let alertSubMessage = "* 이 문구는 하루에 한 번만 노출됩니다."
         static let alertConfirm = "그래도 할래요"
         static let alertDeny = "안할래요"
+        static let emptyBookmark = "아직 즐겨찾기한 토픽이 없어요"
     }
 }
 
 struct BookmarkView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     let store: StoreOf<BookmarkReducer>
     @State private var showAlert = false
     @State private var didTapAlertButton: ButtonType = .none
     @State private var didTapBookmark: Topic? = nil
     @State private var didTapDetail: Topic? = nil
+    
     var body: some View {
         WithViewStore(self.store, observe: {$0}) { viewStore in
             GeometryReader { proxy in
@@ -67,6 +69,7 @@ struct BookmarkView: View {
                     }
                 }
                 .onChange(of: didTapBookmark, perform: { newValue in
+                    guard newValue != nil else { return }
                     if UserDefaultValue.Onboard.showBookmarkDeleteAlert {
                         didTapAlertButton = .confirm()
                     } else {
@@ -79,6 +82,7 @@ struct BookmarkView: View {
                     if case .confirm = newValue {
                         viewStore.send(.removeBookmark(Int(didTapBookmark?.topicID ?? 0)))
                     }
+                    didTapBookmark = nil
                     didTapAlertButton = .none
                     if showAlert {
                         showAlert.toggle()
@@ -102,13 +106,13 @@ struct BookmarkView: View {
                     viewStore.send(.fetchBookmarkList)
                 }
             }
-        }
+        }.debug("[BookmarkView] view store")
     }
     
     private var emptyView: some View {
         VStack(spacing: 16) {
             Image("empty")
-            Text("아직 즐겨찾기한 토픽이 없어요")
+            Text(Design.Text.emptyBookmark)
                 .font(.Pretendard.b2_regular)
                 .foregroundColor(.Talkbbokki.GrayScale.gray5)
         }

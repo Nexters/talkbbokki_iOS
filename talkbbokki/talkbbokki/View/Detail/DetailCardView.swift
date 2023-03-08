@@ -42,7 +42,7 @@ struct DetailCardContainerView: View {
     @State private var didTapRefreshOrder = false
     @State private var didTapBookmark = false
     @State private var didTapShare = false
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     private let width : CGFloat = 200
     private let height : CGFloat = 250
     private let durationAndDelay : CGFloat = 0.3

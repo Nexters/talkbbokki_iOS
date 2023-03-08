@@ -93,7 +93,7 @@ extension CoreDataManager {
             return await contextSave()
         }
         
-        func deleteTopic(id: Int) async -> Bool {
+        func deleteTopic(id: Int) -> Bool {
             let fetchRequest: NSFetchRequest<NSFetchRequestResult>
             = NSFetchRequest<NSFetchRequestResult>(entityName: "Topic")
             fetchRequest.predicate = NSPredicate(format: "topicID == %d", id)
@@ -109,7 +109,7 @@ extension CoreDataManager {
                 return false
             }
             
-            return await contextSave()
+            return contextSave()
         }
     }
 }

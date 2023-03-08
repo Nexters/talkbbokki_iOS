@@ -21,12 +21,8 @@ final class BookmarkReducer: ReducerProtocol {
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
         case .removeBookmark(let topicID):
-            return EffectTask.run { send in
-                let isDelete = await CoreDataManager.shared.topic.deleteTopic(id: topicID)
-                if isDelete {
-                    await send.send(.fetchBookmarkList)
-                }
-            }
+            _ = CoreDataManager.shared.topic.deleteTopic(id: topicID)
+            return EffectTask.send(.fetchBookmarkList)
         case .fetchBookmarkList:
             if let topics = CoreDataManager.shared.topic.fetchTopics() {
                 state.bookmarks = topics

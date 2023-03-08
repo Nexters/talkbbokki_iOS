@@ -95,13 +95,11 @@ final class DetailCardReducer: ReducerProtocol {
             state.toastMessage = message
             return .none
         case .didTapBookMark(let topic, let color):
-            return EffectTask.run { [state] send in
-                if state.isSaveTopic {
-                    let isDelete = await CoreDataManager.shared.topic.deleteTopic(id: topic.topicID)
-                    if isDelete {
-                        await send.send(.setSaveTopic(false))
-                    }
-                } else {
+            if state.isSaveTopic {
+                _ = CoreDataManager.shared.topic.deleteTopic(id: topic.topicID)
+                return EffectTask.send(.setSaveTopic(false))
+            } else {
+                return EffectTask.run { send in
                     let isSave = await CoreDataManager.shared.topic.save(topic: topic, bgColor: color)
                     if isSave {
                         await send.send(.setToastMessage("즐겨찾기 등록 완료!"))
