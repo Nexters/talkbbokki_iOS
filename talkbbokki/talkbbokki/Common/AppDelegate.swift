@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import FirebaseCore
 import FirebaseDynamicLinks
+import FirebaseMessaging
 import GoogleMobileAds
 
 //test 광고 ID: ca-app-pub-3940256099942544/4411468910
@@ -16,6 +17,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         config()
+        application.registerForRemoteNotifications()
         return true
     }
     
@@ -45,11 +47,37 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         UserDefaultValue.Onboard.enterTime = Date()
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        registerNotification()
+        registerToken()
     }
     
     private func resetUserDefault() {
         UserDefaultValue.Onboard.didShowTopic = []
         UserDefaultValue.Onboard.viewCount = 1
         UserDefaultValue.Onboard.showBookmarkDeleteAlert = false
+    }
+    
+    private func registerNotification() {
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+          options: authOptions,
+          completionHandler: { _, _ in }
+        )
+    }
+    
+    private func registerToken() {
+        Messaging.messaging().delegate = self
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("fcmToken: \(fcmToken)")
     }
 }
