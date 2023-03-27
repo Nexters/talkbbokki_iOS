@@ -50,7 +50,7 @@ final class CardListReducer: ReducerProtocol {
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
         case .fetchDidShowTopics:
-            state.didShowTopicIds = UserDefaultValue.Onboard.didShowTopic
+            state.didShowTopicIds = UserDefaultValue.didShowTopic
             return .none
         case .fetchCard(let category):
             return EffectTask.run { send in
@@ -64,7 +64,7 @@ final class CardListReducer: ReducerProtocol {
                 return .send(.setError(error))
             }
         case .fetchViewCount:
-            state.viewCount = UserDefaultValue.Onboard.viewCount
+            state.viewCount = UserDefaultValue.viewCount
             return .none
         case .setTopics(let topics):
             state.topics = topics.enumerated().map { index, topic in
@@ -122,11 +122,17 @@ final class CardListReducer: ReducerProtocol {
     
     private func fetchTopics(with category: String) async -> [Model.Topic] {
         return await withCheckedContinuation({ contiuation in
+            if let topics = UserDefaultValue.topics?[category] {
+                contiuation.resume(returning: topics.shuffled())
+                return
+            }
+            
             API.Topics(category: category).request()
                 .first()
                 .print("API.Topics()")
                 .sink { _ in
                 } receiveValue: { topics in
+                    UserDefaultValue.topics?[category] = topics
                     contiuation.resume(returning: topics)
                 }.store(in: &bag)
         })

@@ -74,10 +74,10 @@ struct BookmarkView: View {
                 }
                 .onChange(of: didTapBookmark, perform: { newValue in
                     guard newValue != nil else { return }
-                    if UserDefaultValue.Onboard.showBookmarkDeleteAlert {
+                    if UserDefaultValue.showBookmarkDeleteAlert {
                         didTapAlertButton = .confirm()
                     } else {
-                        UserDefaultValue.Onboard.showBookmarkDeleteAlert = true
+                        UserDefaultValue.showBookmarkDeleteAlert = true
                         showAlert.toggle()
                     }
                 })
@@ -108,6 +108,7 @@ struct BookmarkView: View {
                 .navigationBarItems(leading: backButton)
                 .onAppear {
                     viewStore.send(.fetchBookmarkList)
+                    Log.Firebase.sendLog(key: .click_bookmark_menu)
                 }
             }
         }.debug("[BookmarkView] view store")

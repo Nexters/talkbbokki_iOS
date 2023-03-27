@@ -110,6 +110,9 @@ struct CategoryView: View {
                     viewStore.send(.showAlert)
                     return
                 }
+
+                Log.Firebase.sendCategory(level: Model.Category.Level(rawValue: newValue.code) ?? .event,
+                                          text: newValue.text)
                 present = .cardList
             })
             .onChange(of: didTapNavigationButton, perform: { newValue in

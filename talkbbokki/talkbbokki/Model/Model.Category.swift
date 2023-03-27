@@ -7,6 +7,15 @@
 
 import Foundation
 
+extension Model.Category {
+    enum Level: String {
+        case level1
+        case level2
+        case level3
+        case event
+    }
+}
+
 extension Model {
     struct Category: Codable, Equatable, Identifiable {
         var id: String { self.code }

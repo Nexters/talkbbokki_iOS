@@ -102,15 +102,18 @@ struct DetailCardContainerView: View {
                 }.ignoresSafeArea()
             }
             .onChange(of: didTapDownload, perform: { newValue in
+                Log.Firebase.sendLog(key: .click_card_download, parameters: ["topic_id": card.topicID.toString])
                 viewStore.send(.savePhoto(card))
             })
             .onChange(of: didTapRefreshOrder, perform: { newValue in
                 viewStore.send(.fetchOrder)
             })
             .onChange(of: didTapBookmark, perform: { newValue in
+                Log.Firebase.sendLog(key: .click_card_bookmark, parameters: ["topic_id": card.topicID.toString])
                 viewStore.send(.didTapBookMark(card, color))
             })
             .onChange(of: didTapShare, perform: { newValue in
+                Log.Firebase.sendLog(key: .click_card_share, parameters: ["topic_id": card.topicID.toString])
             })
             .onChange(of: viewStore.toastMessage, perform: { newValue in
                 guard newValue.isNonEmpty else { return }
@@ -121,6 +124,7 @@ struct DetailCardContainerView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
             .onAppear(perform: {
+                Log.Firebase.sendLog(key: .screen_card_detail, parameters: ["topic_id": card.topicID.toString])
                 viewStore.send(.fetchSaveTopic(id: card.topicID))
                 viewStore.send(.addViewCount(card))
                 viewStore.send(.saveTopic(card))

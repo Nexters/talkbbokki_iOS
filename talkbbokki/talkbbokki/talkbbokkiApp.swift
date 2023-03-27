@@ -18,7 +18,7 @@ struct talkbbokkiApp: App {
     
     @State private var scene: ViewScene = .splash
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @AppStorage("didShowOnboard") var didShowOnboard : Bool = UserDefaultValue.Onboard.didShow
+    @AppStorage("didShowOnboard") var didShowOnboard : Bool = UserDefaultValue.didShow
     var body: some Scene {
         WindowGroup {
             ZStack {

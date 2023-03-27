@@ -88,6 +88,8 @@
 		CEA48CEC29A2875600B39F84 /* OnboardThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CEB29A2875600B39F84 /* OnboardThirdView.swift */; };
 		CEA48CEE29A295DA00B39F84 /* AcitivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */; };
 		CEA48CF029A2A31800B39F84 /* EmoticonAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA48CEF29A2A31800B39F84 /* EmoticonAlert.swift */; };
+		CEAE6D0329D1B91700A00923 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE6D0229D1B91700A00923 /* Log.swift */; };
+		CEAE6D0529D1B93F00A00923 /* Log.Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE6D0429D1B93F00A00923 /* Log.Firebase.swift */; };
 		CEB93F2F2996B54A001087B6 /* Optional+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F2E2996B54A001087B6 /* Optional+.swift */; };
 		CEB93F322997F776001087B6 /* ConfirmButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F312997F776001087B6 /* ConfirmButtonView.swift */; };
 		CEB93F352997FD3F001087B6 /* DetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB93F342997FD3F001087B6 /* DetailCardView.swift */; };
@@ -190,6 +192,8 @@
 		CEA48CEB29A2875600B39F84 /* OnboardThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardThirdView.swift; sourceTree = "<group>"; };
 		CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcitivityViewController.swift; sourceTree = "<group>"; };
 		CEA48CEF29A2A31800B39F84 /* EmoticonAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonAlert.swift; sourceTree = "<group>"; };
+		CEAE6D0229D1B91700A00923 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		CEAE6D0429D1B93F00A00923 /* Log.Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.Firebase.swift; sourceTree = "<group>"; };
 		CEB93F2E2996B54A001087B6 /* Optional+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+.swift"; sourceTree = "<group>"; };
 		CEB93F312997F776001087B6 /* ConfirmButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButtonView.swift; sourceTree = "<group>"; };
 		CEB93F342997FD3F001087B6 /* DetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardView.swift; sourceTree = "<group>"; };
@@ -422,9 +426,19 @@
 			path = Onboard;
 			sourceTree = "<group>";
 		};
+		CEAE6D0129D1B90A00A00923 /* LogManager */ = {
+			isa = PBXGroup;
+			children = (
+				CEAE6D0229D1B91700A00923 /* Log.swift */,
+				CEAE6D0429D1B93F00A00923 /* Log.Firebase.swift */,
+			);
+			path = LogManager;
+			sourceTree = "<group>";
+		};
 		CEB93F2D2996B541001087B6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CEAE6D0129D1B90A00A00923 /* LogManager */,
 				CEF3323D29AE295C001486DC /* FileUtil */,
 				CE7E034C29AB445800486623 /* CoreData */,
 				CEA48CD929A2774D00B39F84 /* UserDefault */,
@@ -810,9 +824,11 @@
 				CEA48CE829A2837800B39F84 /* OnboardSecondView.swift in Sources */,
 				CEB93F352997FD3F001087B6 /* DetailCardView.swift in Sources */,
 				CEA48CCF29A272AC00B39F84 /* SplashView.swift in Sources */,
+				CEAE6D0329D1B91700A00923 /* Log.swift in Sources */,
 				CEA48CCB29A271AE00B39F84 /* LottieView.swift in Sources */,
 				CE0F15AB2993FD2800295B43 /* API.swift in Sources */,
 				CEB93F322997F776001087B6 /* ConfirmButtonView.swift in Sources */,
+				CEAE6D0529D1B93F00A00923 /* Log.Firebase.swift in Sources */,
 				CE7E035629AB538800486623 /* ToastView.swift in Sources */,
 				CE39E119298650BB00E3C93D /* CardListView.swift in Sources */,
 				CEA48CEE29A295DA00B39F84 /* AcitivityViewController.swift in Sources */,

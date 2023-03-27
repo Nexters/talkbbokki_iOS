@@ -45,7 +45,7 @@ struct OnboardView: View {
                 selectionID += 1
                 return
             }
-            UserDefaultValue.Onboard.didShow = true
+            UserDefaultValue.didShow = true
             didShowOnboard.toggle()
         }
     }

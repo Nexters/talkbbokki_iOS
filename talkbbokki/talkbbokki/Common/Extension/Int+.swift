@@ -11,4 +11,8 @@ extension Int {
     var int32: Int32 {
         Int32(self)
     }
+    
+    var toString: String {
+        "\(self)"
+    }
 }

@@ -49,22 +49,22 @@ final class DetailCardReducer: ReducerProtocol {
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
         case .resetViewCount:
-            UserDefaultValue.Onboard.viewCount = 1
+            UserDefaultValue.viewCount = 1
             return .none
         case .addViewCount(let topic):
-            let topics = UserDefaultValue.Onboard.didShowTopic
-            var viewCount = UserDefaultValue.Onboard.viewCount
+            let topics = UserDefaultValue.didShowTopic
+            var viewCount = UserDefaultValue.viewCount
             if topics.contains(where: { $0 == topic.topicID }) == false {
                 viewCount += 1
             }
-            UserDefaultValue.Onboard.viewCount = viewCount
+            UserDefaultValue.viewCount = viewCount
             return .none
         case .saveTopic(let topic):
-            var topics = UserDefaultValue.Onboard.didShowTopic
+            var topics = UserDefaultValue.didShowTopic
             if topics.contains(where: { $0 == topic.topicID }) == false {
                 topics.append(topic.topicID)
             }
-            UserDefaultValue.Onboard.didShowTopic = topics
+            UserDefaultValue.didShowTopic = topics
             return .none
         case .fetchOrder:
             return EffectTask.run { send in
