@@ -12,15 +12,24 @@ struct API { }
 
 extension API {
     struct Category { }
+    
     struct Topics {
         let category: String
     }
+    
     struct RecommendOrder { }
+    
     struct Suggest {
         let text: String
     }
+
     struct Like {
         let topicID: Int
+    }
+    
+    struct Token {
+        let uuid: String
+        let pushToken: String
     }
 }
 
@@ -95,6 +104,21 @@ extension API.Like: APIConfig {
     static let serviceError = TalkbbokkiError.self
     
     var path: String { return "/api/topics/\(topicID)/view-count"}
+    var method: HTTPMethod { return .post }
+    var parameters: API.Parameter? {
+        return nil
+    }
+    
+    func parse(_: Data) throws -> Void {
+        return ()
+    }
+}
+
+extension API.Token: APIConfig {
+    static let domainConfig = Domain.Talkbbokki.self
+    static let serviceError = TalkbbokkiError.self
+    
+    var path: String { return "/api/users?uuid=\(uuid)&pushToken=\(pushToken)"}
     var method: HTTPMethod { return .post }
     var parameters: API.Parameter? {
         return nil

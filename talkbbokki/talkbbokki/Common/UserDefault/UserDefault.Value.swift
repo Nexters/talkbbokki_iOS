@@ -24,6 +24,9 @@ extension UserDefaultValue {
         
         @UserDefault(key: UserDefaultKey.showBookmarkDeleteAlert, defaultValue: false)
         static var showBookmarkDeleteAlert: Bool
+        
+        @UserDefault(key: UserDefaultKey.pushToken, defaultValue: "")
+        static var pushToken: String
     }
 }
 

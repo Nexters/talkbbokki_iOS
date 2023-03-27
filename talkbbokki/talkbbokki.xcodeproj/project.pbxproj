@@ -16,6 +16,7 @@
 		CE0F15AB2993FD2800295B43 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15AA2993FD2800295B43 /* API.swift */; };
 		CE0F15AD2993FD8F00295B43 /* Talkbbokki.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15AC2993FD8F00295B43 /* Talkbbokki.Error.swift */; };
 		CE0F15AF2994007300295B43 /* Model.Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15AE2994007300295B43 /* Model.Category.swift */; };
+		CE1F2A5929BBA0A100028EF8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F2A5829BBA0A100028EF8 /* Utils.swift */; };
 		CE25830E29BB94B70005001F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE25830D29BB94B70005001F /* FirebaseAnalytics */; };
 		CE25831029BB94B70005001F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = CE25830F29BB94B70005001F /* FirebaseAnalyticsOnDeviceConversion */; };
 		CE25831229BB94B70005001F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE25831129BB94B70005001F /* FirebaseAnalyticsSwift */; };
@@ -145,6 +146,8 @@
 		CE0F15AC2993FD8F00295B43 /* Talkbbokki.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Talkbbokki.Error.swift; sourceTree = "<group>"; };
 		CE0F15AE2994007300295B43 /* Model.Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Category.swift; sourceTree = "<group>"; };
 		CE0F15B02994025F00295B43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CE1F2A5829BBA0A100028EF8 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		CE1F2A5A29BBA7CB00028EF8 /* talkbbokkiRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = talkbbokkiRelease.entitlements; sourceTree = "<group>"; };
 		CE39E1122986503900E3C93D /* Model.Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Topic.swift; sourceTree = "<group>"; };
 		CE39E1142986504400E3C93D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CE39E1162986507F00E3C93D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -427,6 +430,7 @@
 				CEA48CD929A2774D00B39F84 /* UserDefault */,
 				CEA48CD629A2770200B39F84 /* Extension */,
 				CE3DDCCB29A6849000B57E8F /* GoogleAds */,
+				CE1F2A5829BBA0A100028EF8 /* Utils.swift */,
 				CEB93F52299940DF001087B6 /* HapticManager.swift */,
 				CE64A506299BE9D1004C4E8D /* AppDelegate.swift */,
 			);
@@ -506,6 +510,7 @@
 		CEC6327B297EBB5E00D9011E /* talkbbokki */ = {
 			isa = PBXGroup;
 			children = (
+				CE1F2A5A29BBA7CB00028EF8 /* talkbbokkiRelease.entitlements */,
 				CEB93F3A2998BFE2001087B6 /* Resources */,
 				CE0F15B02994025F00295B43 /* Info.plist */,
 				CEB93F2D2996B541001087B6 /* Common */,
@@ -799,6 +804,7 @@
 				CEA48CD829A2771D00B39F84 /* UserDefaultKey.swift in Sources */,
 				CEA48CD529A276CB00B39F84 /* UserDefault.swift in Sources */,
 				CE0F15A42993F5DD00295B43 /* APIConfig.Parameters.swift in Sources */,
+				CE1F2A5929BBA0A100028EF8 /* Utils.swift in Sources */,
 				CE0F15A22993BBF000295B43 /* APIConfig+Error.swift in Sources */,
 				CEF3324129AE3324001486DC /* CoreData.Topic.swift in Sources */,
 				CEA48CE829A2837800B39F84 /* OnboardSecondView.swift in Sources */,
@@ -984,7 +990,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"talkbbokki/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 594TR8CRP9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = talkbbokki/Info.plist;
@@ -996,7 +1002,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1005,7 +1011,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.10;
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = gabriel.jhh.talkbbokki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1025,7 +1031,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = talkbbokki/talkbbokki.entitlements;
+				CODE_SIGN_ENTITLEMENTS = talkbbokki/talkbbokkiRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1044,7 +1050,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1053,7 +1059,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.10;
 				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = gabriel.jhh.talkbbokki;
 				PRODUCT_NAME = "$(TARGET_NAME)";

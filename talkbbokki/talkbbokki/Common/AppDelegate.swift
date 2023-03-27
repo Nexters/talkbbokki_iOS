@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 import FirebaseCore
 import FirebaseDynamicLinks
 import FirebaseMessaging
@@ -14,6 +15,7 @@ import GoogleMobileAds
 
 //test 광고 ID: ca-app-pub-3940256099942544/4411468910
 class AppDelegate: NSObject, UIApplicationDelegate {
+    private var bag = Set<AnyCancellable>()
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         config()
@@ -33,6 +35,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             return true
           }
           return false
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
+        
+        // Print full message.
+        print(userInfo)
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        return UIBackgroundFetchResult.newData
     }
     
     private func config() {
@@ -73,11 +87,60 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
+        let userInfo = notification.request.content.userInfo
+
+            // With swizzling disabled you must let Messaging know about the message, for Analytics
+            // Messaging.messaging().appDidReceiveMessage(userInfo)
+
+            // ...
+
+            // Print full message.
+            print(userInfo)
+
+            // Change this to your preferred presentation option
+            return [[.alert, .sound]]
+    }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        let userInfo = response.notification.request.content.userInfo
+
+            // ...
+
+            // With swizzling disabled you must let Messaging know about the message, for Analytics
+            // Messaging.messaging().appDidReceiveMessage(userInfo)
+
+            // Print full message.
+            print(userInfo)
+    }
 }
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("fcmToken: \(fcmToken)")
+        print("Firebase registration token: \(String(describing: fcmToken))")
+        
+        let dataDict: [String: String] = ["token": fcmToken ?? ""]
+        NotificationCenter.default.post(
+            name: Notification.Name("FCMToken"),
+            object: nil,
+            userInfo: dataDict
+        )
+        
+        if UserDefaultValue.Onboard.pushToken != fcmToken.orEmpty {
+            postToken(token: fcmToken.orEmpty)
+            UserDefaultValue.Onboard.pushToken = fcmToken.orEmpty
+        }
+    }
+}
+
+extension AppDelegate {
+    private func postToken(token: String) {
+        API.Token(uuid: Utils.getDeviceUUID(), pushToken: token)
+            .request()
+            .sink { _ in
+            } receiveValue: { _ in
+                print("[AppDelegate] postToken")
+            }.store(in: &bag)
+
     }
 }

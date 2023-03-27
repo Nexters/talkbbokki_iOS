@@ -13,4 +13,5 @@ enum UserDefaultKey {
     static let enterTime = "enterTime"
     static let viewConut = "viewCount"
     static let showBookmarkDeleteAlert = "showBookmarkDeleteAlert"
+    static let pushToken = "pushToken"
 }
