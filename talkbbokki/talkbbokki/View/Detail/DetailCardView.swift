@@ -24,6 +24,10 @@ private enum Design {
     }
 }
 
+private enum Constant {
+    static let viewCount = 5.0
+}
+
 struct DetailCardContainerView: View {
     let store: StoreOf<DetailCardReducer>
     let card: Model.Topic
@@ -98,7 +102,6 @@ struct DetailCardContainerView: View {
                 }.ignoresSafeArea()
             }
             .onChange(of: didTapDownload, perform: { newValue in
-                viewStore.send(.like(card))
                 viewStore.send(.savePhoto(card))
             })
             .onChange(of: didTapRefreshOrder, perform: { newValue in
@@ -108,7 +111,6 @@ struct DetailCardContainerView: View {
                 viewStore.send(.didTapBookMark(card, color))
             })
             .onChange(of: didTapShare, perform: { newValue in
-                viewStore.send(.like(card))
             })
             .onChange(of: viewStore.toastMessage, perform: { newValue in
                 guard newValue.isNonEmpty else { return }
@@ -123,6 +125,11 @@ struct DetailCardContainerView: View {
                 viewStore.send(.addViewCount(card))
                 viewStore.send(.saveTopic(card))
                 viewStore.send(.fetchOrder)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + Constant.viewCount, execute: {
+                    viewStore.send(.like(card))
+                })
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                     withAnimation(.spring(dampingFraction: 0.7, blendDuration: 0.9)) {
                         onAppear.toggle()

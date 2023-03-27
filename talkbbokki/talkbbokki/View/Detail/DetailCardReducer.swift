@@ -44,7 +44,6 @@ final class DetailCardReducer: ReducerProtocol {
     init(topic: Model.Topic, color: Int) {
         self.topic = topic
         self.color = color
-        NotificationCenter.default.addObserver(self, selector: #selector(screenshotTaken), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -142,10 +141,5 @@ final class DetailCardReducer: ReducerProtocol {
             .sink { _ in
             } receiveValue: { _ in
             }.store(in: &bag)
-    }
-    
-    @objc
-    private func screenshotTaken() {
-        requestLike(with: self.topic)
     }
 }
