@@ -75,7 +75,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UserDefaultValue.didShowTopic = []
         UserDefaultValue.viewCount = 1
         UserDefaultValue.showBookmarkDeleteAlert = false
-        UserDefaultValue.topics = [String: [Model.Topic]]()
+        UserDefaultValue.topicDict = [String: [Model.Topic]]()
     }
     
     private func registerNotification() {

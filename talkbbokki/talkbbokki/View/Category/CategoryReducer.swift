@@ -65,6 +65,7 @@ class CategoryReducer: ReducerProtocol {
                        savedCategories.compare(with: categories) {
                         return Just(savedCategories.convert).eraseToAnyPublisher()
                     } else {
+                        UserDefaultValue.topicDict = [String: [Model.Topic]]()
                         return self.downloadImages(with: categories).eraseToAnyPublisher()
                     }
                 }

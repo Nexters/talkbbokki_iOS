@@ -122,7 +122,7 @@ final class CardListReducer: ReducerProtocol {
     
     private func fetchTopics(with category: String) async -> [Model.Topic] {
         return await withCheckedContinuation({ contiuation in
-            if let topics = UserDefaultValue.topics?[category] {
+            if let topics = UserDefaultValue.topicDict?[category] {
                 contiuation.resume(returning: topics.shuffled())
                 return
             }
@@ -132,7 +132,7 @@ final class CardListReducer: ReducerProtocol {
                 .print("API.Topics()")
                 .sink { _ in
                 } receiveValue: { topics in
-                    UserDefaultValue.topics?[category] = topics
+                    UserDefaultValue.topicDict?[category] = topics
                     contiuation.resume(returning: topics)
                 }.store(in: &bag)
         })

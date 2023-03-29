@@ -29,6 +29,6 @@ extension UserDefaultValue {
     static var pushToken: String
     
     @StructUserDefault(key: UserDefaultKey.topics, defaultValue: [String : [Model.Topic]]())
-    static var topics: [String : [Model.Topic]]?
+    static var topicDict: [String : [Model.Topic]]?
 }
 

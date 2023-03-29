@@ -239,7 +239,7 @@ struct CardContainerView: View {
                                         self.currentIndex += 1
                                     }
                                 }
-                                self.x = currentIndex == 0 ? 0 : -(cardX * Double(self.currentIndex)) - 20
+                                self.x = currentIndex == 0 ? 0 : -(cardX * Double(self.currentIndex)) - 24
                             })
                     ).onTapGesture {
                         touchedCard = .confirm()
