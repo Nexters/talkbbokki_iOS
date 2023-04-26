@@ -11,7 +11,12 @@ struct OnboardView: View {
     @AppStorage("didShowOnboard") var didShowOnboard : Bool = false
     @State private var didTapNext = false
     @State private var selectionID = 0
-    @State private var taps: [SelectType] = [.selected, .nonSelected, .nonSelected]
+    @State private var taps: [SelectType] = [
+        .selected,
+        .nonSelected,
+        .nonSelected,
+        .nonSelected
+    ]
     var body: some View {
         ZStack {
             TabView(selection: $selectionID) {
@@ -21,6 +26,8 @@ struct OnboardView: View {
                     .tag(1)
                 OnboardThirdView()
                     .tag(2)
+                OnboardFourthView()
+                    .tag(3)
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .animation(.easeOut(duration: 0.2), value: selectionID)
@@ -32,7 +39,7 @@ struct OnboardView: View {
                                select: taps).padding([.top])
                 Spacer()
             }
-            OnboardNextButton(isFinishedPage: selectionID >= 2,
+            OnboardNextButton(isFinishedPage: selectionID >= taps.count - 1,
                               didTapButton: $didTapNext)
         }
         .onChange(of: selectionID, perform: { newValue in
@@ -41,7 +48,7 @@ struct OnboardView: View {
             taps[selectionID] = .selected
         })
         .onChange(of: didTapNext) { newValue in
-            guard selectionID >= 2 else {
+            guard selectionID >= taps.count - 1 else {
                 selectionID += 1
                 return
             }

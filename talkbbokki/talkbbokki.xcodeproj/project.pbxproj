@@ -48,10 +48,12 @@
 		CE39E1152986504400E3C93D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1142986504400E3C93D /* Model.swift */; };
 		CE39E1172986507F00E3C93D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E1162986507F00E3C93D /* CardView.swift */; };
 		CE39E119298650BB00E3C93D /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E118298650BB00E3C93D /* CardListView.swift */; };
+		CE3DAC2F29F97865007C900D /* NicknameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DAC2E29F97865007C900D /* NicknameSettingView.swift */; };
 		CE44AEDB29B8C85A002004B3 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44AEDA29B8C85A002004B3 /* NavigationBar.swift */; };
 		CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498376299A9DCB008A3968 /* DetailCardReducer.swift */; };
 		CE498379299A9F25008A3968 /* Model.Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498378299A9F25008A3968 /* Model.Order.swift */; };
 		CE49837D299AA68C008A3968 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49837C299AA68C008A3968 /* Color.swift */; };
+		CE588A4029F97A77003EAEC2 /* OnboardFourthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE588A3F29F97A77003EAEC2 /* OnboardFourthView.swift */; };
 		CE618E0A29A3AA2900076F7E /* SuggestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE618E0929A3AA2900076F7E /* SuggestView.swift */; };
 		CE618E0D29A3CB3600076F7E /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = CE618E0C29A3CB3600076F7E /* Introspect */; };
 		CE618E1129A3D81B00076F7E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE618E1029A3D81B00076F7E /* Date+.swift */; };
@@ -154,10 +156,12 @@
 		CE39E1142986504400E3C93D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CE39E1162986507F00E3C93D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CE39E118298650BB00E3C93D /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
+		CE3DAC2E29F97865007C900D /* NicknameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingView.swift; sourceTree = "<group>"; };
 		CE44AEDA29B8C85A002004B3 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		CE498376299A9DCB008A3968 /* DetailCardReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardReducer.swift; sourceTree = "<group>"; };
 		CE498378299A9F25008A3968 /* Model.Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Order.swift; sourceTree = "<group>"; };
 		CE49837C299AA68C008A3968 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		CE588A3F29F97A77003EAEC2 /* OnboardFourthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardFourthView.swift; sourceTree = "<group>"; };
 		CE618E0929A3AA2900076F7E /* SuggestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestView.swift; sourceTree = "<group>"; };
 		CE618E1029A3D81B00076F7E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		CE64A4FF299BDE58004C4E8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -422,6 +426,8 @@
 				CEA48CE329A27E2400B39F84 /* OnboardFirstView.swift */,
 				CEA48CE729A2837800B39F84 /* OnboardSecondView.swift */,
 				CEA48CEB29A2875600B39F84 /* OnboardThirdView.swift */,
+				CE588A3F29F97A77003EAEC2 /* OnboardFourthView.swift */,
+				CE3DAC2E29F97865007C900D /* NicknameSettingView.swift */,
 			);
 			path = Onboard;
 			sourceTree = "<group>";
@@ -807,6 +813,7 @@
 				CEA48CE629A27E8A00B39F84 /* OnboardTitleView.swift in Sources */,
 				CE618E1129A3D81B00076F7E /* Date+.swift in Sources */,
 				CE39E1132986503900E3C93D /* Model.Topic.swift in Sources */,
+				CE3DAC2F29F97865007C900D /* NicknameSettingView.swift in Sources */,
 				CE498379299A9F25008A3968 /* Model.Order.swift in Sources */,
 				CEA48CEC29A2875600B39F84 /* OnboardThirdView.swift in Sources */,
 				CEC6327F297EBB5E00D9011E /* ContentView.swift in Sources */,
@@ -817,6 +824,7 @@
 				CE0F15A02993BB5B00295B43 /* APIConfig.Error.swift in Sources */,
 				CEA48CD829A2771D00B39F84 /* UserDefaultKey.swift in Sources */,
 				CEA48CD529A276CB00B39F84 /* UserDefault.swift in Sources */,
+				CE588A4029F97A77003EAEC2 /* OnboardFourthView.swift in Sources */,
 				CE0F15A42993F5DD00295B43 /* APIConfig.Parameters.swift in Sources */,
 				CE1F2A5929BBA0A100028EF8 /* Utils.swift in Sources */,
 				CE0F15A22993BBF000295B43 /* APIConfig+Error.swift in Sources */,
