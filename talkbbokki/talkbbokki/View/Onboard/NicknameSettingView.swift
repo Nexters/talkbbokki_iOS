@@ -6,31 +6,42 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct NicknameSettingView: View {
-    enum NickNameError {
-        case validString
-        case overCount
-        case exists
-        case minimumCount
-    }
+    let store: StoreOf<NickNameSettingReducer>
+    @Environment(\.presentationMode) private var presentationMode
+    @State private var didTapConfirm: ButtonType = .none
 
-    @State private var nickName: String = ""
     var body: some View {
-        ZStack {
-            Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
-            VStack(alignment: .center, spacing: 42) {
-                navigationView
-                
-                VStack(spacing: 16) {
-                    guideText
-                    VStack(spacing: 8) {
-                        nickNameField
-                        errorMessage
+        WithViewStore(store) { viewStore in
+            ZStack {
+                Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
+                VStack(alignment: .center, spacing: 42) {
+                    navigationView
+                    VStack(spacing: 16) {
+                        guideText
+                        VStack(spacing: 8) {
+                            nickNameField(textField: {
+                                TextField("", text: Binding(get: { viewStore.nickName },
+                                                            set: { viewStore.send(.updateTextField($0))
+                                }))
+                            },
+                                          error: viewStore.error,
+                                          nickName: viewStore.nickName)
+                            errorMessage(error: viewStore.error)
+                            Spacer()
+                            ConfirmButtonView(didTapConfirm: $didTapConfirm,
+                                              type: .cancel(),
+                                              buttonMessage: "닉네임 설정하기")
+                        }
                     }
+                    .padding([.leading, .trailing], 20)
+                    Spacer()
                 }
-                .padding([.leading, .trailing], 20)
-                Spacer()
+            }
+            .onChange(of: didTapConfirm) { newValue in
+                presentationMode.wrappedValue.dismiss()
             }
         }
     }
@@ -44,7 +55,7 @@ struct NicknameSettingView: View {
                 HStack {
                     Spacer()
                     Button {
-                        
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image("Icon-Close-24")
                             .padding(.trailing, 20)
@@ -62,8 +73,12 @@ struct NicknameSettingView: View {
         }
     }
     
-    private var nickNameField: some View {
-        TextField("", text: $nickName)
+    
+    private func nickNameField<Content: View>(@ViewBuilder textField: () -> Content,
+                                              error: NickNameSettingReducer.NickNameError?,
+                                              nickName: String
+    ) -> some View {
+        textField()
             .placeholder(when: nickName.isEmpty, placeholder: {
                 Text("Enter your name")
                     .font(.Pretendard.b3_regular)
@@ -75,44 +90,30 @@ struct NicknameSettingView: View {
             .cornerRadius(8)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(nickName.isFilteringNickname() == nil ?
+                    .stroke(error == nil ?
                             Color.clear : Color.red, lineWidth: 1)
             )
     }
     
-
-    private var errorMessage: some View {
-        HStack {
-            Image("Caption_red")
-            Text("ddddd")
-                .font(.Pretendard.caption1)
-                .foregroundColor(Color.red)
-            Spacer()
+    @ViewBuilder
+    private func errorMessage(error: NickNameSettingReducer.NickNameError?) -> some View {
+        if error == nil {
+            EmptyView()
+        } else {
+            HStack {
+                Image("Caption_red")
+                Text(error?.errorMessage ?? "")
+                    .font(.Pretendard.caption1)
+                    .foregroundColor(Color.red)
+                Spacer()
+            }
         }
-    }
-}
-
-private extension String {
-    func isFilteringNickname() -> NicknameSettingView.NickNameError? {
-        let filterString = "!@#$%^&*()_+=-,./<>?`~"
-        if contains(filterString) {
-            return .validString
-        }
-
-        if self.count >= 10 {
-            return .overCount
-        }
-
-        if self.count < 2 && self.count >= 1 {
-            return .minimumCount
-        }
-
-        return nil
     }
 }
 
 struct NicknameSettingView_Previews: PreviewProvider {
     static var previews: some View {
-        NicknameSettingView()
+        NicknameSettingView(store: .init(initialState: .init(),
+                                         reducer: NickNameSettingReducer()))
     }
 }

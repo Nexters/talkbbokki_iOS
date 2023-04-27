@@ -13,6 +13,9 @@ extension UserDefaultValue {
     @UserDefault(key: UserDefaultKey.didShowOnboarding, defaultValue: false)
     static var didShow: Bool
     
+    @UserDefault(key: UserDefaultKey.nickName, defaultValue: "")
+    static var nickName: String
+    
     @UserDefault(key: UserDefaultKey.didShowTopic, defaultValue: [])
     static var didShowTopic: [Int]
     

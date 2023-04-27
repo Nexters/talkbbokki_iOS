@@ -31,6 +31,10 @@ extension API {
         let uuid: String
         let pushToken: String
     }
+    
+    struct ValidNickname {
+        let nickName: String
+    }
 }
 
 extension API.Category: APIConfig {
@@ -122,6 +126,21 @@ extension API.Token: APIConfig {
     var method: HTTPMethod { return .post }
     var parameters: API.Parameter? {
         return nil
+    }
+    
+    func parse(_: Data) throws -> Void {
+        return ()
+    }
+}
+
+extension API.ValidNickname: APIConfig {
+    static let domainConfig = Domain.Talkbbokki.self
+    static let serviceError = TalkbbokkiError.self
+    
+    var path: String { return "/api/users/nickname/exists"}
+    var method: HTTPMethod { return .post }
+    var parameters: API.Parameter? {
+        return .map(["nickName": nickName]) 
     }
     
     func parse(_: Data) throws -> Void {

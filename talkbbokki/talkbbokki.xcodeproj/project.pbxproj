@@ -107,6 +107,7 @@
 		CEC6328F297EBB5F00D9011E /* talkbbokkiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6328E297EBB5F00D9011E /* talkbbokkiTests.swift */; };
 		CEC63299297EBB5F00D9011E /* talkbbokkiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC63298297EBB5F00D9011E /* talkbbokkiUITests.swift */; };
 		CEC6329B297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6329A297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift */; };
+		CECBD3C429FABA02007FA3F4 /* NicknameSettingReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD3C329FABA02007FA3F4 /* NicknameSettingReducer.swift */; };
 		CED4EFFE29AD10BC0063D3C6 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4EFFD29AD10BC0063D3C6 /* BookmarkView.swift */; };
 		CED4F00029AD12CA0063D3C6 /* BookmarkReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4EFFF29AD12CA0063D3C6 /* BookmarkReducer.swift */; };
 		CEDD7B8429A6751D00EAE53B /* AdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD7B8329A6751D00EAE53B /* AdViewModel.swift */; };
@@ -217,6 +218,7 @@
 		CEC63294297EBB5F00D9011E /* talkbbokkiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = talkbbokkiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC63298297EBB5F00D9011E /* talkbbokkiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkbbokkiUITests.swift; sourceTree = "<group>"; };
 		CEC6329A297EBB5F00D9011E /* talkbbokkiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkbbokkiUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CECBD3C329FABA02007FA3F4 /* NicknameSettingReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingReducer.swift; sourceTree = "<group>"; };
 		CED4EFFD29AD10BC0063D3C6 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		CED4EFFF29AD12CA0063D3C6 /* BookmarkReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkReducer.swift; sourceTree = "<group>"; };
 		CEDD7B8329A6751D00EAE53B /* AdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewModel.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				CEA48CEB29A2875600B39F84 /* OnboardThirdView.swift */,
 				CE588A3F29F97A77003EAEC2 /* OnboardFourthView.swift */,
 				CE3DAC2E29F97865007C900D /* NicknameSettingView.swift */,
+				CECBD3C329FABA02007FA3F4 /* NicknameSettingReducer.swift */,
 			);
 			path = Onboard;
 			sourceTree = "<group>";
@@ -803,6 +806,7 @@
 				CEA48CDB29A277BA00B39F84 /* UserDefault.Value.swift in Sources */,
 				CE7E035329AB4ED600486623 /* Int+.swift in Sources */,
 				CEA48CE429A27E2400B39F84 /* OnboardFirstView.swift in Sources */,
+				CECBD3C429FABA02007FA3F4 /* NicknameSettingReducer.swift in Sources */,
 				CE64A507299BE9D1004C4E8D /* AppDelegate.swift in Sources */,
 				CED4F00029AD12CA0063D3C6 /* BookmarkReducer.swift in Sources */,
 				CE7E035829AB542300486623 /* String+.swift in Sources */,

@@ -15,5 +15,6 @@ enum UserDefaultKey {
     static let showBookmarkDeleteAlert = "showBookmarkDeleteAlert"
     static let pushToken = "pushToken"
     static let topics = "topics"
+    static let nickName = "nickName"
 //    static let categories = "categories"
 }
