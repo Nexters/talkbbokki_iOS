@@ -131,20 +131,8 @@ extension AppDelegate: MessagingDelegate {
         )
         
         if UserDefaultValue.pushToken != fcmToken.orEmpty {
-            postToken(token: fcmToken.orEmpty)
+//            postToken(token: fcmToken.orEmpty)
             UserDefaultValue.pushToken = fcmToken.orEmpty
         }
-    }
-}
-
-extension AppDelegate {
-    private func postToken(token: String) {
-        API.Token(uuid: Utils.getDeviceUUID(), pushToken: token)
-            .request()
-            .sink { _ in
-            } receiveValue: { _ in
-                print("[AppDelegate] postToken")
-            }.store(in: &bag)
-
     }
 }

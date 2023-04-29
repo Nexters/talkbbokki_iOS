@@ -27,9 +27,10 @@ extension API {
         let topicID: Int
     }
     
-    struct Token {
+    struct RegisterUser {
         let uuid: String
         let pushToken: String
+        let nickName: String
     }
     
     struct ValidNickname {
@@ -118,11 +119,12 @@ extension API.Like: APIConfig {
     }
 }
 
-extension API.Token: APIConfig {
+extension API.RegisterUser: APIConfig {
     static let domainConfig = Domain.Talkbbokki.self
     static let serviceError = TalkbbokkiError.self
     
-    var path: String { return "/api/users?uuid=\(uuid)&pushToken=\(pushToken)"}
+    var path: String { return "/api/users?uuid=\(uuid)&pushToken=\(pushToken)&nickName=\(nickName)"}
+//    var path: String { return "/api/users" }
     var method: HTTPMethod { return .post }
     var parameters: API.Parameter? {
         return nil

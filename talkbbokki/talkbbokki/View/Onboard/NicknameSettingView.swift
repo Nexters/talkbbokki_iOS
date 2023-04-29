@@ -40,8 +40,13 @@ struct NicknameSettingView: View {
                     Spacer()
                 }
             }
-            .onChange(of: didTapConfirm) { newValue in
+            .onChange(of: viewStore.state.isSuccessNickName, perform: { newValue in
                 presentationMode.wrappedValue.dismiss()
+            })
+            .onChange(of: didTapConfirm) { newValue in
+                guard newValue != .none else { return }
+                viewStore.send(.didTapConfirm)
+                didTapConfirm = .none
             }
         }
     }

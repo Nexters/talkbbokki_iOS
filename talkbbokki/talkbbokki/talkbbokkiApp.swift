@@ -48,6 +48,8 @@ struct talkbbokkiApp: App {
                 }
             }.onChange(of: didShowOnboard) { newValue in
                 scene = nickName.isEmpty ? .settingNickName : .home
+            }.onChange(of: nickName) { newValue in
+                scene = .home
             }
         }
     }

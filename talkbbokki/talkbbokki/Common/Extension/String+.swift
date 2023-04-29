@@ -11,4 +11,8 @@ extension String {
     var isNonEmpty: Bool {
         !isEmpty
     }
+    
+    func validateString(_ string: String) -> Bool {
+        return range(of: string, options: .regularExpression) != nil
+    }
 }
