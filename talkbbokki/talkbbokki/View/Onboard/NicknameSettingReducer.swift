@@ -100,16 +100,12 @@ final class NickNameSettingReducer: ReducerProtocol {
 extension NickNameSettingReducer {
     private func requestValidNickName(with nickName: String) async -> TaskResult<Void> {
         return await withCheckedContinuation({ contiuation in
-            contiuation.resume(returning: .success(()))
-//            API.ValidNickname(nickName: nickName).request().sink { completion in
-//                switch completion {
-//                case .failure(let error):
-//                    contiuation.resume(returning: .failure(error))
-//                case .finished: break
-//                }
-//            } receiveValue: { _ in
-//                contiuation.resume(returning: .success(()))
-//            }.store(in: &bag)
+            API.ValidNickname(nickName: nickName).request().sink { completion in
+                guard let error = completion.error else { return }
+                contiuation.resume(returning: .failure(error))
+            } receiveValue: { _ in
+                contiuation.resume(returning: .success(()))
+            }.store(in: &bag)
         })
     }
     

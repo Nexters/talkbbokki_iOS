@@ -124,7 +124,6 @@ extension API.RegisterUser: APIConfig {
     static let serviceError = TalkbbokkiError.self
     
     var path: String { return "/api/users?uuid=\(uuid)&pushToken=\(pushToken)&nickName=\(nickName)"}
-//    var path: String { return "/api/users" }
     var method: HTTPMethod { return .post }
     var parameters: API.Parameter? {
         return nil
@@ -139,10 +138,10 @@ extension API.ValidNickname: APIConfig {
     static let domainConfig = Domain.Talkbbokki.self
     static let serviceError = TalkbbokkiError.self
     
-    var path: String { return "/api/users/nickname/exists"}
-    var method: HTTPMethod { return .post }
+    var path: String { return "/api/users/nickname/exists?nickName=\(nickName)"}
+    var method: HTTPMethod { return .get }
     var parameters: API.Parameter? {
-        return .map(["nickName": nickName]) 
+        return nil
     }
     
     func parse(_: Data) throws -> Void {

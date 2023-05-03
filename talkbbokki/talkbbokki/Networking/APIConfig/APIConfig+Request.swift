@@ -24,7 +24,7 @@ extension APIConfig {
                                                             parameters: self.fullParameters,
                                                             encoding: self.encoding,
                                                             headers: HTTPHeaders(self.fullHeaders))
-            request.validate().responseData(completionHandler: self.responseHandler(future))
+            request.validate().responseData(emptyResponseCodes: [200], completionHandler: self.responseHandler(future))
 
         }
     }
