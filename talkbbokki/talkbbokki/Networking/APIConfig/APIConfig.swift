@@ -39,7 +39,7 @@ protocol APIHeaderConfig {
 }
 
 extension APIConfig {
-    internal var fullPath: String { return Self.domainConfig.domain + self.path }
+    internal var fullPath: String { return Self.domainConfig.domain + (self.path.encodeUrl() ?? "") }
     
     internal var fullHeaders: [String : String] {
         return ((self as? APIHeaderConfig)?.headers ?? [:]).reduce(into: Self.domainConfig.defaultHeader ?? [:]) { (result, element) in

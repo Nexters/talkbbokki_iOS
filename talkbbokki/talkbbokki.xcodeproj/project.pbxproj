@@ -122,6 +122,9 @@
 		CEF3324129AE3324001486DC /* CoreData.Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3324029AE3324001486DC /* CoreData.Topic.swift */; };
 		CEF3324329AE332C001486DC /* CoreData.Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3324229AE332C001486DC /* CoreData.Category.swift */; };
 		CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7CFB029A1115D005A7E6C /* AlertView.swift */; };
+		CEFE376E2A0297D30098784E /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE376D2A0297D30098784E /* MenuView.swift */; };
+		CEFE37722A02A65C0098784E /* MenuView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE37712A02A65C0098784E /* MenuView+Extension.swift */; };
+		CEFE37742A02AA280098784E /* AnyTransition+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE37732A02AA280098784E /* AnyTransition+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +234,9 @@
 		CEF3324029AE3324001486DC /* CoreData.Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.Topic.swift; sourceTree = "<group>"; };
 		CEF3324229AE332C001486DC /* CoreData.Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.Category.swift; sourceTree = "<group>"; };
 		CEF7CFB029A1115D005A7E6C /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		CEFE376D2A0297D30098784E /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		CEFE37712A02A65C0098784E /* MenuView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MenuView+Extension.swift"; sourceTree = "<group>"; };
+		CEFE37732A02AA280098784E /* AnyTransition+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,6 +388,7 @@
 				CE858E842995427500F2FC42 /* CategoryView.swift */,
 				CE858E862995468D00F2FC42 /* CategoryReducer.swift */,
 				CE618E0929A3AA2900076F7E /* SuggestView.swift */,
+				CEFE376C2A0297C10098784E /* Menu */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -409,6 +416,7 @@
 				CE7E035729AB542300486623 /* String+.swift */,
 				CE44AEDA29B8C85A002004B3 /* NavigationBar.swift */,
 				CECBD3C529FD7E70007FA3F4 /* Combine+.swift */,
+				CEFE37732A02AA280098784E /* AnyTransition+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -591,6 +599,15 @@
 				CEF3323E29AE2970001486DC /* FileUtil.swift */,
 			);
 			path = FileUtil;
+			sourceTree = "<group>";
+		};
+		CEFE376C2A0297C10098784E /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				CEFE376D2A0297D30098784E /* MenuView.swift */,
+				CEFE37712A02A65C0098784E /* MenuView+Extension.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -807,6 +824,7 @@
 				CE39E1152986504400E3C93D /* Model.swift in Sources */,
 				CE858E852995427500F2FC42 /* CategoryView.swift in Sources */,
 				CEA48CDB29A277BA00B39F84 /* UserDefault.Value.swift in Sources */,
+				CEFE376E2A0297D30098784E /* MenuView.swift in Sources */,
 				CE7E035329AB4ED600486623 /* Int+.swift in Sources */,
 				CEA48CE429A27E2400B39F84 /* OnboardFirstView.swift in Sources */,
 				CECBD3C429FABA02007FA3F4 /* NicknameSettingReducer.swift in Sources */,
@@ -852,6 +870,7 @@
 				CE7E034F29AB44D700486623 /* Topic.xcdatamodeld in Sources */,
 				CEB93F2F2996B54A001087B6 /* Optional+.swift in Sources */,
 				CEA48CF029A2A31800B39F84 /* EmoticonAlert.swift in Sources */,
+				CEFE37742A02AA280098784E /* AnyTransition+.swift in Sources */,
 				CECBD3C629FD7E70007FA3F4 /* Combine+.swift in Sources */,
 				CEB93F37299801FB001087B6 /* View+.swift in Sources */,
 				CEA48CE029A27AA800B39F84 /* OnboardView.swift in Sources */,
@@ -863,6 +882,7 @@
 				CE0F15A92993FC6C00295B43 /* Domain.Talkbbokki.swift in Sources */,
 				CEF3324329AE332C001486DC /* CoreData.Category.swift in Sources */,
 				CE0F15AD2993FD8F00295B43 /* Talkbbokki.Error.swift in Sources */,
+				CEFE37722A02A65C0098784E /* MenuView+Extension.swift in Sources */,
 				CE858E872995468D00F2FC42 /* CategoryReducer.swift in Sources */,
 				CE0F15AF2994007300295B43 /* Model.Category.swift in Sources */,
 			);

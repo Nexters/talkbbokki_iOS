@@ -31,6 +31,7 @@ final class NickNameSettingReducer: ReducerProtocol {
         var nickName: String = ""
         var error: NickNameError? = nil
         var isSuccessNickName: Bool = false
+        var isHideCloseButton: Bool = false
     }
     
     enum Action {
@@ -127,7 +128,7 @@ extension NickNameSettingReducer {
 
 private extension String {
     func isFilteringNickname() -> NickNameSettingReducer.NickNameError? {
-        if validateString(".*[^A-Za-z0-9].*") {
+        if validateString(".*[^가-힣ㄱ-ㅎㅏ-ㅣA-Za-z0-9].*") {
             return .invalidString
         }
 

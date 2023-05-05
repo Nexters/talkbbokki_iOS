@@ -83,3 +83,51 @@ extension View {
         }
     }
 }
+
+enum HorizontalAlignment {
+    case trailing
+    case leading
+}
+
+enum VerticalAlignment {
+    case top
+    case bottom
+}
+
+extension View {
+    @ViewBuilder
+    func AlignmentHStack<Content: View>(with alignment: HorizontalAlignment,
+                                        @ViewBuilder view: () -> Content) -> some View {
+        switch alignment {
+        case .trailing:
+            HStack {
+                Spacer()
+                view()
+            }
+        case .leading:
+            HStack {
+                view()
+                Spacer()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func AlignmentVStack<Content: View>(
+        with alignment: VerticalAlignment,
+        @ViewBuilder view: () -> Content
+    ) -> some View {
+        switch alignment {
+        case .top:
+            VStack {
+                view()
+                Spacer()
+            }
+        case .bottom:
+            VStack {
+                Spacer()
+                view()
+            }
+        }
+    }
+}

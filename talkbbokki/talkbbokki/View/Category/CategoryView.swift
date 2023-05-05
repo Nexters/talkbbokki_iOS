@@ -49,55 +49,84 @@ struct CategoryView: View {
     }
     
     @State private var selectedCategory: Model.Category = Model.Category.empty
-    @State private var didTapSuggest: Bool = false
-    @State private var didTapNavigationButton: Bool = false
+    @State private var slideMenuView: Bool = false
     @State private var didTapAlert: ButtonType = .none
     @State private var present: Scene?
     let store: StoreOf<CategoryReducer>
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            NavigationView {
-                ZStack(alignment:.top) {
-                    Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
-                    
-                    VStack(spacing: 0) {
-                        VStack {
-                            Spacer().frame(maxHeight: 88)
-                            CategoryTitleView()
-                            Spacer()
+            GeometryReader { proxy in
+                NavigationView {
+                    ZStack(alignment:.top) {
+                        Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
+                        
+                        VStack(spacing: 0) {
+                            AlignmentVStack(with: .top) {
+                                Spacer().frame(maxHeight: 88)
+                                CategoryTitleView()
+                            }
+                            
+                            AlignmentVStack(with: .top) {
+                                CategoryCardGridView(touchedCardView: $selectedCategory,
+                                                     categories: viewStore.categories)
+                            }
+                        }.padding(.bottom, 20)
+                        
+                        AlignmentVStack(with: .top) {
+                            Button {
+                                slideMenuView.toggle()
+                            } label: {
+                                HomeNavigationView()
+                            }
+                        }
+                                                
+                        NavigationLink("", isActive: Binding(get: { viewStore.showFavorite },
+                                                             set: { viewStore.send(.showFavorite($0))})
+                        ) {
+                            BookmarkView(store: .init(initialState: .init(),
+                                                      reducer: BookmarkReducer()))
+                        }
+
+                        if slideMenuView {
+                            Color.Talkbbokki.GrayScale.black.opacity(0.65)
+                                .ignoresSafeArea()
+                                .animation(.easeInOut(duration: 0.5))
+                                .transition(.opacity)
+                            
+                            AlignmentHStack(with: .trailing) {
+                                MenuView(nickName: viewStore.nickName,
+                                         tapAction: Binding(get: { viewStore.menuTapAction },
+                                                            set: { viewStore.send(.tapMenu($0) )
+                                }))
+                                .frame(width: proxy.size.width*0.65)
+                            }
+                            .animation(.easeInOut)
+                            .transition(.backslide)
+                            .zIndex(2)
                         }
                         
-                        VStack(spacing: Design.Constraint.CategoryView.bottomSpacing) {
-                            CategoryCardGridView(touchedCardView: $selectedCategory,
-                                                 categories: viewStore.categories)
-                            SuggestButton(didTapSuggest: $didTapSuggest)
+                        if viewStore.isShowAlert ?? false {
+                            AlertView(message: Design.Text.alertMessage,
+                                      subMessage: "",
+                                      buttons: [AlertButton(type: .ok(),
+                                                            message: Design.Text.alertConfrimButton)],
+                                      didTapButton: $didTapAlert)
                         }
-                    }.padding(.bottom, 20)
-                    
-                    VStack {
-                        NavigationLink {
-                            BookmarkView(store: Store(initialState: BookmarkReducer.State(),
-                                                      reducer: BookmarkReducer()))
-                        } label: {
-                            HomeNavigationView()
-                        }
-                        Spacer()
                     }
-                    
-                    if viewStore.isShowAlert {
-                        AlertView(message: Design.Text.alertMessage,
-                                  subMessage: "",
-                                  buttons: [AlertButton(type: .ok(),
-                                                        message: Design.Text.alertConfrimButton)],
-                                  didTapButton: $didTapAlert)
-                    }
+                    .navigationBarBackground({
+                        Color.clear
+                    })
+                    .navigationBarHidden(true)
                 }
-                .navigationBarBackground({
-                    Color.clear
-                })
-                .navigationBarHidden(true)
             }
+            .onChange(of: viewStore.menuTapAction, perform: { newValue in
+                if newValue == .close {
+                    slideMenuView.toggle()
+                }
+                
+                viewStore.send(.tapMenu(.none))
+            })
             .onChange(of: didTapAlert, perform: { newValue in
                 guard didTapAlert != .none else { return }
                 didTapAlert = .none
@@ -115,11 +144,14 @@ struct CategoryView: View {
                                           text: newValue.text)
                 present = .cardList
             })
-            .onChange(of: didTapNavigationButton, perform: { newValue in
-                
-            })
-            .fullScreenCover(isPresented: $didTapSuggest, content: {
-                SuggestView()
+            .fullScreenCover(isPresented: viewStore.binding(get: \.showSuggest,
+                                                            send: { .showSuggest($0) }),
+                             content: { SuggestView() })
+            .fullScreenCover(isPresented: viewStore.binding(get: \.showEditNickName,
+                                                            send: { .showEditNickName($0) }),
+                             content: {
+                NicknameSettingView(store: .init(initialState: .init(nickName: viewStore.nickName),
+                                                 reducer: NickNameSettingReducer()))
             })
             .fullScreenCover(item: $present,
                              onDismiss: {
@@ -144,7 +176,7 @@ struct HomeNavigationView: View {
     var body: some View {
         HStack {
             Spacer()
-            Image("Icon_Likelist_28")
+            Image("Icon_Menu_24")
                 .padding(.top, 16)
                 .padding(.trailing, 20)
         }

@@ -41,7 +41,8 @@ struct talkbbokkiApp: App {
                 case .onboard:
                     OnboardView()
                 case .settingNickName:
-                    NicknameSettingView(store: .init(initialState: .init(), reducer: NickNameSettingReducer()))
+                    NicknameSettingView(store: .init(initialState: .init(isHideCloseButton: true),
+                                                     reducer: NickNameSettingReducer()))
                 case .home:
                     CategoryView(store: Store(initialState: CategoryReducer.State(),
                                               reducer: CategoryReducer()))

@@ -18,7 +18,7 @@ struct NicknameSettingView: View {
             ZStack {
                 Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
                 VStack(alignment: .center, spacing: 42) {
-                    navigationView
+                    navigationView(viewStore.isHideCloseButton)
                     VStack(spacing: 16) {
                         guideText
                         VStack(spacing: 8) {
@@ -51,12 +51,13 @@ struct NicknameSettingView: View {
         }
     }
     
-    private var navigationView: some View {
-            ZStack {
-                Text("닉네임 설정")
-                    .foregroundColor(.white)
-                    .font(.Pretendard.b2_bold)
-                
+    func navigationView(_ isHiddenCloseButton: Bool) -> some View {
+        ZStack {
+            Text("닉네임 설정")
+                .foregroundColor(.white)
+                .font(.Pretendard.b2_bold)
+            
+            if isHiddenCloseButton {
                 HStack {
                     Spacer()
                     Button {
@@ -66,7 +67,8 @@ struct NicknameSettingView: View {
                             .padding(.trailing, 20)
                     }
                 }
-            }.padding(.top, 18)
+            }
+        }.padding(.top, 18)
     }
     
     private var guideText: some View {

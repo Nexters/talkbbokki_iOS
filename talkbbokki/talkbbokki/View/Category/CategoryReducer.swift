@@ -20,7 +20,12 @@ class CategoryReducer: ReducerProtocol {
     struct State: Equatable {
         var categories: [Model.Category] = []
         var errorMessage: String = ""
-        var isShowAlert: Bool = false
+        var isShowAlert: Bool? = false
+        var menuTapAction: MenuView.TapAction = .none
+        var showFavorite = false
+        var showSuggest: Bool = false
+        var showEditNickName: Bool = false
+        var nickName: String = UserDefaultValue.nickName
     }
     
     enum Action {
@@ -28,6 +33,11 @@ class CategoryReducer: ReducerProtocol {
         case fetchResult(Result<[Model.Category], Error>)
         case setCategories([Model.Category])
         case setError(Error)
+        case tapMenu(MenuView.TapAction)
+        case showFavorite(Bool)
+        case showSuggest(Bool)
+        case showEditNickName(Bool)
+        case setNickName(String)
         case showAlert
     }
     
@@ -50,8 +60,36 @@ class CategoryReducer: ReducerProtocol {
         case .setError(let error):
             state.errorMessage = error.localizedDescription
             return .none
+        case .tapMenu(let tapAction):
+            state.menuTapAction = tapAction
+            switch tapAction {
+            case .favorite:
+                state.showFavorite.toggle()
+            case .suggest:
+                state.showSuggest.toggle()
+            case .editNickName(let nickName):
+                state.showEditNickName.toggle()
+                state.nickName = nickName
+            default: break
+            }
+            return .none
+        case .showEditNickName(let isShow):
+            state.showEditNickName = isShow
+            if isShow {
+                state.nickName = UserDefaultValue.nickName
+            }
+            return .none
+        case .setNickName(let nickName):
+            state.nickName = nickName
+            return .none
+        case .showFavorite(let isShow):
+            state.showFavorite = isShow
+            return .none
+        case .showSuggest(let isShow):
+            state.showSuggest = isShow
+            return .none
         case .showAlert:
-            state.isShowAlert.toggle()
+            state.isShowAlert?.toggle()
             return .none
         }
     }
