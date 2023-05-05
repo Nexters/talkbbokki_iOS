@@ -68,6 +68,11 @@
 		CE6EBF09299A88F100FA4DE1 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBF00299A88F100FA4DE1 /* Pretendard-ExtraLight.otf */; };
 		CE6EBF0A299A88F100FA4DE1 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBF01299A88F100FA4DE1 /* Pretendard-Medium.otf */; };
 		CE6EBF0B299A88F100FA4DE1 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6EBF02299A88F100FA4DE1 /* Pretendard-Light.otf */; };
+		CE7634A22A04E3A0009B3CA0 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7634A12A04E3A0009B3CA0 /* CommentView.swift */; };
+		CE7634A42A04E3AD009B3CA0 /* CommentReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7634A32A04E3AD009B3CA0 /* CommentReducer.swift */; };
+		CE7634A62A04E778009B3CA0 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7634A52A04E778009B3CA0 /* NavigationBarModifier.swift */; };
+		CE7634A92A04F601009B3CA0 /* AlignmentStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7634A82A04F601009B3CA0 /* AlignmentStackView.swift */; };
+		CE7634AB2A04F620009B3CA0 /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7634AA2A04F620009B3CA0 /* CommonTextField.swift */; };
 		CE7E034A29A9DBC500486623 /* SavePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E034929A9DBC500486623 /* SavePhotoView.swift */; };
 		CE7E034F29AB44D700486623 /* Topic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE7E034D29AB44D700486623 /* Topic.xcdatamodeld */; };
 		CE7E035129AB4B4900486623 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E035029AB4B4900486623 /* CoreDataManager.swift */; };
@@ -180,6 +185,11 @@
 		CE6EBF00299A88F100FA4DE1 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
 		CE6EBF01299A88F100FA4DE1 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		CE6EBF02299A88F100FA4DE1 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		CE7634A12A04E3A0009B3CA0 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		CE7634A32A04E3AD009B3CA0 /* CommentReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentReducer.swift; sourceTree = "<group>"; };
+		CE7634A52A04E778009B3CA0 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
+		CE7634A82A04F601009B3CA0 /* AlignmentStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentStackView.swift; sourceTree = "<group>"; };
+		CE7634AA2A04F620009B3CA0 /* CommonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextField.swift; sourceTree = "<group>"; };
 		CE7E034929A9DBC500486623 /* SavePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePhotoView.swift; sourceTree = "<group>"; };
 		CE7E034E29AB44D700486623 /* CoreData.Topic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.Topic.xcdatamodel; sourceTree = "<group>"; };
 		CE7E035029AB4B4900486623 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -357,6 +367,15 @@
 			path = GoogleAds;
 			sourceTree = "<group>";
 		};
+		CE7634A02A04CE21009B3CA0 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				CE7634A12A04E3A0009B3CA0 /* CommentView.swift */,
+				CE7634A32A04E3AD009B3CA0 /* CommentReducer.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
 		CE7E034C29AB445800486623 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +436,7 @@
 				CE44AEDA29B8C85A002004B3 /* NavigationBar.swift */,
 				CECBD3C529FD7E70007FA3F4 /* Combine+.swift */,
 				CEFE37732A02AA280098784E /* AnyTransition+.swift */,
+				CE7634A52A04E778009B3CA0 /* NavigationBarModifier.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -480,6 +500,8 @@
 				CEA48CCA29A271AD00B39F84 /* LottieView.swift */,
 				CEA48CED29A295DA00B39F84 /* AcitivityViewController.swift */,
 				CEA48CEF29A2A31800B39F84 /* EmoticonAlert.swift */,
+				CE7634A82A04F601009B3CA0 /* AlignmentStackView.swift */,
+				CE7634AA2A04F620009B3CA0 /* CommonTextField.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -490,6 +512,7 @@
 				CEB93F342997FD3F001087B6 /* DetailCardView.swift */,
 				CE498376299A9DCB008A3968 /* DetailCardReducer.swift */,
 				CE7E034929A9DBC500486623 /* SavePhotoView.swift */,
+				CE7634A02A04CE21009B3CA0 /* Comment */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -820,6 +843,7 @@
 				CEDD7B8629A676DF00EAE53B /* AdViewControllerRepresentable.swift in Sources */,
 				CEB93F4F2998C080001087B6 /* Font+.swift in Sources */,
 				CE618E0A29A3AA2900076F7E /* SuggestView.swift in Sources */,
+				CE7634A92A04F601009B3CA0 /* AlignmentStackView.swift in Sources */,
 				CEB93F53299940DF001087B6 /* HapticManager.swift in Sources */,
 				CE39E1152986504400E3C93D /* Model.swift in Sources */,
 				CE858E852995427500F2FC42 /* CategoryView.swift in Sources */,
@@ -844,6 +868,8 @@
 				CEC6327F297EBB5E00D9011E /* ContentView.swift in Sources */,
 				CE39E1172986507F00E3C93D /* CardView.swift in Sources */,
 				CE7E035129AB4B4900486623 /* CoreDataManager.swift in Sources */,
+				CE7634AB2A04F620009B3CA0 /* CommonTextField.swift in Sources */,
+				CE7634A22A04E3A0009B3CA0 /* CommentView.swift in Sources */,
 				CE49837D299AA68C008A3968 /* Color.swift in Sources */,
 				CE0F15A62993F5FE00295B43 /* APIConfig+Request.swift in Sources */,
 				CE0F15A02993BB5B00295B43 /* APIConfig.Error.swift in Sources */,
@@ -858,7 +884,9 @@
 				CEB93F352997FD3F001087B6 /* DetailCardView.swift in Sources */,
 				CEA48CCF29A272AC00B39F84 /* SplashView.swift in Sources */,
 				CEAE6D0329D1B91700A00923 /* Log.swift in Sources */,
+				CE7634A42A04E3AD009B3CA0 /* CommentReducer.swift in Sources */,
 				CEA48CCB29A271AE00B39F84 /* LottieView.swift in Sources */,
+				CE7634A62A04E778009B3CA0 /* NavigationBarModifier.swift in Sources */,
 				CE0F15AB2993FD2800295B43 /* API.swift in Sources */,
 				CEB93F322997F776001087B6 /* ConfirmButtonView.swift in Sources */,
 				CEAE6D0529D1B93F00A00923 /* Log.Firebase.swift in Sources */,

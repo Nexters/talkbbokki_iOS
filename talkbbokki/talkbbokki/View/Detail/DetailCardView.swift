@@ -35,7 +35,7 @@ struct DetailCardContainerView: View {
     let enteredAds: Bool
     let notReadyAds: Bool
     let isEnteredModal: Bool
-    @State private var onAppear: Bool = false
+    @State private var didLoad: Bool = false
     @State private var backDegree = 0.0
     @State private var frontDegree = -90.0
     @State private var isFlipped = false
@@ -46,6 +46,7 @@ struct DetailCardContainerView: View {
     @State private var didTapRefreshOrder = false
     @State private var didTapBookmark = false
     @State private var didTapShare = false
+    @State private var didTapComment = false
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     private let width : CGFloat = 200
     private let height : CGFloat = 250
@@ -60,7 +61,7 @@ struct DetailCardContainerView: View {
                 }
                 
                 ZStack(alignment: .top) {
-                    if onAppear {
+                    if didLoad {
                         Group {
                             VStack {
                                 Spacer()
@@ -99,7 +100,17 @@ struct DetailCardContainerView: View {
                             })
                         }
                     }
-                }.ignoresSafeArea()
+                }
+                .ignoresSafeArea()
+                
+                bottomView(count: viewStore.commentCount)
+                NavigationLink("", isActive: $didTapComment) {
+                    CommentView(store: .init(initialState: .init(topicID: card.topicID,
+                                                                 commentCount: viewStore.commentCount),
+                                             reducer: CommentReducer()))
+                }
+                .navigationBar(titleColor: Color.Talkbbokki.GrayScale.white,
+                               font: .Pretendard.b2_bold)
             }
             .onChange(of: didTapDownload, perform: { newValue in
                 Log.Firebase.sendLog(key: .click_card_download, parameters: ["topic_id": card.topicID.toString])
@@ -124,11 +135,13 @@ struct DetailCardContainerView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
             .onAppear(perform: {
+                guard didLoad == false else { return }
                 Log.Firebase.sendLog(key: .screen_card_detail, parameters: ["topic_id": card.topicID.toString])
                 viewStore.send(.fetchSaveTopic(id: card.topicID))
                 viewStore.send(.addViewCount(card))
                 viewStore.send(.saveTopic(card))
                 viewStore.send(.fetchOrder)
+                viewStore.send(.fetchCommentCount(card))
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + Constant.viewCount, execute: {
                     viewStore.send(.like(card))
@@ -136,7 +149,7 @@ struct DetailCardContainerView: View {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                     withAnimation(.spring(dampingFraction: 0.7, blendDuration: 0.9)) {
-                        onAppear.toggle()
+                        didLoad.toggle()
                         if notReadyAds { viewStore.send(.setToastMessage(Design.Text.notReadyAdstoast)) }
                     }
                 })
@@ -145,6 +158,29 @@ struct DetailCardContainerView: View {
                     flipCard()
                 })
             })
+        }
+    }
+    
+    private func bottomView(count: Int) -> some View {
+        AlignmentVStack(with: .bottom, spacing: 0.0) {
+            AlignmentHStack(with: .leading) {
+                Button {
+                    didTapComment.toggle()
+                } label: {
+                    HStack {
+                        Image("Icon_Talk_24")
+                        Text("\(count)")
+                            .font(.Pretendard.b2_regular)
+                            .foregroundColor(.white)
+                    }
+                }
+            }
+            .padding(.leading, 20.0)
+            .frame(height: 56.0)
+            .background(Color.red)
+            
+            Color.red.ignoresSafeArea()
+                .frame(height: 1.0)
         }
     }
     

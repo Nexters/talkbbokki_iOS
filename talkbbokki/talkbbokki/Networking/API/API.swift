@@ -27,6 +27,16 @@ extension API {
         let topicID: Int
     }
     
+    struct CommentCount {
+        let topicID: Int
+    }
+    
+    struct RegisterComment {
+        let topicID: Int
+        let comment: String
+        let userID: String
+    }
+    
     struct RegisterUser {
         let uuid: String
         let pushToken: String
@@ -115,6 +125,34 @@ extension API.Like: APIConfig {
     }
     
     func parse(_: Data) throws -> Void {
+        return ()
+    }
+}
+
+extension API.CommentCount: APIConfig {
+    static let domainConfig = Domain.Talkbbokki.self
+    static let serviceError = TalkbbokkiError.self
+    
+    var path: String { return "/api/topics/\(topicID)/comments/count"}
+    var method: HTTPMethod { return .get }
+    var parameters: API.Parameter? { return nil }
+    
+    func parse(_ input: Data) throws -> Int {
+        let json   = try? input.toDict()
+        let result = (json?["result"] as? Int)!
+        return result
+    }
+}
+
+extension API.RegisterComment: APIConfig {
+    static let domainConfig = Domain.Talkbbokki.self
+    static let serviceError = TalkbbokkiError.self
+    
+    var path: String { return "/api/topics/\(topicID)/comments?body=\(comment)&userId=\(userID)&topicId=\(topicID)"}
+    var method: HTTPMethod { return .post }
+    var parameters: API.Parameter? { return nil }
+    
+    func parse(_ : Data) throws -> Void {
         return ()
     }
 }

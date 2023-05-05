@@ -23,8 +23,9 @@ struct NicknameSettingView: View {
                         guideText
                         VStack(spacing: 8) {
                             nickNameField(textField: {
-                                TextField("", text: Binding(get: { viewStore.nickName },
-                                                            set: { viewStore.send(.updateTextField($0))
+                                TextField("",
+                                          text: Binding(get: { viewStore.nickName },
+                                                        set: { viewStore.send(.updateTextField($0))
                                 }))
                             },
                                           error: viewStore.error,

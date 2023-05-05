@@ -62,3 +62,23 @@ extension Font {
         }
     }
 }
+
+extension Font {
+    func preferredFont() -> UIFont? {
+        switch self {
+        case .Pretendard.h1: return UIFont(name: "Pretendard-Bold", size: 40)
+        case .Pretendard.h2_regular: return UIFont(name: "Pretendard-Regular", size: 28)
+        case .Pretendard.b1_bold: return UIFont(name: "Pretendard-Bold", size: 20)
+        case .Pretendard.b1_regular: return UIFont(name: "Pretendard-Regular", size: 20)
+        case .Pretendard.b2_bold: return UIFont(name: "Pretendard-Bold", size: 16)
+        case .Pretendard.b2_regular: return UIFont(name: "Pretendard-Regular", size: 16)
+        case .Pretendard.b3_bold: return UIFont(name: "Pretendard-Bold", size: 14)
+        case .Pretendard.b3_regular: return UIFont(name: "Pretendard-Regular", size: 14)
+        case .Pretendard.caption1: return UIFont(name: "Pretendard-Regular", size: 12)
+        case .Pretendard.button_large: return UIFont(name: "Pretendard-Bold", size: 18)
+        case .Pretendard.button_small_bold: return UIFont(name: "Pretendard-Bold", size: 14)
+        case .Pretendard.button_small_regular: return UIFont(name: "Pretendard-Regular", size: 14)
+        default: return nil
+        }
+    }
+}

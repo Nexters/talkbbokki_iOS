@@ -22,6 +22,7 @@ final class DetailCardReducer: ReducerProtocol {
         var isSuccessSavePhoto = false
         var isSaveTopic = false
         var toastMessage: String = ""
+        var commentCount = 0
     }
     
     enum Action {
@@ -29,8 +30,10 @@ final class DetailCardReducer: ReducerProtocol {
         case addViewCount(Model.Topic)
         case saveTopic(Model.Topic)
         case fetchOrder
+        case fetchCommentCount(Model.Topic)
         case orderResult(Result<Model.Order, Error>)
         case setOrder(Model.Order)
+        case setCommentCount(Int)
         case setError(Error)
         case setIsSuccessSavePhoto
         case setSaveTopic(Bool)
@@ -67,8 +70,14 @@ final class DetailCardReducer: ReducerProtocol {
             UserDefaultValue.didShowTopic = topics
             return .none
         case .fetchOrder:
-            return EffectTask.run { send in
+            return EffectTask.run { [weak self] send in
+                guard let self = self else { return }
                 await send.send(.setOrder(self.fetchOrder()))
+            }
+        case .fetchCommentCount(let topic):
+            return EffectTask.run { [weak self] opertion in
+                guard let self = self else { return }
+                await opertion.send(.setCommentCount(self.fetchCommentCount(with: topic)))
             }
         case .orderResult(let result):
             switch result {
@@ -77,6 +86,9 @@ final class DetailCardReducer: ReducerProtocol {
             case .failure(let error):
                 return .send(.setError(error))
             }
+        case .setCommentCount(let commentCount):
+            state.commentCount = commentCount
+            return .none
         case .setOrder(let order):
             state.order = order
             return .none
@@ -141,5 +153,17 @@ final class DetailCardReducer: ReducerProtocol {
             .sink { _ in
             } receiveValue: { _ in
             }.store(in: &bag)
+    }
+    
+    private func fetchCommentCount(with topic: Model.Topic) async -> Int {
+        return await withCheckedContinuation({ continuation in
+            API.CommentCount(topicID: topic.topicID)
+                .request()
+                .print("API.CommentCount")
+                .sink { _ in
+                } receiveValue: { commentCount in
+                    continuation.resume(returning: commentCount)
+                }.store(in: &bag)
+        })
     }
 }
