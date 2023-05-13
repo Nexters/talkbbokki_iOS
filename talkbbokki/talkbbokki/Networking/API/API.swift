@@ -37,6 +37,14 @@ extension API {
         let userID: String
     }
     
+    struct FetchCommentList {
+        let topicID: Int
+    }
+    
+    struct DeleteComment {
+        let commentID: Int
+    }
+    
     struct RegisterUser {
         let uuid: String
         let pushToken: String
@@ -150,6 +158,34 @@ extension API.RegisterComment: APIConfig {
     
     var path: String { return "/api/topics/\(topicID)/comments?body=\(comment)&userId=\(userID)&topicId=\(topicID)"}
     var method: HTTPMethod { return .post }
+    var parameters: API.Parameter? { return nil }
+    
+    func parse(_ : Data) throws -> Void {
+        return ()
+    }
+}
+
+extension API.FetchCommentList: APIConfig {
+    static let domainConfig = Domain.Talkbbokki.self
+    static let serviceError = TalkbbokkiError.self
+    
+    var path: String { return "/api/topics/\(topicID)/comments"}
+    var method: HTTPMethod { return .get }
+    var parameters: API.Parameter? { return nil }
+    
+    func parse(_ input : Data) throws -> [Model.Comment] {
+        let json   = try? input.toDict()
+        let result = (json?["result"] as? Array<[String: Any]>)!
+        return try result.map(Model.Comment.decode)
+    }
+}
+
+extension API.DeleteComment: APIConfig {
+    static let domainConfig = Domain.Talkbbokki.self
+    static let serviceError = TalkbbokkiError.self
+    
+    var path: String { return "/api/comments/\(commentID)"}
+    var method: HTTPMethod { return .delete }
     var parameters: API.Parameter? { return nil }
     
     func parse(_ : Data) throws -> Void {

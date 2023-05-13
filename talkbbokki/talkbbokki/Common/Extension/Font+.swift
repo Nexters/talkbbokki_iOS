@@ -49,6 +49,10 @@ extension Font {
             .custom("Pretendard-Regular", size: 12)
         }
         
+        static var reply: Font {
+            .custom("Pretendard-Bold", size: 12)
+        }
+        
         static var button_large: Font {
             .custom("Pretendard-Bold", size: 18)
         }

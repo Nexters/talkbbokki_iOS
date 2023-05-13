@@ -88,6 +88,6 @@ extension View {
     func shadow(edge: Edge.Set) -> some View {
         self
             .shadow(color: Color.black, radius: 10, x: 0, y: 0)
-            .mask(Rectangle().padding(edge, -20))
+            .mask(Rectangle().padding(edge, -40))
     }
 }

@@ -103,14 +103,20 @@ struct DetailCardContainerView: View {
                 }
                 .ignoresSafeArea()
                 
-                bottomView(count: viewStore.commentCount)
-                NavigationLink("", isActive: $didTapComment) {
-                    CommentView(store: .init(initialState: .init(topicID: card.topicID,
-                                                                 commentCount: viewStore.commentCount),
-                                             reducer: CommentReducer()))
+                bottomView(count: viewStore.commentCount) {
+                    viewStore.send(.setShowComment(true))
                 }
-                .navigationBar(titleColor: Color.Talkbbokki.GrayScale.white,
-                               font: .Pretendard.b2_bold)
+                
+                NavigationLink(isActive: viewStore.binding(get: \.showComment,
+                                                           send: { .setShowComment($0) })) {
+                    IfLetStore(self.store.scope(state: \.commentState,
+                                                action: { .commentDelegate($0)
+                    })) {
+                        CommentListView(store: $0)
+                    }
+                } label: {}
+                    .navigationBar(titleColor: Color.Talkbbokki.GrayScale.white,
+                                   font: .Pretendard.b2_bold)
             }
             .onChange(of: didTapDownload, perform: { newValue in
                 Log.Firebase.sendLog(key: .click_card_download, parameters: ["topic_id": card.topicID.toString])
@@ -161,25 +167,26 @@ struct DetailCardContainerView: View {
         }
     }
     
-    private func bottomView(count: Int) -> some View {
+    private func bottomView(count: Int, didTapComment: @escaping (()->Void)) -> some View {
         AlignmentVStack(with: .bottom, spacing: 0.0) {
             AlignmentHStack(with: .leading) {
                 Button {
-                    didTapComment.toggle()
+                    didTapComment()
                 } label: {
-                    HStack {
-                        Image("Icon_Talk_24")
-                        Text("\(count)")
-                            .font(.Pretendard.b2_regular)
-                            .foregroundColor(.white)
-                    }
+                    Image("Icon_Talk_24")
+                    Text("\(count)")
+                        .font(.Pretendard.b2_regular)
+                        .foregroundColor(.white)
                 }
             }
             .padding(.leading, 20.0)
             .frame(height: 56.0)
-            .background(Color.red)
+            .background(Color.Talkbbokki.GrayScale.gray7)
+            .clipped()
+            .shadow(edge: .top)
             
-            Color.red.ignoresSafeArea()
+            Color.Talkbbokki.GrayScale.gray7
+                .ignoresSafeArea()
                 .frame(height: 1.0)
         }
     }
@@ -287,7 +294,7 @@ struct DetailBackCardView: View {
             ActivityViewController(activityItems: [card.pcLink+"&rule=\((order?.id).orZero)"])
         }
     }
-
+    
     private var backgroundView: some View {
         Color.white
             .frame(width: Design.Constraint.cardSize.width,
@@ -336,7 +343,7 @@ struct DetailBackCardView: View {
                 .foregroundColor(.Talkbbokki.GrayScale.black)
         }.padding([.top, .leading, .trailing, .bottom], 24)
     }
-
+    
     private var buttons: some View {
         HStack(alignment: .center, spacing: .zero) {
             Button {

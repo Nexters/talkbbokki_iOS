@@ -2,89 +2,103 @@
 //  CommentView.swift
 //  talkbbokki
 //
-//  Created by USER on 2023/05/05.
+//  Created by USER on 2023/05/13.
 //
 
 import SwiftUI
-import ComposableArchitecture
 
 struct CommentView: View {
-    let store: StoreOf<CommentReducer>
-    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    let comment: Model.Comment
+    @Binding var deleteCommentId: Int
+    
     var body: some View {
-        WithViewStore(store) { viewStore in
-            ZStack {
-                Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
-                if viewStore.commentCount == 0 {
-                    emptyView
+        VStack(alignment: .leading, spacing: 16.0) {
+            VStack(alignment: .leading, spacing: 8.0) {
+                commentTitle("nickName",
+                             date: comment.createdToPresent,
+                             isOwner: comment.userId == Utils.getDeviceUUID()) {
+                    deleteCommentId = comment._id
                 }
-                inputCommentView(viewStore.binding(get: \.inputComment,
-                                                   send: { .setInputComment($0) }),
-                                 buttonAction: {
-                    viewStore.send(.registerComment(viewStore.inputComment))
-                })
+                commentContent(comment.body)
             }
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: backButton)
-            .navigationTitle("댓글(\(viewStore.commentCount))")
-        }
-    }
-    
-    private var backButton: some View {
-        Button {
-            presentationMode.wrappedValue.dismiss()
-        } label: {
-            Image("Icon-arrow2_left-24_white")
-        }
-    }
-    
-    private var emptyView: some View {
-        VStack(spacing: 16) {
-            Image("empty")
-            Text("아직 등록된 댓글이 없어요\n첫 번째 댓글을 달아보세요")
-                .font(.Pretendard.b2_regular)
-                .foregroundColor(.Talkbbokki.GrayScale.gray5)
-        }
-    }
-    
-    private func inputCommentView(_ binding: Binding<String>,
-                                  buttonAction: @escaping (()->())
-    ) -> some View {
-        AlignmentVStack(with: .bottom, spacing: 0.0) {
-            Group {
-                ZStack(alignment: .center) {
-                    CommonTextField(binding: binding,
-                                    placeHolderString: "이 대화 주제 어땠나요?")
-                    
-                    AlignmentHStack(with: .trailing) {
-                        Button {
-                            buttonAction()
-                        } label: {
-                            Text("등록")
-                                .font(.Pretendard.b2_bold)
-                                .foregroundColor(.white)
-                                .padding(10)
-                        }
-                        .padding(.trailing, 6)
-                    }
-                }
-                .background(Color.Talkbbokki.GrayScale.gray7)
-                .padding(.top, 20)
-                .padding([.leading, .trailing], 16)
-                .padding(.bottom, 8)
+            
+            commentButtons(0, isOwner: comment.userId == Utils.getDeviceUUID()) {
                 
-                Spacer().frame(height: 1.0)
+            } tapReport: {
+                
             }
-            .background(Color.Talkbbokki.GrayScale.gray7)
-            .clipped()
-            .shadow(edge: .top)
+        }
+        .padding([.top, .leading, .bottom, .trailing], 20)
+    }
+    
+    private func commentTitle(_ title: String,
+                              date: String,
+                              isOwner: Bool,
+                              tapClose: @escaping (()->Void)) -> some View {
+        HStack(alignment: .center, spacing: 8.0) {
+            Text(title)
+                .foregroundColor(isOwner ? .Talkbbokki.Primary.mainColor1 : .white)
+                .font(.Pretendard.b3_bold)
+            Text(date)
+                .foregroundColor(.Talkbbokki.GrayScale.gray6)
+                .font(.Pretendard.caption1)
+            Spacer()
+            if isOwner {
+                Button {
+                    tapClose()
+                } label: {
+                    Image("Icon-Close-24")
+                        .resizable()
+                        .frame(width: 18,height: 18)
+                }
+            }
+        }
+    }
+
+    private func commentContent(_ message: String) -> some View {
+        Text(message)
+            .foregroundColor(.white)
+            .font(.Pretendard.b3_regular)
+    }
+    
+    private func commentButtons(_ replyCount: Int,
+                                isOwner: Bool,
+                                tapReply: @escaping (()->Void),
+                                tapReport: @escaping (()->Void)
+    ) -> some View {
+        HStack(spacing: 12.0) {
+            Button {
+                tapReply()
+            } label: {
+                Text("답글 (\(replyCount))")
+                    .foregroundColor(.Talkbbokki.GrayScale.gray6)
+                    .font(.Pretendard.reply)
+            }
+
+            
+            if isOwner { EmptyView() }
+            else {
+                Button {
+                    tapReport()
+                } label: {
+                    Text("신고하기").foregroundColor(.Talkbbokki.GrayScale.gray6)
+                        .font(.Pretendard.reply)
+                }
+            }
         }
     }
 }
 
 struct CommentView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentView(store: .init(initialState: .init(topicID: 0),
-                                 reducer: CommentReducer()))
+        CommentView(comment: Model.Comment(_id: 0,
+                                           topicId: 0,
+                                           parentCommentId: nil,
+                                           body: "Asdasdasdas",
+                                           userId: "asdas",
+                                           createAt: "2023-05-13T15:23:18Z",
+                                           modifyAt: "2023-05-13T15:23:18Z"),
+                    deleteCommentId: .constant(1))
+        .background(Color.blue)
     }
 }

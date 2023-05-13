@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlertView: View {
+    let isShowImage = true
     let message: String
     let subMessage: String
     let buttons: [AlertButton]
@@ -24,7 +25,10 @@ struct AlertView: View {
             VStack(spacing: 24) {
                 Group {
                     VStack(alignment: .center,spacing: 16) {
-                        Image("Crying")
+                        if isShowImage {
+                            Image("Crying")
+                        }
+
                         VStack(spacing: 4) {
                             Text(message).multilineTextAlignment(.center)
                                 .font(.Pretendard.b2_bold)
