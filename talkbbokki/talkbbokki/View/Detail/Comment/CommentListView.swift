@@ -20,24 +20,26 @@ struct CommentListView: View {
                         .frame(width: 50, height: 50)
                         .foregroundColor(.white)
                 } else {
-                    if viewStore.comments.isEmpty {
+                    if viewStore.commentCount == 0 {
                         emptyView
-                    } else {
-                        List(viewStore.comments, id: \._id) { comment in
-                            CommentView(comment: comment,
-                                        deleteCommentId: viewStore.binding(get: \.deleteCommentId,
-                                                                           send: { .setDeleteCommentId($0) }))
-                            .listRowBackground(Color.clear)
-                            .listRowInsets(EdgeInsets())
-                        }
-                        .listStyle(PlainListStyle())
                     }
                     
-                    inputCommentView(viewStore.binding(get: \.inputComment,
-                                                       send: { .setInputComment($0) }),
-                                     buttonAction: {
-                        viewStore.send(.registerComment(viewStore.inputComment))
-                    })
+                    VStack {
+                        if viewStore.comments.count > 0 {
+                            commentList(viewStore.comments,
+                                        nextId: viewStore.nextPage,
+                                        deleteBinding: viewStore.binding(get: \.deleteCommentId,
+                                                                         send: { .setDeleteCommentId($0) }))
+                        } else {
+                            Spacer()
+                        }
+                        
+                        inputCommentView(viewStore.binding(get: \.inputComment,
+                                                           send: { .setInputComment($0) }),
+                                         buttonAction: {
+                            viewStore.send(.registerComment(viewStore.inputComment))
+                        })
+                    }
                     
                     if viewStore.showDeleteAlert {
                         showDeleteAlert(binding: viewStore.binding(get: \.tapDeleteAlert,
@@ -76,35 +78,65 @@ struct CommentListView: View {
     private func inputCommentView(_ binding: Binding<String>,
                                   buttonAction: @escaping (()->())
     ) -> some View {
-        AlignmentVStack(with: .bottom, spacing: 0.0) {
+        VStack(spacing: 0.0) {
             Group {
                 ZStack(alignment: .center) {
-                    CommonTextField(binding: binding,
-                                    placeHolderString: "이 대화 주제 어땠나요?")
-                    
-                    AlignmentHStack(with: .trailing) {
+                    HStack {
+                        CommonTextField(binding: binding,
+                                        placeHolderString: "이 대화 주제 어땠나요?")
+                        
                         Button {
                             buttonAction()
                         } label: {
                             Text("등록")
                                 .font(.Pretendard.b2_bold)
-                                .foregroundColor(.white)
+                                .foregroundColor(binding.wrappedValue.isEmpty ? .gray : .white)
                                 .padding(10)
                         }
+                        .disabled(binding.wrappedValue.isEmpty)
                         .padding(.trailing, 6)
                     }
+                    .background(Color.Talkbbokki.GrayScale.gray6)
+                    .cornerRadius(8)
                 }
                 .background(Color.Talkbbokki.GrayScale.gray7)
                 .padding(.top, 20)
                 .padding([.leading, .trailing], 16)
                 .padding(.bottom, 8)
                 
-                Spacer().frame(height: 1.0)
+                Spacer()
+                    .frame(height: 1.0)
             }
             .background(Color.Talkbbokki.GrayScale.gray7)
             .clipped()
             .shadow(edge: .top)
         }
+    }
+    
+    private func commentList(_ comments: [Model.Comment],
+                             nextId: Int?,
+                             deleteBinding: Binding<Int>) -> some View {
+        List {
+            ForEach(comments, id: \._id) { comment in
+                CommentView(comment: comment,
+                            deleteCommentId: deleteBinding)
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets())
+            }
+            
+            if nextId.isNonEmpty {
+                AlignmentHStack(alignment: .center) {
+                    ActivityIndicator()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.white)
+                }
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets())
+                .onAppear {
+                    print("did bottom")
+                }
+            }
+        }.listStyle(PlainListStyle())
     }
     
     private func showDeleteAlert(binding: Binding<ButtonType>) -> some View {
@@ -114,7 +146,9 @@ struct CommentListView: View {
                     AlertButton(type: .cancel(), message: "안할래요"),
                     AlertButton(type: .ok(), message: "그래도 할래요")
                   ],
-                  didTapButton: binding)
+                  didTapButton: binding,
+                  isShowImage: false
+        )
     }
 }
 

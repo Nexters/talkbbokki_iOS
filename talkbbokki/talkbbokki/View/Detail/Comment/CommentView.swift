@@ -49,8 +49,8 @@ struct CommentView: View {
                 } label: {
                     Image("Icon-Close-24")
                         .resizable()
-                        .frame(width: 18,height: 18)
                 }
+                .frame(width: 18,height: 18)
             }
         }
     }

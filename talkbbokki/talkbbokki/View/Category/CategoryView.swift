@@ -62,18 +62,18 @@ struct CategoryView: View {
                         Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
                         
                         VStack(spacing: 0) {
-                            AlignmentVStack(with: .top) {
+                            AlignmentVStack(alignment: .top) {
                                 Spacer().frame(maxHeight: 88)
                                 CategoryTitleView()
                             }
                             
-                            AlignmentVStack(with: .top) {
+                            AlignmentVStack(alignment: .top) {
                                 CategoryCardGridView(touchedCardView: $selectedCategory,
                                                      categories: viewStore.categories)
                             }
                         }.padding(.bottom, 20)
                         
-                        AlignmentVStack(with: .top) {
+                        AlignmentVStack(alignment: .top) {
                             Button {
                                 slideMenuView.toggle()
                             } label: {
@@ -94,7 +94,7 @@ struct CategoryView: View {
                                 .animation(.easeInOut(duration: 0.5))
                                 .transition(.opacity)
                             
-                            AlignmentHStack(with: .trailing) {
+                            AlignmentHStack(alignment: .trailing) {
                                 MenuView(nickName: viewStore.nickName,
                                          tapAction: Binding(get: { viewStore.menuTapAction },
                                                             set: { viewStore.send(.tapMenu($0) )

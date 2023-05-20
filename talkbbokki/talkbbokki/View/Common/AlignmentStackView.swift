@@ -10,19 +10,27 @@ import SwiftUI
 enum HorizontalAlignment {
     case trailing
     case leading
+    case center
 }
 
 enum VerticalAlignment {
     case top
     case bottom
+    case center
 }
 
-extension View {
-    @ViewBuilder
-    func AlignmentHStack<Content: View>(
-        with alignment: HorizontalAlignment,
-        spacing: CGFloat? = nil,
-        @ViewBuilder view: () -> Content) -> some View {
+struct AlignmentHStack<Content>: View where Content: View {
+    let alignment: HorizontalAlignment
+    let spacing: CGFloat?
+    let view: (() -> Content)
+    
+    init(alignment: HorizontalAlignment, spacing: CGFloat? = nil, @ViewBuilder view: @escaping () -> Content) {
+        self.alignment = alignment
+        self.spacing = spacing
+        self.view = view
+    }
+    
+    var body: some View {
         switch alignment {
         case .trailing:
             HStack(spacing: spacing) {
@@ -34,15 +42,28 @@ extension View {
                 view()
                 Spacer()
             }
+        case .center:
+            HStack(spacing: spacing) {
+                Spacer()
+                view()
+                Spacer()
+            }
         }
     }
+}
+
+struct AlignmentVStack<Content>: View where Content: View {
+    let alignment: VerticalAlignment
+    let spacing: CGFloat?
+    let view: (() -> Content)
     
-    @ViewBuilder
-    func AlignmentVStack<Content: View>(
-        with alignment: VerticalAlignment,
-        spacing: CGFloat? = nil,
-        @ViewBuilder view: () -> Content
-    ) -> some View {
+    init(alignment: VerticalAlignment, spacing: CGFloat? = nil, @ViewBuilder view: @escaping () -> Content) {
+        self.alignment = alignment
+        self.spacing = spacing
+        self.view = view
+    }
+    
+    var body: some View {
         switch alignment {
         case .top:
             VStack(spacing: spacing) {
@@ -53,6 +74,12 @@ extension View {
             VStack(spacing: spacing) {
                 Spacer()
                 view()
+            }
+        case .center:
+            VStack(spacing: spacing) {
+                Spacer()
+                view()
+                Spacer()
             }
         }
     }

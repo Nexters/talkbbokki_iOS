@@ -145,9 +145,6 @@ final class DetailCardReducer: ReducerProtocol {
             case let .commentDelegate(.delegate(.changedComment(commentCount))):
                 state.commentCount = commentCount
                 return .none
-//            case .commentDelegate(.delegate(.deleteComment)):
-//                state.commentCount -= 1
-//                return .none
             case .commentDelegate:
                 return .none
             }

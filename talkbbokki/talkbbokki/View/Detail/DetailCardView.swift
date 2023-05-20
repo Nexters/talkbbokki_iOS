@@ -78,7 +78,8 @@ struct DetailCardContainerView: View {
                                 }
                                 Spacer()
                             }
-                        }.transition(.scale.animation(.spring()).combined(with: .move(edge: .bottom)))
+                        }.transition(.scale.animation(.spring())
+                            .combined(with: .move(edge: .bottom)))
                     }
                     
                     if viewStore.toastMessage.isNonEmpty {
@@ -168,8 +169,8 @@ struct DetailCardContainerView: View {
     }
     
     private func bottomView(count: Int, didTapComment: @escaping (()->Void)) -> some View {
-        AlignmentVStack(with: .bottom, spacing: 0.0) {
-            AlignmentHStack(with: .leading) {
+        AlignmentVStack(alignment: .bottom, spacing: 0.0) {
+            AlignmentHStack(alignment: .leading) {
                 Button {
                     didTapComment()
                 } label: {

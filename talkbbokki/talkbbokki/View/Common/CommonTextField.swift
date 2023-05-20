@@ -20,8 +20,6 @@ struct CommonTextField: View {
             }
             .padding(14)
             .foregroundColor(.white)
-            .background(Color.Talkbbokki.GrayScale.gray6)
-            .cornerRadius(8)
     }
 }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AlertView: View {
-    let isShowImage = true
+    let isShowImage: Bool
     let message: String
     let subMessage: String
     let buttons: [AlertButton]
@@ -17,6 +17,20 @@ struct AlertView: View {
     @State private var didAppear: Bool = false
     @State private var opacity = 0.0
     @State private var scale: CGFloat = 0.0
+    
+    init(message: String,
+         subMessage: String,
+         buttons: [AlertButton],
+         didTapButton: Binding<ButtonType>,
+         isShowImage: Bool = true
+    ) {
+        self.message = message
+        self.subMessage = subMessage
+        self.buttons = buttons
+        self._didTapButton = didTapButton
+        self.isShowImage = isShowImage
+    }
+
     var body: some View {
         ZStack {
             Color.black

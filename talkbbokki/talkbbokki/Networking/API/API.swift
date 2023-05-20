@@ -173,10 +173,10 @@ extension API.FetchCommentList: APIConfig {
     var method: HTTPMethod { return .get }
     var parameters: API.Parameter? { return nil }
     
-    func parse(_ input : Data) throws -> [Model.Comment] {
+    func parse(_ input : Data) throws -> Model.CommentList {
         let json   = try? input.toDict()
-        let result = (json?["result"] as? Array<[String: Any]>)!
-        return try result.map(Model.Comment.decode)
+        let result = (json?["result"] as? [String: Any])!
+        return try Model.CommentList.decode(dictionary: result)
     }
 }
 
