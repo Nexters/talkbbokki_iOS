@@ -78,8 +78,8 @@ struct DetailCardContainerView: View {
                                 }
                                 Spacer()
                             }
-                        }.transition(.scale.animation(.spring())
-                            .combined(with: .move(edge: .bottom)))
+                        }
+                        .transition(.presentCardTransition)
                     }
                     
                     if viewStore.toastMessage.isNonEmpty {
@@ -170,7 +170,7 @@ struct DetailCardContainerView: View {
     
     private func bottomView(count: Int, didTapComment: @escaping (()->Void)) -> some View {
         AlignmentVStack(alignment: .bottom, spacing: 0.0) {
-            AlignmentHStack(alignment: .leading) {
+            HStack {
                 Button {
                     didTapComment()
                 } label: {
@@ -179,6 +179,15 @@ struct DetailCardContainerView: View {
                         .font(.Pretendard.b2_regular)
                         .foregroundColor(.white)
                 }
+                Spacer()
+                prevNextButtons(
+                    tapPrev: {
+                        changeCard()
+                    },
+                    tapNext: {
+                        changeCard()
+                    })
+                .padding(.trailing, 20)
             }
             .padding(.leading, 20.0)
             .frame(height: 56.0)
@@ -214,6 +223,73 @@ struct DetailCardContainerView: View {
                 }
             }
             Spacer()
+        }
+    }
+    
+    private func prevNextButtons(
+        tapPrev: @escaping (()->Void),
+        tapNext: @escaping (()->Void)
+    ) -> some View {
+        HStack(spacing: 12.0) {
+            Button {
+                tapPrev()
+            } label: {
+                HStack(spacing: 4.0) {
+                    Image("Icon_refresh_18_prev")
+                    Text("이전 카드")
+                        .font(.Pretendard.b2_bold)
+                        .foregroundColor(.white)
+                }
+            }
+            
+            Divider()
+                .background(Color.white)
+                .frame(height: 15.0)
+            
+            Button {
+                tapNext()
+            } label: {
+                HStack(spacing: 4.0) {
+                    Text("다음 카드")
+                        .font(.Pretendard.b2_bold)
+                        .foregroundColor(.white)
+                    Image("Icon_refresh_18_next")
+                }
+            }
+
+        }
+    }
+}
+
+// Function
+extension DetailCardContainerView {
+    private func dismissCard(completion: (()->Void)? = nil) {
+        flipCard()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            withAnimation {
+                didLoad.toggle()
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                completion?()
+            })
+        })
+    }
+    
+    private func presentCard(completion: (()->Void)? = nil) {
+        withAnimation {
+            didLoad.toggle()
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            flipCard()
+            completion?()
+        })
+    }
+    
+    private func changeCard() {
+        dismissCard {
+            presentCard()
         }
     }
     
