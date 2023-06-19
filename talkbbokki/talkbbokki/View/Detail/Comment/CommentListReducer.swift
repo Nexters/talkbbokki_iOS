@@ -5,12 +5,10 @@
 //  Created by USER on 2023/05/05.
 //
 
-import Combine
 import ComposableArchitecture
 
-final class CommentListReducer: ReducerProtocol {
-    private var bag = Set<AnyCancellable>()
-    
+struct CommentListReducer: ReducerProtocol {
+    private let repository: CommentListRepositoryType
     struct State: Equatable {
         let topicID: Int
         var didLoad = false
@@ -46,6 +44,10 @@ final class CommentListReducer: ReducerProtocol {
         case minus(Int)
     }
     
+    init(repository: CommentListRepositoryType = CommentListRepository()) {
+        self.repository = repository
+    }
+    
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
         case .setInputComment(let comment):
@@ -61,17 +63,16 @@ final class CommentListReducer: ReducerProtocol {
             state.showDeleteAlert = isShow
             return .none
         case .registerComment(let comment):
-            return EffectTask.run { [weak self, state = state] operation in
-                guard let self = self else { return }
-                await self.registerComment(with: state.topicID, comment: comment)
+            return EffectTask.run { [state = state] operation in
+                await repository.registerComment(with: state.topicID, comment: comment)
                 await operation.send(.fetchComments)
                 await operation.send(.setInputComment(""))
                 await operation.send(.updateCommentCount(.plus(1)))
             }
         case .fetchComments:
-            return EffectTask.run { [weak self, topicID = state.topicID] operation in
-                guard let self = self else { return }
-                await operation.send(.setCommentList(self.fetchComment(with: topicID)))
+            return EffectTask.run { [topicID = state.topicID] operation in
+//                guard let self = self else { return }
+                await operation.send(.setCommentList(repository.fetchComment(with: topicID)))
             }
         case .setCommentList(let commentResponse):
             state.comments = commentResponse.comments
@@ -96,9 +97,8 @@ final class CommentListReducer: ReducerProtocol {
         case .setTapDeleteAlert(let type):
             state.tapDeleteAlert = type
             if case .ok = type {
-                return .run { [weak self, state = state] operation in
-                    guard let self = self else { return }
-                    await self.deleteComment(commentId: state.deleteCommentId)
+                return .run { [state = state] operation in
+                    await repository.deleteComment(commentId: state.deleteCommentId)
                     await operation.send(.removeComment(state.deleteCommentId))
                     await operation.send(.setDeleteCommentId(0))
                     await operation.send(.setShowDeleteAlert(false))
@@ -108,41 +108,5 @@ final class CommentListReducer: ReducerProtocol {
             }
         case .delegate: return .none
         }
-    }
-}
-
-extension CommentListReducer {
-    private func registerComment(with topicId: Int, comment: String) async -> Void {
-        return await withCheckedContinuation({ continuation in
-            API.RegisterComment(topicID: topicId, comment: comment, userID: Utils.getDeviceUUID())
-                .request()
-                .print("API.RegisterComment")
-                .sink { _ in
-                } receiveValue: { _ in
-                    continuation.resume(returning: ())
-                }.store(in: &bag)
-        })
-    }
-    
-    private func fetchComment(with topicId: Int) async -> Model.CommentList {
-        return await withCheckedContinuation({ continuation in
-            API.FetchCommentList(topicID: topicId).request()
-                .print("API.FetchCommentList")
-                .sink { _ in
-                } receiveValue: { comments in
-                    continuation.resume(returning: comments)
-                }.store(in: &bag)
-        })
-    }
-    
-    private func deleteComment(commentId: Int) async -> Void {
-        return await withCheckedContinuation({ continuation in
-            API.DeleteComment(commentID: commentId).request()
-                .print("API.DeleteComment")
-                .sink { _ in
-                } receiveValue: { _ in
-                    continuation.resume(returning: ())
-                }.store(in: &bag)
-        })
     }
 }

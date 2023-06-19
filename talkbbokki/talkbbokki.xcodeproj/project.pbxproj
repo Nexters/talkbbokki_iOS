@@ -81,6 +81,7 @@
 		CE7E035829AB542300486623 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E035729AB542300486623 /* String+.swift */; };
 		CE858E852995427500F2FC42 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E842995427500F2FC42 /* CategoryView.swift */; };
 		CE858E872995468D00F2FC42 /* CategoryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E862995468D00F2FC42 /* CategoryReducer.swift */; };
+		CE9083DC2A4079A100B5B322 /* CommentListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9083DB2A4079A100B5B322 /* CommentListRepository.swift */; };
 		CEA39B462A0FD5F700E18D43 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA39B452A0FD5F700E18D43 /* CommentView.swift */; };
 		CEA39B482A0FDB8100E18D43 /* Model.Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA39B472A0FDB8100E18D43 /* Model.Comment.swift */; };
 		CEA39B4A2A0FF93C00E18D43 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA39B492A0FF93C00E18D43 /* ActivityIndicatorView.swift */; };
@@ -201,6 +202,7 @@
 		CE7E035729AB542300486623 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		CE858E842995427500F2FC42 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		CE858E862995468D00F2FC42 /* CategoryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryReducer.swift; sourceTree = "<group>"; };
+		CE9083DB2A4079A100B5B322 /* CommentListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListRepository.swift; sourceTree = "<group>"; };
 		CEA39B452A0FD5F700E18D43 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		CEA39B472A0FDB8100E18D43 /* Model.Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Comment.swift; sourceTree = "<group>"; };
 		CEA39B492A0FF93C00E18D43 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 			children = (
 				CE7634A12A04E3A0009B3CA0 /* CommentListView.swift */,
 				CE7634A32A04E3AD009B3CA0 /* CommentListReducer.swift */,
+				CE9083DB2A4079A100B5B322 /* CommentListRepository.swift */,
 				CEA39B452A0FD5F700E18D43 /* CommentView.swift */,
 			);
 			path = Comment;
@@ -862,6 +865,7 @@
 				CE7E035329AB4ED600486623 /* Int+.swift in Sources */,
 				CEA48CE429A27E2400B39F84 /* OnboardFirstView.swift in Sources */,
 				CECBD3C429FABA02007FA3F4 /* NicknameSettingReducer.swift in Sources */,
+				CE9083DC2A4079A100B5B322 /* CommentListRepository.swift in Sources */,
 				CE64A507299BE9D1004C4E8D /* AppDelegate.swift in Sources */,
 				CED4F00029AD12CA0063D3C6 /* BookmarkReducer.swift in Sources */,
 				CE7E035829AB542300486623 /* String+.swift in Sources */,

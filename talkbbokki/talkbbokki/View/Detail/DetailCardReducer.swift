@@ -53,7 +53,7 @@ final class DetailCardReducer: ReducerProtocol {
         self.color = color
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerProtocolOf<DetailCardReducer> {
         Reduce { [weak self] state, action in
             guard let self = self else { return .none }
             switch action {
@@ -141,6 +141,7 @@ final class DetailCardReducer: ReducerProtocol {
                 state.showComment = isShow
                 state.commentState = .init(topicID: self.topic.topicID,
                                            commentCount: state.commentCount)
+                print("set commentState CommentListReducer")
                 return .none
             case let .commentDelegate(.delegate(.changedComment(commentCount))):
                 state.commentCount = commentCount
