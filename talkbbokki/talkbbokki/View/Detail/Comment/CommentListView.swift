@@ -29,7 +29,9 @@ struct CommentListView: View {
                             commentList(viewStore.comments,
                                         nextId: viewStore.nextPage,
                                         deleteBinding: viewStore.binding(get: \.deleteCommentId,
-                                                                         send: { .setDeleteCommentId($0) }))
+                                                                         send: { .setDeleteCommentId($0) })) {
+                                viewStore.send(.fetchComments(next: viewStore.nextPage))
+                            }
                         } else {
                             Spacer()
                         }
@@ -52,7 +54,7 @@ struct CommentListView: View {
             .navigationTitle("댓글(\(viewStore.commentCount))")
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
-                    viewStore.send(.fetchComments)
+                    viewStore.send(.fetchComments(next: nil))
                 })
             }
         }
@@ -115,7 +117,8 @@ struct CommentListView: View {
     
     private func commentList(_ comments: [Model.Comment],
                              nextId: Int?,
-                             deleteBinding: Binding<Int>) -> some View {
+                             deleteBinding: Binding<Int>,
+                             didScrollToBottom: @escaping (()->())) -> some View {
         List {
             ForEach(comments, id: \._id) { comment in
                 CommentView(comment: comment,
@@ -133,6 +136,7 @@ struct CommentListView: View {
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets())
                 .onAppear {
+                    didScrollToBottom()
                     print("did bottom")
                 }
             }

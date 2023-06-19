@@ -35,10 +35,12 @@ extension API {
         let topicID: Int
         let comment: String
         let userID: String
+        let userNickname: String
     }
     
     struct FetchCommentList {
         let topicID: Int
+        let next: Int?
     }
     
     struct DeleteComment {
@@ -156,7 +158,7 @@ extension API.RegisterComment: APIConfig {
     static let domainConfig = Domain.Talkbbokki.self
     static let serviceError = TalkbbokkiError.self
     
-    var path: String { return "/api/topics/\(topicID)/comments?body=\(comment)&userId=\(userID)&topicId=\(topicID)"}
+    var path: String { return "/api/topics/\(topicID)/comments?body=\(comment)&userId=\(userID)&topicId=\(topicID)&userNickname=\(userNickname)"}
     var method: HTTPMethod { return .post }
     var parameters: API.Parameter? { return nil }
     
@@ -169,7 +171,13 @@ extension API.FetchCommentList: APIConfig {
     static let domainConfig = Domain.Talkbbokki.self
     static let serviceError = TalkbbokkiError.self
     
-    var path: String { return "/api/topics/\(topicID)/comments"}
+    var path: String {
+        if let next {
+            return "/api/topics/\(topicID)/comments?next=\(next)&pageSize=20"
+        } else {
+            return "/api/topics/\(topicID)/comments?pageSize=20"
+        }
+    }
     var method: HTTPMethod { return .get }
     var parameters: API.Parameter? { return nil }
     

@@ -10,7 +10,7 @@ import Combine
 
 protocol CommentListRepositoryType {
     func registerComment(with topicId: Int, comment: String) async -> Void
-    func fetchComment(with topicId: Int) async -> Model.CommentList
+    func fetchComment(with topicId: Int, next: Int?) async -> Model.CommentList
     func deleteComment(commentId: Int) async -> Void
 }
 
@@ -19,7 +19,11 @@ final class CommentListRepository: CommentListRepositoryType {
     
     func registerComment(with topicId: Int, comment: String) async -> Void {
         return await withCheckedContinuation({ continuation in
-            API.RegisterComment(topicID: topicId, comment: comment, userID: Utils.getDeviceUUID())
+            API.RegisterComment(topicID: topicId,
+                                comment: comment,
+                                userID: Utils.getDeviceUUID(),
+                                userNickname: UserDefaultValue.nickName
+            )
                 .request()
                 .print("API.RegisterComment")
                 .sink { _ in
@@ -29,9 +33,9 @@ final class CommentListRepository: CommentListRepositoryType {
         })
     }
     
-    func fetchComment(with topicId: Int) async -> Model.CommentList {
+    func fetchComment(with topicId: Int, next: Int?) async -> Model.CommentList {
         return await withCheckedContinuation({ continuation in
-            API.FetchCommentList(topicID: topicId).request()
+            API.FetchCommentList(topicID: topicId, next: next).request()
                 .print("API.FetchCommentList")
                 .sink { _ in
                 } receiveValue: { comments in
