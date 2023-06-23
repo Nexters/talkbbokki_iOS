@@ -95,14 +95,17 @@ struct BookmarkView: View {
                 .fullScreenCover(item: $didTapDetail, onDismiss: {
                     viewStore.send(.fetchBookmarkList)
                 },content: { detail in
-                    DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(),
-                                                         reducer: DetailCardReducer(topic: detail.convert,
-                                                                                    color: Int(detail.bgColor))),
-                                            card: detail.convert,
-                                            color: Int(detail.bgColor),
-                                            enteredAds: false,
-                                            notReadyAds: false,
-                                            isEnteredModal: true)
+                    EmptyView()
+//                    DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(cards: [detail.convert],
+//                                                                                               color: detail.bgColor,
+//                                                                                               selectedIndex: 0),
+//                                                         reducer: DetailCardReducer()),
+//                                            card: detail.convert,
+//                                            color: Int(detail.bgColor),
+//                                            enteredAds: false,
+//                                            notReadyAds: false,
+//                                            isEnteredModal: true
+//                    )
                 })
                 .navigationBarBackButtonHidden(true)
                 .navigationBarItems(leading: backButton)

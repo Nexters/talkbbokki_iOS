@@ -162,7 +162,7 @@ struct CategoryView: View {
                 case .cardList:
                     CardListView(category: selectedCategory,
                                  store: Store(initialState: CardListReducer.State(),
-                                              reducer: CardListReducer()))
+                                              reducer: CardListReducer(color: selectedCategory.bgColor.color)))
                 }
             })
             .onAppear {

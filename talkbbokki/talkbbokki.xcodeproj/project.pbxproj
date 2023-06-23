@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE088E562A460CA800E2B7E1 /* Task+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE088E552A460CA800E2B7E1 /* Task+.swift */; };
+		CE088E582A460DDC00E2B7E1 /* DetailCardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE088E572A460DDC00E2B7E1 /* DetailCardRepository.swift */; };
 		CE0F159D2993B9B000295B43 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F159C2993B9B000295B43 /* APIConfig.swift */; };
 		CE0F15A02993BB5B00295B43 /* APIConfig.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F159F2993BB5B00295B43 /* APIConfig.Error.swift */; };
 		CE0F15A22993BBF000295B43 /* APIConfig+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F15A12993BBF000295B43 /* APIConfig+Error.swift */; };
@@ -154,6 +156,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE088E552A460CA800E2B7E1 /* Task+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+.swift"; sourceTree = "<group>"; };
+		CE088E572A460DDC00E2B7E1 /* DetailCardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardRepository.swift; sourceTree = "<group>"; };
 		CE0F159C2993B9B000295B43 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		CE0F159F2993BB5B00295B43 /* APIConfig.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.Error.swift; sourceTree = "<group>"; };
 		CE0F15A12993BBF000295B43 /* APIConfig+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIConfig+Error.swift"; sourceTree = "<group>"; };
@@ -448,6 +452,7 @@
 				CECBD3C529FD7E70007FA3F4 /* Combine+.swift */,
 				CEFE37732A02AA280098784E /* AnyTransition+.swift */,
 				CE7634A52A04E778009B3CA0 /* NavigationBarModifier.swift */,
+				CE088E552A460CA800E2B7E1 /* Task+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -523,6 +528,7 @@
 			children = (
 				CEB93F342997FD3F001087B6 /* DetailCardView.swift */,
 				CE498376299A9DCB008A3968 /* DetailCardReducer.swift */,
+				CE088E572A460DDC00E2B7E1 /* DetailCardRepository.swift */,
 				CE7E034929A9DBC500486623 /* SavePhotoView.swift */,
 				CE7634A02A04CE21009B3CA0 /* Comment */,
 			);
@@ -864,6 +870,7 @@
 				CEFE376E2A0297D30098784E /* MenuView.swift in Sources */,
 				CE7E035329AB4ED600486623 /* Int+.swift in Sources */,
 				CEA48CE429A27E2400B39F84 /* OnboardFirstView.swift in Sources */,
+				CE088E562A460CA800E2B7E1 /* Task+.swift in Sources */,
 				CECBD3C429FABA02007FA3F4 /* NicknameSettingReducer.swift in Sources */,
 				CE9083DC2A4079A100B5B322 /* CommentListRepository.swift in Sources */,
 				CE64A507299BE9D1004C4E8D /* AppDelegate.swift in Sources */,
@@ -893,6 +900,7 @@
 				CE0F15A42993F5DD00295B43 /* APIConfig.Parameters.swift in Sources */,
 				CEA39B4A2A0FF93C00E18D43 /* ActivityIndicatorView.swift in Sources */,
 				CE1F2A5929BBA0A100028EF8 /* Utils.swift in Sources */,
+				CE088E582A460DDC00E2B7E1 /* DetailCardRepository.swift in Sources */,
 				CEA39B482A0FDB8100E18D43 /* Model.Comment.swift in Sources */,
 				CE0F15A22993BBF000295B43 /* APIConfig+Error.swift in Sources */,
 				CEF3324129AE3324001486DC /* CoreData.Topic.swift in Sources */,

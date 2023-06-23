@@ -11,11 +11,18 @@ import Combine
 import UIKit
 import Photos
 
-final class DetailCardReducer: ReducerProtocol {
+private enum Constant {
+    static let viewCount = 5.0
+}
+
+struct DetailCardReducer: ReducerProtocol {
     private var bag = Set<AnyCancellable>()
-    private let topic: Model.Topic
-    private let color: Int
+    private let repository: DetailCardRepositoryType = DetailCardRepository()
     struct State: Equatable {
+        let cards: [Model.Topic]
+        let color: Int
+        var selectedIndex: Int
+        var card: Model.Topic
         var order: Model.Order?
         var errorMessage: String = ""
         var isShowBookMarkAlert = false
@@ -39,6 +46,7 @@ final class DetailCardReducer: ReducerProtocol {
         case setError(Error)
         case setIsSuccessSavePhoto
         case setSaveTopic(Bool)
+        case setSelectedIndex(Int)
         case setShowComment(Bool)
         case fetchSaveTopic(id: Int)
         case didTapBookMark(Model.Topic, Int)
@@ -46,16 +54,15 @@ final class DetailCardReducer: ReducerProtocol {
         case savePhoto(Model.Topic)
         case like(Model.Topic)
         case commentDelegate(CommentListReducer.Action)
+        case delegate(DelegateAction)
     }
     
-    init(topic: Model.Topic, color: Int) {
-        self.topic = topic
-        self.color = color
+    enum DelegateAction: Equatable {
+        case changedCardIndex(Int)
     }
-    
+
     var body: some ReducerProtocolOf<DetailCardReducer> {
-        Reduce { [weak self] state, action in
-            guard let self = self else { return .none }
+        Reduce { state, action in
             switch action {
             case .resetViewCount:
                 UserDefaultValue.viewCount = 1
@@ -76,14 +83,12 @@ final class DetailCardReducer: ReducerProtocol {
                 UserDefaultValue.didShowTopic = topics
                 return .none
             case .fetchOrder:
-                return EffectTask.run { [weak self] send in
-                    guard let self = self else { return }
-                    await send.send(.setOrder(self.fetchOrder()))
+                return EffectTask.run { send in
+                    await send.send(.setOrder(repository.fetchOrder()))
                 }
             case .fetchCommentCount(let topic):
-                return EffectTask.run { [weak self] opertion in
-                    guard let self = self else { return }
-                    await opertion.send(.setCommentCount(self.fetchCommentCount(with: topic)))
+                return EffectTask.run { opertion in
+                    await opertion.send(.setCommentCount(repository.fetchCommentCount(with: topic)))
                 }
             case .orderResult(let result):
                 switch result {
@@ -98,6 +103,28 @@ final class DetailCardReducer: ReducerProtocol {
             case .setOrder(let order):
                 state.order = order
                 return .none
+            case .setSelectedIndex(let index):
+                guard state.cards.count > index,
+                      index > 0 else { return .none }
+                state.selectedIndex = index
+                state.card = state.cards[index]
+                return EffectTask.run { [state] operation in
+                    await operation.send(.delegate(.changedCardIndex(index)))
+                    await operation.send(.fetchSaveTopic(id: state.card.topicID))
+                    await operation.send(.addViewCount(state.card))
+                    await operation.send(.saveTopic(state.card))
+                    await operation.send(.fetchOrder)
+                    await operation.send(.fetchCommentCount(state.card))
+
+                    let like = Task.delayed(byTimeInterval: Constant.viewCount) {
+                        await operation.send(.like(state.card))
+                    }
+                    
+                    Task {
+                        like.cancel
+                    }
+
+                }
             case .setError(let error):
                 state.errorMessage = error.localizedDescription
                 return .none
@@ -125,7 +152,7 @@ final class DetailCardReducer: ReducerProtocol {
                     }
                 }
             case .savePhoto(let topic):
-                let renderImage = SavePhotoView(colorHex: self.color,
+                let renderImage = SavePhotoView(colorHex: state.color,
                                                 contentMessage: topic.name,
                                                 starter: (state.order?.rule).orEmpty).snapshot()
                 UIImageWriteToSavedPhotosAlbum(renderImage,nil,nil,nil)
@@ -135,56 +162,23 @@ final class DetailCardReducer: ReducerProtocol {
                 state.isSuccessSavePhoto.toggle()
                 return .none
             case .like(let topic):
-                self.requestLike(with: topic)
+                repository.requestLike(with: topic)
                 return .none
             case .setShowComment(let isShow):
                 state.showComment = isShow
-                state.commentState = .init(topicID: self.topic.topicID,
+                state.commentState = .init(topicID: state.card.topicID,
                                            commentCount: state.commentCount)
                 print("set commentState CommentListReducer")
                 return .none
             case let .commentDelegate(.delegate(.changedComment(commentCount))):
                 state.commentCount = commentCount
                 return .none
-            case .commentDelegate:
-                return .none
+            case .commentDelegate: return .none
+            case .delegate: return .none
             }
         }
         .ifLet(\.commentState, action: /Action.commentDelegate) {
             CommentListReducer()
         }
-    }
-    
-    private func fetchOrder() async -> Model.Order {
-        return await withCheckedContinuation({ contiuation in
-            API.RecommendOrder().request()
-                .first()
-                .print("API.RecommendOrder")
-                .sink { _ in
-                } receiveValue: { topics in
-                    contiuation.resume(returning: topics)
-                }.store(in: &bag)
-        })
-    }
-    
-    private func requestLike(with topic: Model.Topic) {
-        API.Like(topicID: topic.topicID)
-            .request()
-            .print("API.LIKE")
-            .sink { _ in
-            } receiveValue: { _ in
-            }.store(in: &bag)
-    }
-    
-    private func fetchCommentCount(with topic: Model.Topic) async -> Int {
-        return await withCheckedContinuation({ continuation in
-            API.CommentCount(topicID: topic.topicID)
-                .request()
-                .print("API.CommentCount")
-                .sink { _ in
-                } receiveValue: { commentCount in
-                    continuation.resume(returning: commentCount)
-                }.store(in: &bag)
-        })
     }
 }

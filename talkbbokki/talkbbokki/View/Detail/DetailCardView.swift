@@ -30,11 +30,11 @@ private enum Constant {
 
 struct DetailCardContainerView: View {
     let store: StoreOf<DetailCardReducer>
-    let card: Model.Topic
     let color: Int
     let enteredAds: Bool
     let notReadyAds: Bool
     let isEnteredModal: Bool
+
     @State private var didLoad: Bool = false
     @State private var backDegree = 0.0
     @State private var frontDegree = -90.0
@@ -66,8 +66,8 @@ struct DetailCardContainerView: View {
                             VStack {
                                 Spacer()
                                 ZStack {
-                                    DetailFrontCardView(card: card, degree: $backDegree)
-                                    DetailBackCardView(card: card,
+                                    DetailFrontCardView(card: viewStore.card, degree: $backDegree)
+                                    DetailBackCardView(card: viewStore.card,
                                                        order: viewStore.order,
                                                        isSaveTopic: viewStore.isSaveTopic,
                                                        touchedDownload: $didTapDownload,
@@ -103,9 +103,18 @@ struct DetailCardContainerView: View {
                     }
                 }
                 .ignoresSafeArea()
-                
-                bottomView(count: viewStore.commentCount) {
+
+                bottomView(isHiddenPrevNextButton: viewStore.cards.count == 1,
+                           count: viewStore.commentCount) {
                     viewStore.send(.setShowComment(true))
+                } didTapNext: {
+                    changeCard {
+                        viewStore.send(.setSelectedIndex(viewStore.selectedIndex+1))
+                    }
+                } didTapPrev: {
+                    changeCard {
+                        viewStore.send(.setSelectedIndex(viewStore.selectedIndex-1))
+                    }
                 }
                 
                 NavigationLink(isActive: viewStore.binding(get: \.showComment,
@@ -120,18 +129,18 @@ struct DetailCardContainerView: View {
                                    font: .Pretendard.b2_bold)
             }
             .onChange(of: didTapDownload, perform: { newValue in
-                Log.Firebase.sendLog(key: .click_card_download, parameters: ["topic_id": card.topicID.toString])
-                viewStore.send(.savePhoto(card))
+                Log.Firebase.sendLog(key: .click_card_download, parameters: ["topic_id": viewStore.card.topicID.toString])
+                viewStore.send(.savePhoto(viewStore.card))
             })
             .onChange(of: didTapRefreshOrder, perform: { newValue in
                 viewStore.send(.fetchOrder)
             })
             .onChange(of: didTapBookmark, perform: { newValue in
-                Log.Firebase.sendLog(key: .click_card_bookmark, parameters: ["topic_id": card.topicID.toString])
-                viewStore.send(.didTapBookMark(card, color))
+                Log.Firebase.sendLog(key: .click_card_bookmark, parameters: ["topic_id": viewStore.card.topicID.toString])
+                viewStore.send(.didTapBookMark(viewStore.card, color))
             })
             .onChange(of: didTapShare, perform: { newValue in
-                Log.Firebase.sendLog(key: .click_card_share, parameters: ["topic_id": card.topicID.toString])
+                Log.Firebase.sendLog(key: .click_card_share, parameters: ["topic_id": viewStore.card.topicID.toString])
             })
             .onChange(of: viewStore.toastMessage, perform: { newValue in
                 guard newValue.isNonEmpty else { return }
@@ -143,32 +152,49 @@ struct DetailCardContainerView: View {
             .navigationBarItems(leading: backButton)
             .onAppear(perform: {
                 guard didLoad == false else { return }
-                Log.Firebase.sendLog(key: .screen_card_detail, parameters: ["topic_id": card.topicID.toString])
-                viewStore.send(.fetchSaveTopic(id: card.topicID))
-                viewStore.send(.addViewCount(card))
-                viewStore.send(.saveTopic(card))
+                Log.Firebase.sendLog(key: .screen_card_detail, parameters: ["topic_id": viewStore.card.topicID.toString])
+                viewStore.send(.fetchSaveTopic(id: viewStore.card.topicID))
+                viewStore.send(.addViewCount(viewStore.card))
+                viewStore.send(.saveTopic(viewStore.card))
                 viewStore.send(.fetchOrder)
-                viewStore.send(.fetchCommentCount(card))
-                
+                viewStore.send(.fetchCommentCount(viewStore.card))
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + Constant.viewCount, execute: {
-                    viewStore.send(.like(card))
+                    viewStore.send(.like(viewStore.card))
                 })
-                
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                     withAnimation(.spring(dampingFraction: 0.7, blendDuration: 0.9)) {
                         didLoad.toggle()
                         if notReadyAds { viewStore.send(.setToastMessage(Design.Text.notReadyAdstoast)) }
                     }
                 })
-                
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                     flipCard()
                 })
             })
+//            .onChange(of: selectedIndex) { newValue in
+//                Log.Firebase.sendLog(key: .screen_card_detail, parameters: ["topic_id": viewStore.cards[selectedIndex].topicID.toString])
+//                viewStore.send(.fetchSaveTopic(id: viewStore.cards[selectedIndex].topicID))
+//                viewStore.send(.addViewCount(viewStore.cards[selectedIndex]))
+//                viewStore.send(.saveTopic(viewStore.cards[selectedIndex]))
+//                viewStore.send(.fetchOrder)
+//                viewStore.send(.fetchCommentCount(viewStore.cards[selectedIndex]))
+//
+//                DispatchQueue.main.asyncAfter(deadline: .now() + Constant.viewCount, execute: {
+//                    viewStore.send(.like(viewStore.cards[selectedIndex]))
+//                })
+//            }
         }
     }
     
-    private func bottomView(count: Int, didTapComment: @escaping (()->Void)) -> some View {
+    private func bottomView(isHiddenPrevNextButton: Bool,
+                            count: Int,
+                            didTapComment: @escaping (()->Void),
+                            didTapNext: @escaping (()->Void),
+                            didTapPrev: @escaping (()->Void)
+    ) -> some View {
         AlignmentVStack(alignment: .bottom, spacing: 0.0) {
             HStack {
                 Button {
@@ -180,14 +206,16 @@ struct DetailCardContainerView: View {
                         .foregroundColor(.white)
                 }
                 Spacer()
-                prevNextButtons(
-                    tapPrev: {
-                        changeCard()
-                    },
-                    tapNext: {
-                        changeCard()
-                    })
-                .padding(.trailing, 20)
+                if isHiddenPrevNextButton == false {
+                    prevNextButtons(
+                        tapPrev: {
+                            didTapPrev()
+                        },
+                        tapNext: {
+                            didTapNext()
+                        })
+                    .padding(.trailing, 20)
+                }
             }
             .padding(.leading, 20.0)
             .frame(height: 56.0)
@@ -287,8 +315,9 @@ extension DetailCardContainerView {
         })
     }
     
-    private func changeCard() {
+    private func changeCard(onDismiss: @escaping (()->Void)) {
         dismissCard {
+            onDismiss()
             presentCard()
         }
     }
@@ -442,24 +471,26 @@ struct DetailBackCardView: View {
 
 struct DetailCardContainerView_Preview: PreviewProvider {
     static var previews: some View {
-        DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(),
-                                             reducer: DetailCardReducer(topic: Model.Topic(cardNumber: 0,
-                                                                                           topicID: 1,
-                                                                                           name: "밥 먹다가 체함",
-                                                                                           viewCount: 20,
-                                                                                           createAt: "1101",
-                                                                                           category: "LOVE",
-                                                                                           pcLink: "",
-                                                                                           tag: .love), color: 0000)),
-                                card: Model.Topic(cardNumber: 0,
-                                                  topicID: 1,
-                                                  name: "밥 먹다가 체함",
-                                                  viewCount: 20,
-                                                  createAt: "1101",
-                                                  category: "LOVE",
-                                                  pcLink: "",
-                                                  tag: .love),
+        DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(cards: [Model.Topic(cardNumber: 0,
+                                                                                                       topicID: 1,
+                                                                                                       name: "밥 먹다가 체함",
+                                                                                                       viewCount: 20,
+                                                                                                       createAt: "1101",
+                                                                                                       category: "LOVE",
+                                                                                                       pcLink: "",
+                                                                                                       tag: .love)],
+                                                                                   color: 0, selectedIndex: 0, card: Model.Topic(cardNumber: 0,
+                                                                                                                                 topicID: 1,
+                                                                                                                                 name: "밥 먹다가 체함",
+                                                                                                                                 viewCount: 20,
+                                                                                                                                 createAt: "1101",
+                                                                                                                                 category: "LOVE",
+                                                                                                                                 pcLink: "",
+                                                                                                                                 tag: .love)),
+                                             reducer: DetailCardReducer()),
                                 color: 00,
-                                enteredAds: false, notReadyAds: true, isEnteredModal: true)
+                                enteredAds: false,
+                                notReadyAds: true,
+                                isEnteredModal: true)
     }
 }

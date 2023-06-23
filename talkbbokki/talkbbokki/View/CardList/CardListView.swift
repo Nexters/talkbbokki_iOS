@@ -36,10 +36,9 @@ struct CardListView: View {
     let category: Model.Category
     let store: StoreOf<CardListReducer>
     @Environment(\.presentationMode) private var presentationMode
-    @State private var currentIndex: Int = 0
+    
     @State private var didTapFinishedAlert: ButtonType = .none
     @State private var didTapDetailCard: ButtonType = .none
-    @State private var isActiveNavigationLink = false
     @State private var didAppear = false
     @ObservedObject var adViewModel = AdViewModel()
     private let adViewControllerRepresentable = AdViewControllerRepresentable()
@@ -58,8 +57,11 @@ struct CardListView: View {
                                 CardContainerView(offsetX:viewStore.offsetX,
                                                   shouldAds: isAbleAds(viewCount: viewStore.viewCount,
                                                                        didShowTopicIds: viewStore.didShowTopicIds,
-                                                                       currentTopic: viewStore.topics[safe:currentIndex]),
-                                                  currentIndex: $currentIndex,
+                                                                       currentTopic: viewStore.topics[safe: viewStore.currentIndex]),
+                                                  currentIndex: viewStore.binding(
+                                                    get: \.currentIndex,
+                                                    send: { .changedCurrentIndex($0) }
+                                                  ),
                                                   touchedCard: $didTapDetailCard,
                                                   didShowTopicIds: viewStore.didShowTopicIds,
                                                   cards: viewStore.topics)
@@ -71,28 +73,29 @@ struct CardListView: View {
                                 CardListTitleView(title: category.firstLineTitle,
                                                   subTitie: category.secondLineTitle)
                                 Spacer()
-                                NavigationLink(isActive: $isActiveNavigationLink) {
-                                    if let pickCard = viewStore.topics[safe:currentIndex] {
-                                        DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(),
-                                                                             reducer: DetailCardReducer(topic: pickCard,
-                                                                                                        color: category.bgColor.color)),
-                                                                card: pickCard,
+                                
+                                NavigationLink(isActive:
+                                                viewStore.binding(get: \.isShowDetailCard,
+                                                                  send: { .setShowDetailCardReducer($0) })
+                                ) {
+                                    IfLetStore(self.store.scope(state: \.detailCardState,
+                                                                action: { .detailCardDelegate($0)
+                                    })) {
+                                        DetailCardContainerView(store: $0,
                                                                 color: category.bgColor.color,
                                                                 enteredAds: isAbleAds(viewCount: viewStore.viewCount,
                                                                                       didShowTopicIds: viewStore.didShowTopicIds,
-                                                                                      currentTopic: viewStore.topics[safe:currentIndex]),
+                                                                                      currentTopic: viewStore.topics[safe: viewStore.currentIndex]),
                                                                 notReadyAds: adViewModel.notReadyAds,
                                                                 isEnteredModal: false
                                         )
-                                    } else {
-                                        EmptyView()
                                     }
                                 } label: {
-                                    confirmButton(didShowTopicIds: viewStore.didShowTopicIds,
-                                                  isAbleAds: isAbleAds(viewCount: viewStore.viewCount,
-                                                                       didShowTopicIds: viewStore.didShowTopicIds,
-                                                                       currentTopic: viewStore.topics[safe:currentIndex]),
-                                                  currentTopic: viewStore.topics[safe:currentIndex])
+                                        confirmButton(didShowTopicIds: viewStore.didShowTopicIds,
+                                                      isAbleAds: isAbleAds(viewCount: viewStore.viewCount,
+                                                                           didShowTopicIds: viewStore.didShowTopicIds,
+                                                                           currentTopic: viewStore.topics[safe: viewStore.currentIndex]),
+                                                      currentTopic: viewStore.topics[safe: viewStore.currentIndex])
                                 }
                             }
                         }
@@ -103,10 +106,10 @@ struct CardListView: View {
                             guard didTapDetailCard != .none else { return }
                             if isAbleAds(viewCount: viewStore.viewCount,
                                          didShowTopicIds: viewStore.didShowTopicIds,
-                                         currentTopic: viewStore.topics[safe:currentIndex]) {
+                                         currentTopic: viewStore.topics[safe: viewStore.currentIndex]) {
                                 adViewModel.loadAd()
                             } else {
-                                isActiveNavigationLink.toggle()
+                                viewStore.send(.setShowDetailCardReducer(true))
                             }
                             didTapDetailCard = .none
                         })
@@ -114,11 +117,9 @@ struct CardListView: View {
                             adViewModel.presentAd(from: adViewControllerRepresentable.viewController)
                         })
                         .onChange(of: adViewModel.dismissAd, perform: { newValue in
-                            isActiveNavigationLink.toggle()
+                            viewStore.send(.setShowDetailCardReducer(true))
                         })
-                        .onChange(of: currentIndex, perform: { newValue in
-                            viewStore.send(.changedCurrentIndex(currentIndex))
-                        })
+
                         .onAppear {
                             if didAppear == false {
                                 viewStore.send(.fetchCard(category: category.code))
