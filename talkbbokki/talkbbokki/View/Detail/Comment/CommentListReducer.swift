@@ -28,6 +28,7 @@ struct CommentListReducer: ReducerProtocol {
         case registerComment(String)
         case fetchComments(next: Int?)
         case setCommentList(Model.CommentList)
+        case setMoreCommentList(Model.CommentList)
         case setShowDeleteAlert(Bool)
         case setTapDeleteAlert(ButtonType)
         case removeComment(Int)
@@ -71,10 +72,18 @@ struct CommentListReducer: ReducerProtocol {
             }
         case .fetchComments(let next):
             return EffectTask.run { [topicID = state.topicID] operation in
-                await operation.send(.setCommentList(repository.fetchComment(with: topicID, next: next)))
+                let comments = await repository.fetchComment(with: topicID, next: next)
+                let action = next == nil ? Action.setCommentList(comments) : Action.setMoreCommentList(comments)
+                await operation.send(action)
             }
         case .setCommentList(let commentResponse):
-            state.comments.append(contentsOf: commentResponse.comments) 
+            state.comments = commentResponse.comments
+            state.prevPage = commentResponse.previous
+            state.nextPage = commentResponse.next
+            state.didLoad = true
+            return .send(.delegate(.changedComment(state.commentCount)))
+        case .setMoreCommentList(let commentResponse):
+            state.comments.append(contentsOf: commentResponse.comments)
             state.prevPage = commentResponse.previous
             state.nextPage = commentResponse.next
             state.didLoad = true

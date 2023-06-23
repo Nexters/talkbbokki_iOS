@@ -14,7 +14,7 @@ struct CommentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
             VStack(alignment: .leading, spacing: 8.0) {
-                commentTitle("nickName",
+                commentTitle(comment.userNickname,
                              date: comment.createdToPresent,
                              isOwner: comment.userId == Utils.getDeviceUUID()) {
                     deleteCommentId = comment._id
@@ -96,6 +96,7 @@ struct CommentView_Previews: PreviewProvider {
                                            parentCommentId: nil,
                                            body: "Asdasdasdas",
                                            userId: "asdas",
+                                           userNickname: "nickname",
                                            createAt: "2023-05-13T15:23:18Z",
                                            modifyAt: "2023-05-13T15:23:18Z"),
                     deleteCommentId: .constant(1))

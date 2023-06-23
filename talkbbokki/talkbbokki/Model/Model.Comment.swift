@@ -32,6 +32,7 @@ extension Model {
         let parentCommentId: Int?
         let body: String
         let userId: String
+        let userNickname: String
         let createAt: String
         let modifyAt: String
         
