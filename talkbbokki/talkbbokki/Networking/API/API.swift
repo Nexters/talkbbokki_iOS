@@ -212,16 +212,18 @@ extension API.RegisterUser: APIConfig, APIHeaderConfig {
     static let domainConfig = Domain.Talkbbokki.self
     static let serviceError = TalkbbokkiError.self
     
-    var path: String { return "/api/users?uuid=\(uuid)&pushToken=\(pushToken)&nickName=\(nickName)"}
+    var path: String { return "/api/users"}
     var method: HTTPMethod { return .post }
+
     var headers: [String : String]? {
         ["Content-Type": "application/hal+json; charset=UTF-8"]
     }
-    var encoding: ParameterEncoding {
-        URLEncoding.default
-    }
     var parameters: API.Parameter? {
-        return nil
+        return .body([
+            "uuid": uuid,
+            "pushToken": pushToken,
+            "nickName": nickName
+        ])
     }
     
     func parse(_: Data) throws -> Void {
