@@ -31,7 +31,6 @@ private enum Constant {
 struct DetailCardContainerView: View {
     let store: StoreOf<DetailCardReducer>
     let color: Int
-    let enteredAds: Bool
     let notReadyAds: Bool
     let isEnteredModal: Bool
 
@@ -39,6 +38,7 @@ struct DetailCardContainerView: View {
     @State private var backDegree = 0.0
     @State private var frontDegree = -90.0
     @State private var isFlipped = false
+    @State private var isFlipping = false
     @State private var showToast = ""
     
     @State private var didTapDownload = false
@@ -47,6 +47,8 @@ struct DetailCardContainerView: View {
     @State private var didTapBookmark = false
     @State private var didTapShare = false
     @State private var didTapComment = false
+    @ObservedObject private var adViewModel = AdViewModel()
+    private let adViewControllerRepresentable = AdViewControllerRepresentable()
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     private let width : CGFloat = 200
     private let height : CGFloat = 250
@@ -105,7 +107,10 @@ struct DetailCardContainerView: View {
                 .ignoresSafeArea()
 
                 bottomView(isHiddenPrevNextButton: viewStore.cards.count == 1,
-                           count: viewStore.commentCount) {
+                           count: viewStore.commentCount,
+                           isLeftMost: viewStore.isLeftmost,
+                           isRightMost: viewStore.isRightMost
+                ) {
                     viewStore.send(.setShowComment(true))
                 } didTapNext: {
                     changeCard {
@@ -128,6 +133,10 @@ struct DetailCardContainerView: View {
                     .navigationBar(titleColor: Color.Talkbbokki.GrayScale.white,
                                    font: .Pretendard.b2_bold)
             }
+            .background(
+                adViewControllerRepresentable
+                    .frame(width: .zero, height: .zero)
+            )
             .onChange(of: didTapDownload, perform: { newValue in
                 Log.Firebase.sendLog(key: .click_card_download, parameters: ["topic_id": viewStore.card.topicID.toString])
                 viewStore.send(.savePhoto(viewStore.card))
@@ -150,6 +159,13 @@ struct DetailCardContainerView: View {
             })
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
+            .onChange(of: viewStore.viewCount, perform: { newValue in
+                if newValue.isAbleAdsCount {
+                    adViewModel.loadAd {
+                        adViewModel.presentAd(from: adViewControllerRepresentable.viewController)
+                    }
+                }
+            })
             .onAppear(perform: {
                 guard didLoad == false else { return }
                 Log.Firebase.sendLog(key: .screen_card_detail, parameters: ["topic_id": viewStore.card.topicID.toString])
@@ -174,23 +190,14 @@ struct DetailCardContainerView: View {
                     flipCard()
                 })
             })
-//            .onChange(of: selectedIndex) { newValue in
-//                Log.Firebase.sendLog(key: .screen_card_detail, parameters: ["topic_id": viewStore.cards[selectedIndex].topicID.toString])
-//                viewStore.send(.fetchSaveTopic(id: viewStore.cards[selectedIndex].topicID))
-//                viewStore.send(.addViewCount(viewStore.cards[selectedIndex]))
-//                viewStore.send(.saveTopic(viewStore.cards[selectedIndex]))
-//                viewStore.send(.fetchOrder)
-//                viewStore.send(.fetchCommentCount(viewStore.cards[selectedIndex]))
-//
-//                DispatchQueue.main.asyncAfter(deadline: .now() + Constant.viewCount, execute: {
-//                    viewStore.send(.like(viewStore.cards[selectedIndex]))
-//                })
-//            }
         }
+        
     }
     
     private func bottomView(isHiddenPrevNextButton: Bool,
                             count: Int,
+                            isLeftMost: Bool,
+                            isRightMost: Bool,
                             didTapComment: @escaping (()->Void),
                             didTapNext: @escaping (()->Void),
                             didTapPrev: @escaping (()->Void)
@@ -208,6 +215,8 @@ struct DetailCardContainerView: View {
                 Spacer()
                 if isHiddenPrevNextButton == false {
                     prevNextButtons(
+                        isLeftMost: isLeftMost,
+                        isRightMost: isRightMost,
                         tapPrev: {
                             didTapPrev()
                         },
@@ -255,18 +264,24 @@ struct DetailCardContainerView: View {
     }
     
     private func prevNextButtons(
+        isLeftMost: Bool,
+        isRightMost: Bool,
         tapPrev: @escaping (()->Void),
         tapNext: @escaping (()->Void)
     ) -> some View {
         HStack(spacing: 12.0) {
             Button {
-                tapPrev()
+                if isLeftMost == false {
+                    tapPrev()
+                }
             } label: {
                 HStack(spacing: 4.0) {
                     Image("Icon_refresh_18_prev")
+                        .renderingMode(.template)
+                        .foregroundColor(isLeftMost ? .Talkbbokki.GrayScale.gray6 : .white)
                     Text("이전 카드")
                         .font(.Pretendard.b2_bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(isLeftMost ? .Talkbbokki.GrayScale.gray6 : .white)
                 }
             }
             
@@ -275,13 +290,17 @@ struct DetailCardContainerView: View {
                 .frame(height: 15.0)
             
             Button {
-                tapNext()
+                if isRightMost == false {
+                    tapNext()
+                }
             } label: {
                 HStack(spacing: 4.0) {
                     Text("다음 카드")
                         .font(.Pretendard.b2_bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(isRightMost ? .Talkbbokki.GrayScale.gray6 : .white)
                     Image("Icon_refresh_18_next")
+                        .renderingMode(.template)
+                        .foregroundColor(isRightMost ? .Talkbbokki.GrayScale.gray6 : .white)
                 }
             }
 
@@ -311,11 +330,14 @@ extension DetailCardContainerView {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             flipCard()
+            isFlipping = false
             completion?()
         })
     }
     
     private func changeCard(onDismiss: @escaping (()->Void)) {
+        guard isFlipping == false else { return }
+        isFlipping = true
         dismissCard {
             onDismiss()
             presentCard()
@@ -349,7 +371,7 @@ struct DetailFrontCardView: View {
     @Binding var degree : Double
     var body : some View{
         ZStack {
-            card.position.background
+            Model.Topic.Position.selected.background
                 .resizable()
                 .frame(width: Design.Constraint.cardSize.width,
                        height: Design.Constraint.cardSize.height)
@@ -489,7 +511,6 @@ struct DetailCardContainerView_Preview: PreviewProvider {
                                                                                                                                  tag: .love)),
                                              reducer: DetailCardReducer()),
                                 color: 00,
-                                enteredAds: false,
                                 notReadyAds: true,
                                 isEnteredModal: true)
     }

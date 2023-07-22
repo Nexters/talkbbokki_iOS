@@ -55,7 +55,6 @@ final class CardListReducer: ReducerProtocol {
         self.color = color
     }
     
-//    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
     var body: some ReducerProtocolOf<CardListReducer> {
         Reduce { [weak self] state, action in
             guard let self = self else { return .none }

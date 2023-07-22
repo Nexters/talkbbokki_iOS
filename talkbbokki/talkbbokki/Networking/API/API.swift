@@ -158,9 +158,16 @@ extension API.RegisterComment: APIConfig {
     static let domainConfig = Domain.Talkbbokki.self
     static let serviceError = TalkbbokkiError.self
     
-    var path: String { return "/api/topics/\(topicID)/comments?body=\(comment)&userId=\(userID)&topicId=\(topicID)&userNickname=\(userNickname)"}
+    var path: String { return "/api/topics/\(topicID)/comments"}
     var method: HTTPMethod { return .post }
-    var parameters: API.Parameter? { return nil }
+    var parameters: API.Parameter? {
+        return .body(
+            [
+                "body": comment,
+                "userId": userID,
+            ]
+        )
+    }
     
     func parse(_ : Data) throws -> Void {
         return ()

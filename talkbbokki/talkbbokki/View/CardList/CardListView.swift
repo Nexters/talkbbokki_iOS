@@ -83,9 +83,6 @@ struct CardListView: View {
                                     })) {
                                         DetailCardContainerView(store: $0,
                                                                 color: category.bgColor.color,
-                                                                enteredAds: isAbleAds(viewCount: viewStore.viewCount,
-                                                                                      didShowTopicIds: viewStore.didShowTopicIds,
-                                                                                      currentTopic: viewStore.topics[safe: viewStore.currentIndex]),
                                                                 notReadyAds: adViewModel.notReadyAds,
                                                                 isEnteredModal: false
                                         )
@@ -119,7 +116,6 @@ struct CardListView: View {
                         .onChange(of: adViewModel.dismissAd, perform: { newValue in
                             viewStore.send(.setShowDetailCardReducer(true))
                         })
-
                         .onAppear {
                             if didAppear == false {
                                 viewStore.send(.fetchCard(category: category.code))
@@ -240,13 +236,16 @@ struct CardContainerView: View {
                                         self.currentIndex += 1
                                     }
                                 }
-                                self.x = currentIndex == 0 ? 0 : -(cardX * Double(self.currentIndex)) - 24
+                                
                             })
                     ).onTapGesture {
                         touchedCard = .confirm()
                     }
             }
         }
+        .onChange(of: currentIndex, perform: { newValue in
+            self.x = currentIndex == 0 ? 0 : -(cardX * Double(self.currentIndex)) - 24
+        })
         .offset(x: offsetX)
         .onAppear {
             currentIndex = currentIndex == -1 ? 0 : currentIndex
@@ -254,7 +253,7 @@ struct CardContainerView: View {
     }
 }
 
-private extension Int {
+extension Int {
     var isAbleAdsCount: Bool {
         return (self > 0 && self%4 == 0)
     }

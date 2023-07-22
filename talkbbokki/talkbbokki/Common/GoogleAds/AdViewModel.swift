@@ -16,7 +16,7 @@ class AdViewModel: NSObject, ObservableObject {
     private let testAdID = "ca-app-pub-3940256099942544/4411468910"
     private let readADID = "ca-app-pub-3769988488950055/1200265941"
     private lazy var ADID = readADID
-    func loadAd() {
+    func loadAd(completion: (()->())? = nil) {
         let request = GADRequest()
         GADInterstitialAd.load(withAdUnitID: ADID,
                                request: request,
@@ -28,6 +28,7 @@ class AdViewModel: NSObject, ObservableObject {
                 return
             }
             self.ad = ad
+            completion?()
             ad?.fullScreenContentDelegate = self
         })
     }

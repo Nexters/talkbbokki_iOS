@@ -28,8 +28,11 @@ struct DetailCardReducer: ReducerProtocol {
         var isShowBookMarkAlert = false
         var isSuccessSavePhoto = false
         var isSaveTopic = false
+        var isLeftmost = false
+        var isRightMost = false
         var showComment = false
         var toastMessage: String = ""
+        var viewCount = 1
         var commentCount = 0
         var commentState: CommentListReducer.State?
     }
@@ -74,6 +77,7 @@ struct DetailCardReducer: ReducerProtocol {
                     viewCount += 1
                 }
                 UserDefaultValue.viewCount = viewCount
+                state.viewCount = viewCount
                 return .none
             case .saveTopic(let topic):
                 var topics = UserDefaultValue.didShowTopic
@@ -104,6 +108,9 @@ struct DetailCardReducer: ReducerProtocol {
                 state.order = order
                 return .none
             case .setSelectedIndex(let index):
+                state.isLeftmost = index <= 0
+                state.isRightMost = index >= state.cards.count - 1
+
                 guard state.cards.count > index,
                       index > 0 else { return .none }
                 state.selectedIndex = index

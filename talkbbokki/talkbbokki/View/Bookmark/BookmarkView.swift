@@ -96,16 +96,6 @@ struct BookmarkView: View {
                     viewStore.send(.fetchBookmarkList)
                 },content: { detail in
                     EmptyView()
-//                    DetailCardContainerView(store: Store(initialState: DetailCardReducer.State(cards: [detail.convert],
-//                                                                                               color: detail.bgColor,
-//                                                                                               selectedIndex: 0),
-//                                                         reducer: DetailCardReducer()),
-//                                            card: detail.convert,
-//                                            color: Int(detail.bgColor),
-//                                            enteredAds: false,
-//                                            notReadyAds: false,
-//                                            isEnteredModal: true
-//                    )
                 })
                 .navigationBarBackButtonHidden(true)
                 .navigationBarItems(leading: backButton)

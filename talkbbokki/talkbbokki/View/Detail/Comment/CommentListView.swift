@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 import ComposableArchitecture
 
 struct CommentListView: View {
@@ -20,11 +21,18 @@ struct CommentListView: View {
                         .frame(width: 50, height: 50)
                         .foregroundColor(.white)
                 } else {
-                    if viewStore.commentCount == 0 {
-                        emptyView
-                    }
                     
                     VStack {
+                        BannerView()
+                            .frame(width: GADAdSizeBanner.size.width,
+                                   height: GADAdSizeBanner.size.height
+                            )
+
+                        if viewStore.comments.isEmpty {
+                            Spacer()
+                            emptyView
+                        }
+
                         if viewStore.comments.count > 0 {
                             commentList(viewStore.comments,
                                         nextId: viewStore.nextPage,
@@ -52,6 +60,7 @@ struct CommentListView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
             .navigationTitle("댓글(\(viewStore.commentCount))")
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
                     viewStore.send(.fetchComments(next: nil))
