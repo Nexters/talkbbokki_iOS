@@ -26,10 +26,15 @@ extension Model {
         }
     }
     
-    struct Comment: Codable, Equatable {
+    struct Comment: Codable, Equatable, Identifiable {
+        var id: Int {
+            _id
+        }
+
         let _id: Int
         let topicId: Int
         let parentCommentId: Int?
+        var childCommentCount: Int
         let body: String
         let userId: String
         let userNickname: String

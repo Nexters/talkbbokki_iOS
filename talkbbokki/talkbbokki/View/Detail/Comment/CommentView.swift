@@ -17,7 +17,8 @@ extension CommentView {
 struct CommentView: View {
     let parentType: Parent
     let comment: Model.Comment
-    @Binding var deleteCommentId: Int
+    let didTapDelete: ((Int)->Void)?
+    let didTapReply: ((Model.Comment)->Void)?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
@@ -25,16 +26,21 @@ struct CommentView: View {
                 commentTitle(comment.userNickname,
                              date: comment.createdToPresent,
                              isOwner: comment.userId == Utils.getDeviceUUID()) {
-                    deleteCommentId = comment._id
+                    didTapDelete?(comment.id)
                 }
                 commentContent(comment.body)
             }
             
-            commentButtons(0, isOwner: comment.userId == Utils.getDeviceUUID()) {
-                
-            } tapReport: {
-                
-            }
+            commentButtons(
+                comment.childCommentCount,
+                isOwner: comment.userId == Utils.getDeviceUUID(),
+                tapReply: {
+                    didTapReply?(comment)
+                },
+                tapReport: {
+                    
+                }
+            )
         }
         .padding([.top, .leading, .bottom, .trailing], 20)
     }
@@ -89,7 +95,8 @@ struct CommentView: View {
                 Button {
                     tapReport()
                 } label: {
-                    Text("신고하기").foregroundColor(.Talkbbokki.GrayScale.gray6)
+                    Text("신고하기")
+                        .foregroundColor(.Talkbbokki.GrayScale.gray6)
                         .font(.Pretendard.reply)
                 }
             }
@@ -104,12 +111,14 @@ struct CommentView_Previews: PreviewProvider {
             comment: Model.Comment(_id: 0,
                                    topicId: 0,
                                    parentCommentId: nil,
+                                   childCommentCount: 10,
                                    body: "Asdasdasdas",
                                    userId: "asdas",
                                    userNickname: "nickname",
                                    createAt: "2023-05-13T15:23:18Z",
                                    modifyAt: "2023-05-13T15:23:18Z"),
-            deleteCommentId: .constant(1))
-        .background(Color.blue)
+            didTapDelete: nil,
+            didTapReply: nil
+        ).background(Color.blue)
     }
 }

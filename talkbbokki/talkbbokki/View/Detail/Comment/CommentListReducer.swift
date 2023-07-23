@@ -19,7 +19,9 @@ struct CommentListReducer: ReducerProtocol {
         var prevPage: Int?
         var comments: [Model.Comment] = []
         var showDeleteAlert = false
+        var showReCommentList = false
         var tapDeleteAlert: ButtonType = .none
+        var reCommentState: RecommentListReducer.State?
     }
     
     enum Action {
@@ -33,6 +35,9 @@ struct CommentListReducer: ReducerProtocol {
         case setTapDeleteAlert(ButtonType)
         case removeComment(Int)
         case updateCommentCount(OperatorCount)
+        case setShowReCommentList(Bool)
+        case setReCommentList(Model.Comment)
+        case reCommentDelegate(RecommentListReducer.Action)
         case delegate(DelegateAction)
     }
     
@@ -49,72 +54,98 @@ struct CommentListReducer: ReducerProtocol {
         self.repository = repository
     }
     
-    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        switch action {
-        case .setInputComment(let comment):
-            state.inputComment = comment
-            return .none
-        case .setDeleteCommentId(let id):
-            state.deleteCommentId = id
-            if id > 0 {
-                return .send(.setShowDeleteAlert(true))
-            }
-            return .none
-        case .setShowDeleteAlert(let isShow):
-            state.showDeleteAlert = isShow
-            return .none
-        case .registerComment(let comment):
-            return EffectTask.run { [state = state] operation in
-                await repository.registerComment(with: state.topicID, comment: comment)
-                await operation.send(.fetchComments(next: nil))
-                await operation.send(.setInputComment(""))
-                await operation.send(.updateCommentCount(.plus(1)))
-            }
-        case .fetchComments(let next):
-            return EffectTask.run { [topicID = state.topicID] operation in
-                let comments = await repository.fetchComment(with: topicID, next: next)
-                let action = next == nil ? Action.setCommentList(comments) : Action.setMoreCommentList(comments)
-                await operation.send(action)
-            }
-        case .setCommentList(let commentResponse):
-            state.comments = commentResponse.comments
-            state.prevPage = commentResponse.previous
-            state.nextPage = commentResponse.next
-            state.didLoad = true
-            return .send(.delegate(.changedComment(state.commentCount)))
-        case .setMoreCommentList(let commentResponse):
-            state.comments.append(contentsOf: commentResponse.comments)
-            state.prevPage = commentResponse.previous
-            state.nextPage = commentResponse.next
-            state.didLoad = true
-            return .send(.delegate(.changedComment(state.commentCount)))
-        case .removeComment(let id):
-            state.comments.removeAll { $0._id == id }
-            return .run { [count = state.commentCount] operation in
-                await operation.send(.delegate(.changedComment(count)))
-                await operation.send(.updateCommentCount(.minus(1)))
-            }
-        case .updateCommentCount(let operation):
-            switch operation {
-            case .plus(let val):
-                state.commentCount += val
-            case .minus(let val):
-                state.commentCount -= val
-            }
-            return .none
-        case .setTapDeleteAlert(let type):
-            state.tapDeleteAlert = type
-            if case .ok = type {
-                return .run { [state = state] operation in
-                    await repository.deleteComment(commentId: state.deleteCommentId)
-                    await operation.send(.removeComment(state.deleteCommentId))
-                    await operation.send(.setDeleteCommentId(0))
-                    await operation.send(.setShowDeleteAlert(false))
+    var body: some ReducerProtocolOf<CommentListReducer> {
+        Reduce { state, action in
+            switch action {
+            case .setInputComment(let comment):
+                state.inputComment = comment
+                return .none
+            case .setDeleteCommentId(let id):
+                state.deleteCommentId = id
+                if id > 0 {
+                    return .send(.setShowDeleteAlert(true))
                 }
-            } else {
-                return .send(.setShowDeleteAlert(false))
+                return .none
+            case .setShowDeleteAlert(let isShow):
+                state.showDeleteAlert = isShow
+                return .none
+            case .registerComment(let comment):
+                return EffectTask.run { [state = state] operation in
+                    await repository.registerComment(with: state.topicID,
+                                                     parentCommentId: nil,
+                                                     comment: comment)
+                    await operation.send(.fetchComments(next: nil))
+                    await operation.send(.setInputComment(""))
+                    await operation.send(.updateCommentCount(.plus(1)))
+                }
+            case .fetchComments(let next):
+                return EffectTask.run { [topicID = state.topicID] operation in
+                    let comments = await repository.fetchComment(with: topicID, next: next)
+                    let action = next == nil ? Action.setCommentList(comments) : Action.setMoreCommentList(comments)
+                    await operation.send(action)
+                }
+            case .setCommentList(let commentResponse):
+                state.comments = commentResponse.comments
+                state.prevPage = commentResponse.previous
+                state.nextPage = commentResponse.next
+                state.didLoad = true
+                return .send(.delegate(.changedComment(state.commentCount)))
+            case .setMoreCommentList(let commentResponse):
+                state.comments.append(contentsOf: commentResponse.comments)
+                state.prevPage = commentResponse.previous
+                state.nextPage = commentResponse.next
+                state.didLoad = true
+                return .send(.delegate(.changedComment(state.commentCount)))
+            case .removeComment(let id):
+                state.comments.removeAll { $0._id == id }
+                return .run { [count = state.commentCount] operation in
+                    await operation.send(.delegate(.changedComment(count)))
+                    await operation.send(.updateCommentCount(.minus(1)))
+                }
+            case .updateCommentCount(let operation):
+                switch operation {
+                case .plus(let val):
+                    state.commentCount += val
+                case .minus(let val):
+                    state.commentCount -= val
+                }
+                return .none
+            case let .setShowReCommentList(isShow):
+                state.showReCommentList = isShow
+                return .none
+            case let .setReCommentList(comment):
+                state.showReCommentList.toggle()
+                state.reCommentState = RecommentListReducer.State(
+                    parentComment: comment,
+                    commentsCount: comment.childCommentCount
+                )
+                return .none
+            case .setTapDeleteAlert(let type):
+                state.tapDeleteAlert = type
+                if case .ok = type {
+                    return .run { [state = state] operation in
+                        await repository.deleteComment(commentId: state.deleteCommentId)
+                        await operation.send(.removeComment(state.deleteCommentId))
+                        await operation.send(.setDeleteCommentId(0))
+                        await operation.send(.setShowDeleteAlert(false))
+                    }
+                } else {
+                    return .send(.setShowDeleteAlert(false))
+                }
+            case let .reCommentDelegate(.delegate(.changedReCommentCount(id, count))):
+                guard
+                    let index = state.comments.firstIndex(where: { $0.id == id }),
+                    var comment = state.comments[safe: index] else {
+                    return .none
+                }
+                comment.childCommentCount = count
+                state.comments[index] = comment
+                return .none
+            case .reCommentDelegate: return .none
+            case .delegate: return .none
             }
-        case .delegate: return .none
+        }.ifLet(\.reCommentState, action: /Action.reCommentDelegate) {
+            RecommentListReducer()
         }
     }
 }

@@ -33,6 +33,7 @@ extension API {
     
     struct RegisterComment {
         let topicID: Int
+        let parentCommentID: Int?
         let comment: String
         let userID: String
         let userNickname: String
@@ -40,6 +41,12 @@ extension API {
     
     struct FetchCommentList {
         let topicID: Int
+        let next: Int?
+    }
+    
+    struct FetchChildCommentList {
+        let topicID: Int
+        let parentCommentId: Int
         let next: Int?
     }
     
@@ -165,6 +172,7 @@ extension API.RegisterComment: APIConfig {
             [
                 "body": comment,
                 "userId": userID,
+                "parentCommentId": String(parentCommentID ?? 0)
             ]
         )
     }
@@ -189,6 +197,28 @@ extension API.FetchCommentList: APIConfig {
     var parameters: API.Parameter? { return nil }
     
     func parse(_ input : Data) throws -> Model.CommentList {
+        let json   = try? input.toDict()
+        let result = (json?["result"] as? [String: Any])!
+        return try Model.CommentList.decode(dictionary: result)
+    }
+}
+
+extension API.FetchChildCommentList: APIConfig {
+    static let domainConfig = Domain.Talkbbokki.self
+    static let serviceError = TalkbbokkiError.self
+    
+    
+    var path: String {
+        if let next {
+            return "/api/topics/\(topicID)/comments/\(parentCommentId)/child-comments?next=\(next)&pageSize=20"
+        } else {
+            return "/api/topics/\(topicID)/comments/\(parentCommentId)/child-comments?pageSize=20"
+        }
+    }
+    var method: HTTPMethod { return .get }
+    var parameters: API.Parameter? { return nil }
+    
+    func parse(_ input: Data) throws -> Model.CommentList {
         let json   = try? input.toDict()
         let result = (json?["result"] as? [String: Any])!
         return try Model.CommentList.decode(dictionary: result)

@@ -13,15 +13,16 @@ private enum ImageNamed {
 }
 
 struct ReCommentView: View {
+    let comment: Model.Comment
     var body: some View {
         ZStack {
             Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
             Group {
                 replyContentView(
                     isOwner: false,
-                    nickName: "ㅁㅁ",
-                    message: "ㅇㅇㅇ",
-                    date: "ㅁㅁㅁㅋ",
+                    nickName: comment.userNickname,
+                    message: comment.body,
+                    date: comment.createdToPresent,
                     didTapClose: {
                     
                 })
@@ -75,7 +76,6 @@ struct ReCommentView: View {
                 .foregroundColor(.Talkbbokki.GrayScale.gray6)
                 .font(.Pretendard.caption1)
         }
-        .background(Color.blue)
     }
     
     private func replyTitleView(
@@ -89,7 +89,7 @@ struct ReCommentView: View {
                 .font(.Pretendard.b3_bold)
             Spacer()
             replyCloseView(tapClose)
-        }.background(Color.red)
+        }
     }
     
     private func replyCloseView(_ tapClose: @escaping (()->Void)) -> some View {
@@ -105,6 +105,14 @@ struct ReCommentView: View {
 
 struct ReCommentView_Previews: PreviewProvider {
     static var previews: some View {
-        ReCommentView()
+        ReCommentView(comment: Model.Comment(_id: 0,
+                                             topicId: 0,
+                                             parentCommentId: nil,
+                                             childCommentCount: 0,
+                                             body: "Asdasdasdas",
+                                             userId: "asdas",
+                                             userNickname: "nickname",
+                                             createAt: "2023-05-13T15:23:18Z",
+                                             modifyAt: "2023-05-13T15:23:18Z"))
     }
 }

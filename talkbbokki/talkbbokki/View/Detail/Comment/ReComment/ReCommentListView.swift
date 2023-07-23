@@ -7,20 +7,39 @@
 
 import SwiftUI
 import GoogleMobileAds
+import ComposableArchitecture
 
 struct ReCommentListView: View {
-    let parentComment: Model.Comment
+    let store: StoreOf<RecommentListReducer>
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        ZStack {
-            Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
-            reCommentContent()
+        WithViewStore(store) { viewStore in
+            ZStack {
+                Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
+                reCommentContent(
+                    viewStore.parentComment,
+                    reComments: viewStore.comments,
+                    inputString: viewStore.binding(get: \.inputString,
+                                                   send: { .setInputString($0) }),
+                    registerAction: {
+                        viewStore.send(.registerRecomment(
+                            message: viewStore.inputString,
+                            topicId: viewStore.parentComment.topicId,
+                            parentCommentId: viewStore.parentComment.id)
+                        )
+                    }
+                )
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: backButton)
+            .navigationTitle("답글(\(viewStore.parentComment.childCommentCount))")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                viewStore.send(.fetchReCommentList(topicId: viewStore.parentComment.topicId,
+                                                   parentId: viewStore.parentComment.id))
+            }
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: backButton)
-        .navigationTitle("답글(1)")
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var backButton: some View {
@@ -31,10 +50,22 @@ struct ReCommentListView: View {
         }
     }
     
-    private func reCommentContent() -> some View {
+    private func reCommentContent(
+        _ parentComment: Model.Comment,
+        reComments: [Model.Comment],
+        inputString: Binding<String>,
+        registerAction: @escaping (()->Void)
+    ) -> some View {
         VStack {
-            commentList()
-            reCommentInput()
+            commentList(
+                parentComment: parentComment,
+                reComments: reComments
+            )
+            reCommentInput(
+                inputString,
+                nickName: parentComment.userNickname,
+                registerAction: registerAction
+            )
         }
     }
     
@@ -46,23 +77,39 @@ struct ReCommentListView: View {
             )
     }
     
-    private func reCommentInput() -> some View {
+    private func reCommentInput(
+        _ inputString: Binding<String>,
+        nickName: String,
+        registerAction: @escaping (()->Void)
+    ) -> some View {
         VStack(spacing: .zero) {
-            ReCommentDescriptionView(ownerNickName: parentComment.userNickname)
-            CommentInputView(textBinding: .constant("")) {
-                
+            ReCommentDescriptionView(ownerNickName: nickName)
+            CommentInputView(textBinding: inputString) {
+                registerAction()
             }
         }
     }
     
-    private func commentList() -> some View {
+    private func commentList(
+        parentComment: Model.Comment,
+        reComments: [Model.Comment]
+    ) -> some View {
         List {
-            CommentView(parentType: .ReComment,
-                        comment: parentComment,
-                        deleteCommentId: .constant(0))
+            Group {
+                CommentView(
+                    parentType: .ReComment,
+                    comment: parentComment,
+                    didTapDelete: nil,
+                    didTapReply: nil
+                )
+                bannerView()
+                
+                ForEach(reComments) { comment in
+                    ReCommentView(comment: comment)
+                }
+            }
             .listRowBackground(Color.clear)
             .listRowInsets(EdgeInsets())
-            bannerView()
         }
         .listStyle(PlainListStyle())
     }
@@ -70,15 +117,16 @@ struct ReCommentListView: View {
 
 struct ReCommentListView_Previews: PreviewProvider {
     static var previews: some View {
-        ReCommentListView(parentComment:
-                            Model.Comment(_id: 0,
-                                          topicId: 0,
-                                          parentCommentId: nil,
-                                          body: "Asdasdasdas",
-                                          userId: "asdas",
-                                          userNickname: "nickname",
-                                          createAt: "2023-05-13T15:23:18Z",
-                                          modifyAt: "2023-05-13T15:23:18Z")
+        ReCommentListView(store: Store(initialState: .init(parentComment: Model.Comment(_id: 0,
+                                                                                        topicId: 0,
+                                                                                        parentCommentId: nil,
+                                                                                        childCommentCount: 0,
+                                                                                        body: "Asdasdasdas",
+                                                                                        userId: "asdas",
+                                                                                        userNickname: "nickname",
+                                                                                        createAt: "2023-05-13T15:23:18Z",
+                                                                                        modifyAt: "2023-05-13T15:23:18Z"), commentsCount: 0),
+                                       reducer: RecommentListReducer())
         )
     }
 }

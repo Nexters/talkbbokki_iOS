@@ -31,14 +31,21 @@ struct CommentListView: View {
                             Spacer()
                             emptyView
                         }
-
+                        
                         if viewStore.comments.count > 0 {
-                            commentList(viewStore.comments,
-                                        nextId: viewStore.nextPage,
-                                        deleteBinding: viewStore.binding(get: \.deleteCommentId,
-                                                                         send: { .setDeleteCommentId($0) })) {
-                                viewStore.send(.fetchComments(next: viewStore.nextPage))
-                            }
+                            commentList(
+                                viewStore.comments,
+                                nextId: viewStore.nextPage,
+                                didScrollToBottom: {
+                                    viewStore.send(.fetchComments(next: viewStore.nextPage))
+                                },
+                                didTapDelete: { deleteId in
+                                    viewStore.send(.setDeleteCommentId(deleteId))
+                                },
+                                didTapReply: { comment in
+                                    viewStore.send(.setReCommentList(comment))
+                                }
+                            )
                         } else {
                             Spacer()
                         }
@@ -55,6 +62,17 @@ struct CommentListView: View {
                                                                    send: { .setTapDeleteAlert($0) }))
                     }
                 }
+                
+                NavigationLink(isActive: viewStore.binding(get: \.showReCommentList,
+                                                           send: { .setShowReCommentList($0) })) {
+                    IfLetStore(self.store.scope(state: \.reCommentState,
+                                                action: { .reCommentDelegate($0)
+                    })) {
+                        ReCommentListView(store: $0)
+                    }
+                } label: {}
+                    .navigationBar(titleColor: Color.Talkbbokki.GrayScale.white,
+                                   font: .Pretendard.b2_bold)
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
@@ -85,16 +103,24 @@ struct CommentListView: View {
         }
     }
     
-    private func commentList(_ comments: [Model.Comment],
-                             nextId: Int?,
-                             deleteBinding: Binding<Int>,
-                             didScrollToBottom: @escaping (()->())) -> some View {
+    private func commentList(
+        _ comments: [Model.Comment],
+        nextId: Int?,
+        didScrollToBottom: @escaping (()->()),
+        didTapDelete: @escaping ((Int)->Void),
+        didTapReply: @escaping ((Model.Comment)->Void)
+    ) -> some View {
         List {
-            ForEach(comments, id: \._id) { comment in
+            ForEach(comments) { comment in
                 CommentView(
                     parentType: .Comment,
                     comment: comment,
-                    deleteCommentId: deleteBinding
+                    didTapDelete: { deleteId in
+                        didTapDelete(deleteId)
+                    },
+                    didTapReply: { comment in
+                        didTapReply(comment)
+                    }
                 )
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets())

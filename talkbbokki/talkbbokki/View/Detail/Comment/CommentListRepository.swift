@@ -9,17 +9,19 @@ import Foundation
 import Combine
 
 protocol CommentListRepositoryType {
-    func registerComment(with topicId: Int, comment: String) async -> Void
+    func registerComment(with topicId: Int, parentCommentId: Int?, comment: String) async -> Void
     func fetchComment(with topicId: Int, next: Int?) async -> Model.CommentList
     func deleteComment(commentId: Int) async -> Void
+    func fetchChildComment(with topicId: Int, parentCommentId: Int, next: Int?) async -> Model.CommentList
 }
 
 final class CommentListRepository: CommentListRepositoryType {
     private var bag = Set<AnyCancellable>()
     
-    func registerComment(with topicId: Int, comment: String) async -> Void {
+    func registerComment(with topicId: Int, parentCommentId: Int?, comment: String) async -> Void {
         return await withCheckedContinuation({ continuation in
             API.RegisterComment(topicID: topicId,
+                                parentCommentID: parentCommentId,
                                 comment: comment,
                                 userID: Utils.getDeviceUUID(),
                                 userNickname: UserDefaultValue.nickName
@@ -51,6 +53,17 @@ final class CommentListRepository: CommentListRepositoryType {
                 .sink { _ in
                 } receiveValue: { _ in
                     continuation.resume(returning: ())
+                }.store(in: &bag)
+        })
+    }
+
+    func fetchChildComment(with topicId: Int, parentCommentId: Int, next: Int?) async -> Model.CommentList {
+        return await withCheckedContinuation({ contiuation in
+            API.FetchChildCommentList(topicID: topicId, parentCommentId: parentCommentId, next: next).request()
+                .print("API.FetchChildCommentList")
+                .sink { _ in
+                } receiveValue: { comments in
+                    contiuation.resume(returning: comments)
                 }.store(in: &bag)
         })
     }
