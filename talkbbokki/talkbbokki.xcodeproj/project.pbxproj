@@ -89,6 +89,9 @@
 		CE858E852995427500F2FC42 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E842995427500F2FC42 /* CategoryView.swift */; };
 		CE858E872995468D00F2FC42 /* CategoryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE858E862995468D00F2FC42 /* CategoryReducer.swift */; };
 		CE9083DC2A4079A100B5B322 /* CommentListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9083DB2A4079A100B5B322 /* CommentListRepository.swift */; };
+		CE9693192A6CDCA7005D261D /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CE9693182A6CDCA7005D261D /* ComposableArchitecture */; };
+		CE96931C2A6CDE46005D261D /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = CE96931B2A6CDE46005D261D /* SwiftUINavigation */; };
+		CE96931E2A6CDE46005D261D /* _SwiftUINavigationState in Frameworks */ = {isa = PBXBuildFile; productRef = CE96931D2A6CDE46005D261D /* _SwiftUINavigationState */; };
 		CEA39B462A0FD5F700E18D43 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA39B452A0FD5F700E18D43 /* CommentView.swift */; };
 		CEA39B482A0FDB8100E18D43 /* Model.Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA39B472A0FDB8100E18D43 /* Model.Comment.swift */; };
 		CEA39B4A2A0FF93C00E18D43 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA39B492A0FF93C00E18D43 /* ActivityIndicatorView.swift */; };
@@ -131,7 +134,6 @@
 		CEDD7B8429A6751D00EAE53B /* AdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD7B8329A6751D00EAE53B /* AdViewModel.swift */; };
 		CEDD7B8629A676DF00EAE53B /* AdViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD7B8529A676DF00EAE53B /* AdViewControllerRepresentable.swift */; };
 		CEE72A912982B2820047403A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CEE72A902982B2820047403A /* Alamofire */; };
-		CEE72A942982B2C10047403A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CEE72A932982B2C10047403A /* ComposableArchitecture */; };
 		CEEAAF1929A66B27006A2519 /* Splash_Final_Exceptlogo.json in Resources */ = {isa = PBXBuildFile; fileRef = CEEAAF1829A66B27006A2519 /* Splash_Final_Exceptlogo.json */; };
 		CEF1702429A525F000B5C624 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = CEF1702329A525F000B5C624 /* GoogleMobileAds */; };
 		CEF3323B29AE2505001486DC /* Splash_Final_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = CEF3323A29AE2505001486DC /* Splash_Final_ios.json */; };
@@ -280,6 +282,7 @@
 			files = (
 				CE25833829BB94B70005001F /* FirebaseMessaging in Frameworks */,
 				CE25832829BB94B70005001F /* FirebaseFirestoreCombine-Community in Frameworks */,
+				CE96931C2A6CDE46005D261D /* SwiftUINavigation in Frameworks */,
 				CE25832029BB94B70005001F /* FirebaseDatabase in Frameworks */,
 				CEA48CC929A270A300B39F84 /* Lottie in Frameworks */,
 				CE25834029BB94B70005001F /* FirebaseStorage in Frameworks */,
@@ -298,10 +301,10 @@
 				CE25831C29BB94B70005001F /* FirebaseAuthCombine-Community in Frameworks */,
 				CE25831229BB94B70005001F /* FirebaseAnalyticsSwift in Frameworks */,
 				CE25832229BB94B70005001F /* FirebaseDatabaseSwift in Frameworks */,
-				CEE72A942982B2C10047403A /* ComposableArchitecture in Frameworks */,
 				CE25833C29BB94B70005001F /* FirebaseRemoteConfig in Frameworks */,
 				CEE72A912982B2820047403A /* Alamofire in Frameworks */,
 				CE25831A29BB94B70005001F /* FirebaseAuth in Frameworks */,
+				CE96931E2A6CDE46005D261D /* _SwiftUINavigationState in Frameworks */,
 				CE25832C29BB94B70005001F /* FirebaseFunctions in Frameworks */,
 				CE25833429BB94B70005001F /* FirebaseInstallations in Frameworks */,
 				CE25832A29BB94B70005001F /* FirebaseFirestoreSwift in Frameworks */,
@@ -309,6 +312,7 @@
 				CE25831629BB94B70005001F /* FirebaseAppCheck in Frameworks */,
 				CE25833E29BB94B70005001F /* FirebaseRemoteConfigSwift in Frameworks */,
 				CE25831829BB94B70005001F /* FirebaseAppDistribution-Beta in Frameworks */,
+				CE9693192A6CDCA7005D261D /* ComposableArchitecture in Frameworks */,
 				CEF1702429A525F000B5C624 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -696,7 +700,6 @@
 			name = talkbbokki;
 			packageProductDependencies = (
 				CEE72A902982B2820047403A /* Alamofire */,
-				CEE72A932982B2C10047403A /* ComposableArchitecture */,
 				CEA48CC829A270A300B39F84 /* Lottie */,
 				CE618E0C29A3CB3600076F7E /* Introspect */,
 				CEF1702329A525F000B5C624 /* GoogleMobileAds */,
@@ -727,6 +730,9 @@
 				CE25833D29BB94B70005001F /* FirebaseRemoteConfigSwift */,
 				CE25833F29BB94B70005001F /* FirebaseStorage */,
 				CE25834129BB94B70005001F /* FirebaseStorageCombine-Community */,
+				CE9693182A6CDCA7005D261D /* ComposableArchitecture */,
+				CE96931B2A6CDE46005D261D /* SwiftUINavigation */,
+				CE96931D2A6CDE46005D261D /* _SwiftUINavigationState */,
 			);
 			productName = talkbbokki;
 			productReference = CEC63279297EBB5E00D9011E /* talkbbokki.app */;
@@ -802,11 +808,12 @@
 			mainGroup = CEC63270297EBB5E00D9011E;
 			packageReferences = (
 				CEE72A8F2982B2820047403A /* XCRemoteSwiftPackageReference "Alamofire" */,
-				CEE72A922982B2C10047403A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				CEA48CC729A270A300B39F84 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				CE618E0B29A3CB3600076F7E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				CEF1702229A525F000B5C624 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				CE25830C29BB94B70005001F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CE9693172A6CDCA7005D261D /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				CE96931A2A6CDE46005D261D /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
 			);
 			productRefGroup = CEC6327A297EBB5E00D9011E /* Products */;
 			projectDirPath = "";
@@ -1355,6 +1362,22 @@
 				minimumVersion = 0.2.3;
 			};
 		};
+		CE9693172A6CDCA7005D261D /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = exactVersion;
+				version = 0.50.0;
+			};
+		};
+		CE96931A2A6CDE46005D261D /* XCRemoteSwiftPackageReference "swiftui-navigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swiftui-navigation";
+			requirement = {
+				kind = exactVersion;
+				version = 0.6.0;
+			};
+		};
 		CEA48CC729A270A300B39F84 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -1369,14 +1392,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
-			};
-		};
-		CEE72A922982B2C10047403A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.0;
 			};
 		};
 		CEF1702229A525F000B5C624 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
@@ -1530,6 +1545,21 @@
 			package = CE618E0B29A3CB3600076F7E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
 		};
+		CE9693182A6CDCA7005D261D /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE9693172A6CDCA7005D261D /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		CE96931B2A6CDE46005D261D /* SwiftUINavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE96931A2A6CDE46005D261D /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
+			productName = SwiftUINavigation;
+		};
+		CE96931D2A6CDE46005D261D /* _SwiftUINavigationState */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE96931A2A6CDE46005D261D /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
+			productName = _SwiftUINavigationState;
+		};
 		CEA48CC829A270A300B39F84 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CEA48CC729A270A300B39F84 /* XCRemoteSwiftPackageReference "lottie-ios" */;
@@ -1539,11 +1569,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEE72A8F2982B2820047403A /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		CEE72A932982B2C10047403A /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CEE72A922982B2C10047403A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
 		};
 		CEF1702329A525F000B5C624 /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
