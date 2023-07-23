@@ -17,7 +17,6 @@ extension View {
         }
     }
     
-    
     func snapshot() -> UIImage {
         let controller = UIHostingController(rootView: self)
         let view = controller.view
@@ -85,9 +84,14 @@ extension View {
 }
 
 extension View {
-    func shadow(edge: Edge.Set) -> some View {
-        self
-            .shadow(color: Color.black, radius: 10, x: 0, y: 0)
-            .mask(Rectangle().padding(edge, -40))
+    @ViewBuilder
+    func shadow(edge: Edge.Set, isEnable: Bool = true) -> some View {
+        if isEnable {
+            self
+                .shadow(color: Color.black, radius: 10, x: 0, y: 0)
+                .mask(Rectangle().padding(edge, -40))
+        } else {
+            EmptyView()
+        }
     }
 }

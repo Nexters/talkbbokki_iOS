@@ -7,7 +7,15 @@
 
 import SwiftUI
 
+extension CommentView {
+    enum Parent {
+        case Comment
+        case ReComment
+    }
+}
+
 struct CommentView: View {
+    let parentType: Parent
     let comment: Model.Comment
     @Binding var deleteCommentId: Int
     
@@ -43,7 +51,7 @@ struct CommentView: View {
                 .foregroundColor(.Talkbbokki.GrayScale.gray6)
                 .font(.Pretendard.caption1)
             Spacer()
-            if isOwner {
+            if isOwner && parentType == .Comment {
                 Button {
                     tapClose()
                 } label: {
@@ -91,15 +99,17 @@ struct CommentView: View {
 
 struct CommentView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentView(comment: Model.Comment(_id: 0,
-                                           topicId: 0,
-                                           parentCommentId: nil,
-                                           body: "Asdasdasdas",
-                                           userId: "asdas",
-                                           userNickname: "nickname",
-                                           createAt: "2023-05-13T15:23:18Z",
-                                           modifyAt: "2023-05-13T15:23:18Z"),
-                    deleteCommentId: .constant(1))
+        CommentView(
+            parentType: .Comment,
+            comment: Model.Comment(_id: 0,
+                                   topicId: 0,
+                                   parentCommentId: nil,
+                                   body: "Asdasdasdas",
+                                   userId: "asdas",
+                                   userNickname: "nickname",
+                                   createAt: "2023-05-13T15:23:18Z",
+                                   modifyAt: "2023-05-13T15:23:18Z"),
+            deleteCommentId: .constant(1))
         .background(Color.blue)
     }
 }

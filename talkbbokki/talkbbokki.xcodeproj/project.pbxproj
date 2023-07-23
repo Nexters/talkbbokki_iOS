@@ -55,6 +55,11 @@
 		CE498377299A9DCB008A3968 /* DetailCardReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498376299A9DCB008A3968 /* DetailCardReducer.swift */; };
 		CE498379299A9F25008A3968 /* Model.Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE498378299A9F25008A3968 /* Model.Order.swift */; };
 		CE49837D299AA68C008A3968 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49837C299AA68C008A3968 /* Color.swift */; };
+		CE55F3ED2A6C08B800FA2ADE /* ReCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE55F3EC2A6C08B800FA2ADE /* ReCommentView.swift */; };
+		CE55F3EF2A6C166D00FA2ADE /* ReCommentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE55F3EE2A6C166D00FA2ADE /* ReCommentListView.swift */; };
+		CE55F3F12A6C19FE00FA2ADE /* CommentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE55F3F02A6C19FE00FA2ADE /* CommentInputView.swift */; };
+		CE55F3F32A6C1C8100FA2ADE /* ReCommentDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE55F3F22A6C1C8100FA2ADE /* ReCommentDescriptionView.swift */; };
+		CE55F3F52A6C224700FA2ADE /* RecommentListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE55F3F42A6C224700FA2ADE /* RecommentListReducer.swift */; };
 		CE588A4029F97A77003EAEC2 /* OnboardFourthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE588A3F29F97A77003EAEC2 /* OnboardFourthView.swift */; };
 		CE618E0A29A3AA2900076F7E /* SuggestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE618E0929A3AA2900076F7E /* SuggestView.swift */; };
 		CE618E0D29A3CB3600076F7E /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = CE618E0C29A3CB3600076F7E /* Introspect */; };
@@ -180,6 +185,11 @@
 		CE498376299A9DCB008A3968 /* DetailCardReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCardReducer.swift; sourceTree = "<group>"; };
 		CE498378299A9F25008A3968 /* Model.Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Order.swift; sourceTree = "<group>"; };
 		CE49837C299AA68C008A3968 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		CE55F3EC2A6C08B800FA2ADE /* ReCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReCommentView.swift; sourceTree = "<group>"; };
+		CE55F3EE2A6C166D00FA2ADE /* ReCommentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReCommentListView.swift; sourceTree = "<group>"; };
+		CE55F3F02A6C19FE00FA2ADE /* CommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
+		CE55F3F22A6C1C8100FA2ADE /* ReCommentDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReCommentDescriptionView.swift; sourceTree = "<group>"; };
+		CE55F3F42A6C224700FA2ADE /* RecommentListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommentListReducer.swift; sourceTree = "<group>"; };
 		CE588A3F29F97A77003EAEC2 /* OnboardFourthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardFourthView.swift; sourceTree = "<group>"; };
 		CE618E0929A3AA2900076F7E /* SuggestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestView.swift; sourceTree = "<group>"; };
 		CE618E1029A3D81B00076F7E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -382,6 +392,17 @@
 			path = GoogleAds;
 			sourceTree = "<group>";
 		};
+		CE55F3EB2A6C087600FA2ADE /* ReComment */ = {
+			isa = PBXGroup;
+			children = (
+				CE55F3EE2A6C166D00FA2ADE /* ReCommentListView.swift */,
+				CE55F3F42A6C224700FA2ADE /* RecommentListReducer.swift */,
+				CE55F3F22A6C1C8100FA2ADE /* ReCommentDescriptionView.swift */,
+				CE55F3EC2A6C08B800FA2ADE /* ReCommentView.swift */,
+			);
+			path = ReComment;
+			sourceTree = "<group>";
+		};
 		CE7634A02A04CE21009B3CA0 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,6 +410,8 @@
 				CE7634A32A04E3AD009B3CA0 /* CommentListReducer.swift */,
 				CE9083DB2A4079A100B5B322 /* CommentListRepository.swift */,
 				CEA39B452A0FD5F700E18D43 /* CommentView.swift */,
+				CE55F3F02A6C19FE00FA2ADE /* CommentInputView.swift */,
+				CE55F3EB2A6C087600FA2ADE /* ReComment */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -878,6 +901,7 @@
 				CE9083DC2A4079A100B5B322 /* CommentListRepository.swift in Sources */,
 				CE64A507299BE9D1004C4E8D /* AppDelegate.swift in Sources */,
 				CED4F00029AD12CA0063D3C6 /* BookmarkReducer.swift in Sources */,
+				CE55F3F12A6C19FE00FA2ADE /* CommentInputView.swift in Sources */,
 				CE7E035829AB542300486623 /* String+.swift in Sources */,
 				CEF7CFB129A1115D005A7E6C /* AlertView.swift in Sources */,
 				CEDD7B8429A6751D00EAE53B /* AdViewModel.swift in Sources */,
@@ -897,6 +921,7 @@
 				CE49837D299AA68C008A3968 /* Color.swift in Sources */,
 				CE0F15A62993F5FE00295B43 /* APIConfig+Request.swift in Sources */,
 				CE0F15A02993BB5B00295B43 /* APIConfig.Error.swift in Sources */,
+				CE55F3ED2A6C08B800FA2ADE /* ReCommentView.swift in Sources */,
 				CEA48CD829A2771D00B39F84 /* UserDefaultKey.swift in Sources */,
 				CEA48CD529A276CB00B39F84 /* UserDefault.swift in Sources */,
 				CE588A4029F97A77003EAEC2 /* OnboardFourthView.swift in Sources */,
@@ -913,9 +938,12 @@
 				CEAE6D0329D1B91700A00923 /* Log.swift in Sources */,
 				CE7634A42A04E3AD009B3CA0 /* CommentListReducer.swift in Sources */,
 				CEA48CCB29A271AE00B39F84 /* LottieView.swift in Sources */,
+				CE55F3EF2A6C166D00FA2ADE /* ReCommentListView.swift in Sources */,
 				CE7634A62A04E778009B3CA0 /* NavigationBarModifier.swift in Sources */,
 				CE0F15AB2993FD2800295B43 /* API.swift in Sources */,
 				CEB93F322997F776001087B6 /* ConfirmButtonView.swift in Sources */,
+				CE55F3F32A6C1C8100FA2ADE /* ReCommentDescriptionView.swift in Sources */,
+				CE55F3F52A6C224700FA2ADE /* RecommentListReducer.swift in Sources */,
 				CEAE6D0529D1B93F00A00923 /* Log.Firebase.swift in Sources */,
 				CE7E035629AB538800486623 /* ToastView.swift in Sources */,
 				CE39E119298650BB00E3C93D /* CardListView.swift in Sources */,

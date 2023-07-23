@@ -21,7 +21,6 @@ struct CommentListView: View {
                         .frame(width: 50, height: 50)
                         .foregroundColor(.white)
                 } else {
-                    
                     VStack {
                         BannerView()
                             .frame(width: GADAdSizeBanner.size.width,
@@ -44,11 +43,11 @@ struct CommentListView: View {
                             Spacer()
                         }
                         
-                        inputCommentView(viewStore.binding(get: \.inputComment,
-                                                           send: { .setInputComment($0) }),
-                                         buttonAction: {
+                        CommentInputView(textBinding: viewStore.binding(get: \.inputComment,
+                                                                        send: { .setInputComment($0) })) {
                             viewStore.send(.registerComment(viewStore.inputComment))
-                        })
+                        }
+                                                                        .shadow(edge: .top)
                     }
                     
                     if viewStore.showDeleteAlert {
@@ -86,52 +85,17 @@ struct CommentListView: View {
         }
     }
     
-    private func inputCommentView(_ binding: Binding<String>,
-                                  buttonAction: @escaping (()->())
-    ) -> some View {
-        VStack(spacing: 0.0) {
-            Group {
-                ZStack(alignment: .center) {
-                    HStack {
-                        CommonTextField(binding: binding,
-                                        placeHolderString: "이 대화 주제 어땠나요?")
-                        
-                        Button {
-                            buttonAction()
-                        } label: {
-                            Text("등록")
-                                .font(.Pretendard.b2_bold)
-                                .foregroundColor(binding.wrappedValue.isEmpty ? .gray : .white)
-                                .padding(10)
-                        }
-                        .disabled(binding.wrappedValue.isEmpty)
-                        .padding(.trailing, 6)
-                    }
-                    .background(Color.Talkbbokki.GrayScale.gray6)
-                    .cornerRadius(8)
-                }
-                .background(Color.Talkbbokki.GrayScale.gray7)
-                .padding(.top, 20)
-                .padding([.leading, .trailing], 16)
-                .padding(.bottom, 8)
-                
-                Spacer()
-                    .frame(height: 1.0)
-            }
-            .background(Color.Talkbbokki.GrayScale.gray7)
-            .clipped()
-            .shadow(edge: .top)
-        }
-    }
-    
     private func commentList(_ comments: [Model.Comment],
                              nextId: Int?,
                              deleteBinding: Binding<Int>,
                              didScrollToBottom: @escaping (()->())) -> some View {
         List {
             ForEach(comments, id: \._id) { comment in
-                CommentView(comment: comment,
-                            deleteCommentId: deleteBinding)
+                CommentView(
+                    parentType: .Comment,
+                    comment: comment,
+                    deleteCommentId: deleteBinding
+                )
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets())
             }
