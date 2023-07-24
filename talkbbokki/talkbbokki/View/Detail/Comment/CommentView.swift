@@ -58,13 +58,14 @@ struct CommentView: View {
                 .font(.Pretendard.caption1)
             Spacer()
             if isOwner && parentType == .Comment {
-                Button {
-                    tapClose()
-                } label: {
-                    Image("Icon-Close-24")
-                        .resizable()
-                }
-                .frame(width: 18,height: 18)
+                Image("Icon-Close-24")
+                    .resizable()
+                    .frame(width: 18,height: 18)
+                    .background(Color.red)
+                    .padding(5)
+                    .onTapGesture {
+                        tapClose()
+                    }
             }
         }
     }
@@ -81,24 +82,21 @@ struct CommentView: View {
                                 tapReport: @escaping (()->Void)
     ) -> some View {
         HStack(spacing: 12.0) {
-            Button {
-                tapReply()
-            } label: {
-                Text("답글 (\(replyCount))")
-                    .foregroundColor(.Talkbbokki.GrayScale.gray6)
-                    .font(.Pretendard.reply)
-            }
-
+            Text("답글 (\(replyCount))")
+                .foregroundColor(.Talkbbokki.GrayScale.gray6)
+                .font(.Pretendard.reply)
+                .onTapGesture {
+                    tapReply()
+                }
             
             if isOwner { EmptyView() }
             else {
-                Button {
-                    tapReport()
-                } label: {
-                    Text("신고하기")
-                        .foregroundColor(.Talkbbokki.GrayScale.gray6)
-                        .font(.Pretendard.reply)
-                }
+                Text("신고하기")
+                    .foregroundColor(.Talkbbokki.GrayScale.gray6)
+                    .font(.Pretendard.reply)
+                    .onTapGesture {
+                        tapReport()
+                    }
             }
         }
     }

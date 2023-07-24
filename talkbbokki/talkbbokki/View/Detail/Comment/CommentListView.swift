@@ -12,7 +12,6 @@ import ComposableArchitecture
 struct CommentListView: View {
     let store: StoreOf<CommentListReducer>
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-//    private let bannerView = BannerView()
 
     var body: some View {
         WithViewStore(store) { viewStore in
