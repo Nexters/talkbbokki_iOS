@@ -13,29 +13,34 @@ struct ReCommentListView: View {
     let store: StoreOf<RecommentListReducer>
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
+    private let bannverView = BannerView()
+    
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
                 Color.Talkbbokki.Primary.mainColor2.ignoresSafeArea()
-                reCommentContent(
-                    viewStore.parentComment,
-                    reComments: viewStore.comments,
-                    inputString: viewStore.binding(get: \.inputString,
-                                                   send: { .setInputString($0) }),
-                    registerAction: {
-                        viewStore.send(.registerRecomment(
-                            message: viewStore.inputString,
-                            topicId: viewStore.parentComment.topicId,
-                            parentCommentId: viewStore.parentComment.id)
-                        )
-                    }
-                )
+                VStack {
+                    reCommentContent(
+                        viewStore.parentComment,
+                        reComments: viewStore.comments,
+                        inputString: viewStore.binding(get: \.inputString,
+                                                       send: { .setInputString($0) }),
+                        registerAction: {
+                            viewStore.send(.registerRecomment(
+                                message: viewStore.inputString,
+                                topicId: viewStore.parentComment.topicId,
+                                parentCommentId: viewStore.parentComment.id)
+                            )
+                        }
+                    )
+                }
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
             .navigationTitle("답글(\(viewStore.parentComment.childCommentCount))")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
+                bannverView.loadAd()
                 viewStore.send(.fetchReCommentList(topicId: viewStore.parentComment.topicId,
                                                    parentId: viewStore.parentComment.id))
             }
@@ -68,15 +73,7 @@ struct ReCommentListView: View {
             )
         }
     }
-    
-    private func bannerView() -> some View {
-        BannerView()
-            .frame(
-                width: GADAdSizeBanner.size.width,
-                height: GADAdSizeBanner.size.height
-            )
-    }
-    
+
     private func reCommentInput(
         _ inputString: Binding<String>,
         nickName: String,
@@ -89,29 +86,34 @@ struct ReCommentListView: View {
             }
         }
     }
-    
+
     private func commentList(
         parentComment: Model.Comment,
         reComments: [Model.Comment]
     ) -> some View {
-        List {
-            Group {
-                CommentView(
-                    parentType: .ReComment,
-                    comment: parentComment,
-                    didTapDelete: nil,
-                    didTapReply: nil
+        VStack {
+            CommentView(
+                parentType: .ReComment,
+                comment: parentComment,
+                didTapDelete: nil,
+                didTapReply: nil
+            )
+            
+            bannverView
+                .frame(
+                    width: GADAdSizeBanner.size.width,
+                    height: GADAdSizeBanner.size.height
                 )
-                bannerView()
-                
+            
+            List {
                 ForEach(reComments) { comment in
                     ReCommentView(comment: comment)
                 }
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets())
             }
-            .listRowBackground(Color.clear)
-            .listRowInsets(EdgeInsets())
+            .listStyle(PlainListStyle())
         }
-        .listStyle(PlainListStyle())
     }
 }
 

@@ -12,6 +12,8 @@ import ComposableArchitecture
 struct CommentListView: View {
     let store: StoreOf<CommentListReducer>
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+//    private let bannerView = BannerView()
+
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
@@ -23,8 +25,9 @@ struct CommentListView: View {
                 } else {
                     VStack {
                         BannerView()
-                            .frame(width: GADAdSizeBanner.size.width,
-                                   height: GADAdSizeBanner.size.height
+                            .frame(
+                                width: GADAdSizeBanner.size.width,
+                                height: GADAdSizeBanner.size.height
                             )
 
                         if viewStore.comments.isEmpty {
